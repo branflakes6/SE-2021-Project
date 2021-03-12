@@ -24,9 +24,11 @@
       </v-col>
       </v-row>
       </v-card>
-      </div>
-       
+      </div>  
      </v-main>
+     <div align = "center">
+        <img alt="peppoRideGooseGun" src="./assets/Peppo.gif" contain height = "60px" width = "60px">
+      </div>
 </v-app>
 </template>
 <script>

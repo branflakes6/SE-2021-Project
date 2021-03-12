@@ -1,6 +1,7 @@
 <template>
     <div>
       <h1>Welcome to the Home Page </h1>
+      <h2> Poker </h2>
     </div>   
 </template>
 
@@ -12,6 +13,9 @@ export default {
     },
     data: () => ({
 
-    })
+    }),
+    methods: {
+
+    }
 }
 </script>
