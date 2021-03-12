@@ -1,9 +1,12 @@
 <template>
-<v-app>
-      <div class="ma-12 pa-12">
+<v-app>    
+      <v-main>
+        
+        <div>
       <v-card>
+        <v-row>
+        <v-col>
       <v-navigation-drawer permanent v-model="drawer">
-       
         <v-list>
           <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
             <v-list-item-content>
@@ -14,15 +17,18 @@
           </v-list-item>
         </v-list>
          </v-navigation-drawer>
+        </v-col>
+      <v-col>
+         <router-view>  
+       </router-view>
+      </v-col>
+      </v-row>
       </v-card>
       </div>
-      <v-main>
-       <router-view>
-       </router-view>
+       
      </v-main>
 </v-app>
 </template>
-
 <script>
 
 
@@ -31,7 +37,6 @@ export default {
   components: {
 
   },
-
   data: () => ({
     drawer: null,
     items: [{

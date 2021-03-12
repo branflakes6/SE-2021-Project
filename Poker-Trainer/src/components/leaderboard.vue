@@ -1,6 +1,22 @@
 <template>
     <div>
       <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
+      <h1>Welcome to the Leaderboard </h1>
     </div>   
 </template>
 
@@ -14,7 +30,7 @@ export default {
 
     }),
     methods: {
-        
+
     }
 }
 </script>
