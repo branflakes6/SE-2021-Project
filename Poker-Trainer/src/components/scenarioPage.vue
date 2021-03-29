@@ -1,6 +1,6 @@
 <template>
   <div>
-  <v-img src ="..\assets\bg.jpg" contain height="800x" width = "1400px">  
+  <v-img src ="../assets/bg.jpg" contain height="800x" width = "1400px">  
     <v-container>
     <div align=center> 
       <h1>Welcome to the Scenario Page</h1>
