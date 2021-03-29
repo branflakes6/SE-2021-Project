@@ -1,11 +1,6 @@
 <template>
 <v-app>    
-      <v-main>
-        <div>
-      <v-card>
-        <v-row>
-        <v-col>
-      <v-navigation-drawer permanent v-model="drawer">
+     <v-navigation-drawer permanent v-model="drawer" app>
         <v-list>
           <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
             <v-list-item-content>
@@ -15,17 +10,17 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-         </v-navigation-drawer>
-        </v-col>
-      <v-col>
+      </v-navigation-drawer>
+
+      <v-app-bar app flat> 
+        <v-toolbar-title> Poker </v-toolbar-title>
+      </v-app-bar>
+      <v-main>
          <router-view>  
-       </router-view>
-      </v-col>
-      </v-row>
-      </v-card>
-      </div>  
+         </router-view>
      </v-main>
 </v-app>
+
 </template>
 <script>
 
