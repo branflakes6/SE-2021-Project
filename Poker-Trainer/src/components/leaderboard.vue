@@ -1,4 +1,5 @@
 <template>
+<v-app>
     <div>
       <h1>Welcome to the Leaderboard </h1>
       <h1>Welcome to the Leaderboard </h1>
@@ -17,7 +18,8 @@
       <h1>Welcome to the Leaderboard </h1>
       <h1>Welcome to the Leaderboard </h1>
       <h1>Welcome to the Leaderboard </h1>
-    </div>   
+    </div> 
+    </v-app>  
 </template>
 
 <script>

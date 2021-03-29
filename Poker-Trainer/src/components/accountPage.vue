@@ -1,8 +1,9 @@
 <template>
+<v-app>
     <div>
-      <h1>Welcome to the Account Page</h1>
-      <h2> Balls </h2>
+      <h1>Welcome to the Account Page</h1>   
     </div>   
+</v-app>
 </template>
 
 <script>

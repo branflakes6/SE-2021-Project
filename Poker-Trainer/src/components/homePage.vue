@@ -1,8 +1,13 @@
 <template>
+<v-app>
+  <div >
+    <h2 >Want to be the best at the table?</h2>
     <div>
-      <h1>Welcome to the Home Page </h1>
-      <h2> Poker </h2>
-    </div>   
+    <v-btn depressed to="/account"> Sign Up
+    </v-btn>
+    </div>
+  </div>
+  </v-app>
 </template>
 
 <script>
@@ -15,7 +20,8 @@ export default {
 
     }),
     methods: {
-
+        
     }
 }
 </script>
+
