@@ -46,7 +46,7 @@ export default {
       to: "/account"
     },
     {
-      title: "scenario",
+      title: "Scenario",
       to: "/scenario"
     },
     {
