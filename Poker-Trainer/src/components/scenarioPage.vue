@@ -68,34 +68,41 @@
  </v-container>
     </v-img>
   <v-dialog v-model="call" max-width = "260">
-    <v-card>
-      <h3 align="center">
+    <v-card max-height="260">
+     
+      <v-container>
+         <h3 align="center">
       Correct Decision
-      </h3>
-      <h4 class="ma-4"> Your opponent went all in and you had a Royal Flush, the best possible hand. 
+        </h3>
+        <h4> Your opponent went all in and you had a Royal Flush, the best possible hand. 
         The only correct decision in this situation is to go all in!
       </h4>
+      </v-container>
     </v-card>
   </v-dialog>
 
   <v-dialog v-model="raise" max-width = "260">
     <v-card>
+      <v-container>
       <h3 align="center">
       Invalid
       </h3>
       <h4 class="ma-4"> Your opponent went all in, you cannot raise you can only call.
       </h4>
+      </v-container>
     </v-card>
   </v-dialog>
 
   <v-dialog v-model="fold" max-width = "260">
     <v-card>
+      <v-container>
       <h3 align="center">
       Wrong Decision
       </h3>
       <h4 class="ma-4"> Your opponent went all in and you had a Royal Flush, the best possible hand. 
         The only correct decision in this situation is to go all in!
       </h4>
+      </v-container>
     </v-card>
   </v-dialog>
     </div>
