@@ -1,6 +1,6 @@
 <template>
   <div>
-  <v-img src ="..\assets\bg.jpg" contain height="800x" width = "1400px">  
+  <v-img src ="../assets/bg.jpg" contain height="800x" width = "1400px">  
     <v-container>
     <div align=center> 
       <h1>Welcome to the Scenario Page</h1>
@@ -9,10 +9,12 @@
     
     <v-container fill-height>
       <v-card class="mx-auto mt-4 pt-8" color="transparent" flat>
-        <div align=center>
-        <vue-playing-card signature="cover" :width="85"></vue-playing-card>
-        <vue-playing-card signature="cover" :width="85"></vue-playing-card>
+        
+        <div align=center :key="flip">
+        <vue-playing-card :signature="pCard1" :width="85" ></vue-playing-card>
+        <vue-playing-card :signature="pCard2" :width="85"></vue-playing-card>
         </div>
+
     <div class="mt-8 pt-8">
       <vue-playing-card signature="cover" :width="85"></vue-playing-card>
       <vue-playing-card signature="kh" :width="85"></vue-playing-card>
@@ -34,27 +36,19 @@
 
    <v-col>
      <v-row class="mb-2">
-
-      
-     <v-btn @click="call = true"> Call
-     </v-btn>
+     <v-btn v-on:click="callF"> Call</v-btn>
 
      </v-row>
       <v-row class="mb-2">
-      <v-btn @click="raise = true"> Raise
-     </v-btn>
+      <v-btn @click="raise = true"> Raise</v-btn>
 
       </v-row>
        <v-row class="mb-2">
-      <v-btn @click="fold = true"> Fold
-     </v-btn>
+      <v-btn @click="fold = true"> Fold</v-btn>
        </v-row>
      
    </v-col>
    </v-row>
-
-
-  
 
    </div>
      </v-card>
@@ -74,34 +68,41 @@
  </v-container>
     </v-img>
   <v-dialog v-model="call" max-width = "260">
-    <v-card>
-      <h3 align="center">
+    <v-card max-height="260">
+     
+      <v-container>
+         <h3 align="center">
       Correct Decision
-      </h3>
-      <h4 class="ma-4"> Your opponent went all in and you had a Royal Flush, the best possible hand. 
+        </h3>
+        <h4> Your opponent went all in and you had a Royal Flush, the best possible hand. 
         The only correct decision in this situation is to go all in!
       </h4>
+      </v-container>
     </v-card>
   </v-dialog>
 
   <v-dialog v-model="raise" max-width = "260">
     <v-card>
+      <v-container>
       <h3 align="center">
       Invalid
       </h3>
       <h4 class="ma-4"> Your opponent went all in, you cannot raise you can only call.
       </h4>
+      </v-container>
     </v-card>
   </v-dialog>
 
   <v-dialog v-model="fold" max-width = "260">
     <v-card>
+      <v-container>
       <h3 align="center">
       Wrong Decision
       </h3>
       <h4 class="ma-4"> Your opponent went all in and you had a Royal Flush, the best possible hand. 
         The only correct decision in this situation is to go all in!
       </h4>
+      </v-container>
     </v-card>
   </v-dialog>
     </div>
@@ -113,12 +114,21 @@ export default {
     componets: {
   
     },
-    methods: {   
+    methods: {  
+      callF : function() {
+        this.call = true,
+        this.pCard1 = "ad",
+        this.pCard2 = "as",
+        this.flip += 1
+      } 
     },
     data: () => ({
         call: false,
         raise: false,
         fold: false,
+        flip: 0,
+        pCard1: "cover",
+        pCard2: "cover"
     })
 }
 </script>
