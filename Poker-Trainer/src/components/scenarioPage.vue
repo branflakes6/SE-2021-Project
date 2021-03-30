@@ -9,10 +9,12 @@
     
     <v-container fill-height>
       <v-card class="mx-auto mt-4 pt-8" color="transparent" flat>
-        <div align=center>
-        <vue-playing-card signature="cover" :width="85"></vue-playing-card>
-        <vue-playing-card signature="cover" :width="85"></vue-playing-card>
+        
+        <div align=center :key="flip">
+        <vue-playing-card :signature="pCard1" :width="85" ></vue-playing-card>
+        <vue-playing-card :signature="pCard2" :width="85"></vue-playing-card>
         </div>
+
     <div class="mt-8 pt-8">
       <vue-playing-card signature="cover" :width="85"></vue-playing-card>
       <vue-playing-card signature="kh" :width="85"></vue-playing-card>
@@ -34,27 +36,19 @@
 
    <v-col>
      <v-row class="mb-2">
-
-      
-     <v-btn @click="call = true"> Call
-     </v-btn>
+     <v-btn v-on:click="callF"> Call</v-btn>
 
      </v-row>
       <v-row class="mb-2">
-      <v-btn @click="raise = true"> Raise
-     </v-btn>
+      <v-btn @click="raise = true"> Raise</v-btn>
 
       </v-row>
        <v-row class="mb-2">
-      <v-btn @click="fold = true"> Fold
-     </v-btn>
+      <v-btn @click="fold = true"> Fold</v-btn>
        </v-row>
      
    </v-col>
    </v-row>
-
-
-  
 
    </div>
      </v-card>
@@ -113,12 +107,21 @@ export default {
     componets: {
   
     },
-    methods: {   
+    methods: {  
+      callF : function() {
+        this.call = true,
+        this.pCard1 = "ad",
+        this.pCard2 = "as",
+        this.flip += 1
+      } 
     },
     data: () => ({
         call: false,
         raise: false,
         fold: false,
+        flip: 0,
+        pCard1: "cover",
+        pCard2: "cover"
     })
 }
 </script>
