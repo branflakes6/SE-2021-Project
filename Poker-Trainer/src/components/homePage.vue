@@ -1,27 +1,23 @@
 <template>
-<v-app>
-  <div >
-    <h2 >Want to be the best at the table?</h2>
+  <div>
+    <h2>Want to be the best at the table?</h2>
     <div>
-    <v-btn depressed to="/account"> Sign Up
-    </v-btn>
+      <router-link to="/account" class="signup">Sign Up</router-link>
     </div>
   </div>
-  </v-app>
 </template>
 
 <script>
 export default {
-    name: 'homePage',
-    componets: {
-
-    },
-    data: () => ({
-
-    }),
-    methods: {
-        
-    }
-}
+  name: "homePage",
+  componets: {},
+  data: () => ({}),
+  methods: {},
+};
 </script>
 
+<style scoped>
+.signup {
+  color: red;
+}
+</style>
