@@ -2,10 +2,12 @@
   <v-app>
     <v-navigation-drawer dark permanent v-model="drawer" app>
       <v-list>
-        <v-list-item>
-          <img id="logo" src="..\assets\logo.jpg" alt="img not found" />
-          <h1>TCD Poker Trainer</h1>
-        </v-list-item>
+        <a id="title-logo" href="/">
+          <div>
+            <img id="logo" src="..\assets\logo.jpg" alt="img not found" />
+            <h1>TCD Poker Trainer</h1>
+          </div>
+        </a>
         <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
           <v-list-item-content>
             <v-list-item-title class="title">
@@ -31,7 +33,7 @@ export default {
     items: [
       {
         title: "Home ",
-        to: "/home",
+        to: "/",
       },
       {
         title: "Profile",
@@ -51,6 +53,16 @@ export default {
 </script>
 
 <style scoped>
+#title-logo {
+  background-color: #363636;
+  color: #fff;
+  text-decoration: none;
+}
+#title-logo div {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 #logo {
   width: 50px;
 }
