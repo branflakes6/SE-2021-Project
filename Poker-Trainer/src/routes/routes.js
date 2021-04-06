@@ -5,6 +5,7 @@ import leaderboard from "@/components/leaderboard";
 import scenarioPage from "@/components/scenarioPage";
 import createAccountForm from "@/components/createAccount";
 import loginForm from "@/components/loginPage";
+import pageNotFound from "../components/pageNotFound";
 import Vue from "vue";
 
 Vue.use(Router);
@@ -45,6 +46,12 @@ let router = new Router({
       path: "/scenario",
       name: "scenarios",
       component: scenarioPage,
+      meta: {},
+    },
+    {
+      path: "*",
+      name: "pageNotFound",
+      component: pageNotFound,
       meta: {},
     },
   ],
