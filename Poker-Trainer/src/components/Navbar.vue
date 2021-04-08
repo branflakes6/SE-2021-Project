@@ -1,13 +1,24 @@
 <template>
-  <v-app>
-    <v-navigation-drawer dark permanent v-model="drawer" app>
+  <nav>
+    <v-app-bar color=" white--text" dark dense fixed app flat>
+      <a id="title-logo" href="/" class="title">
+        <div>
+          <img id="logo" src="..\assets\logo.png" alt="img not found" />
+          <h1>TCD Poker Trainer</h1>
+        </div>
+      </a>
+      <v-spacer />
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    </v-app-bar>
+
+    <v-navigation-drawer
+      color="grey darken-4"
+      temporary
+      dark
+      v-model="drawer"
+      app
+    >
       <v-list>
-        <a id="title-logo" href="/">
-          <div>
-            <img id="logo" src="..\assets\logo.jpg" alt="img not found" />
-            <h1>TCD Poker Trainer</h1>
-          </div>
-        </a>
         <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
           <v-list-item-content>
             <v-list-item-title class="title">
@@ -17,19 +28,13 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-
-    <v-main>
-      <router-view> </router-view>
-    </v-main>
-  </v-app>
+  </nav>
 </template>
-
 <script>
 export default {
-  name: "Navbar",
-  components: {},
   data: () => ({
-    drawer: null,
+    drawer: false,
+    group: null,
     items: [
       {
         title: "Home ",
@@ -51,19 +56,23 @@ export default {
   }),
 };
 </script>
-
 <style scoped>
+.v-app-bar {
+  background-color: rgb(22, 22, 22) !important;
+}
+
 #title-logo {
-  background-color: #363636;
+  background-color: rgb(22, 22, 22);
   color: #fff;
   text-decoration: none;
 }
 #title-logo div {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
 #logo {
-  width: 50px;
+  height: 45px;
+  margin: 0 10px 0 -10px;
 }
 </style>
