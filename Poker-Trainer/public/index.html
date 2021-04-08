@@ -40,6 +40,30 @@
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
     </script>
+
+    <!-- Style the scroll bar (have to do it here sorry) -->
+    <style>
+      /* width */
+      ::-webkit-scrollbar {
+        width: 20px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background-color: rgb(33, 33, 33);
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #424242;
+        border-radius: 10px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #616161;
+      }
+    </style>
   </head>
   <body>
     <noscript>
