@@ -6,7 +6,7 @@
     <v-snackbar v-model="snackbar" timeout="-1" top app>
       jojojojojo asdfjasldf
     </v-snackbar>
-    <v-navigation-drawer absolute temporary dark v-model="drawer" app>
+    <v-navigation-drawer temporary dark v-model="drawer" app>
       <v-list>
         <a id="title-logo" href="/">
           <div>
