@@ -1,6 +1,12 @@
 <template>
-  <v-app>
-    <v-navigation-drawer dark permanent v-model="drawer" app>
+  <nav>
+    <v-app-bar color="white--text" dark dense fixed app flat>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    </v-app-bar>
+    <v-snackbar v-model="snackbar" timeout="-1" top app>
+      jojojojojo asdfjasldf
+    </v-snackbar>
+    <v-navigation-drawer absolute temporary dark v-model="drawer" app>
       <v-list>
         <a id="title-logo" href="/">
           <div>
@@ -17,19 +23,13 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-
-    <v-main>
-      <router-view> </router-view>
-    </v-main>
-  </v-app>
+  </nav>
 </template>
-
 <script>
 export default {
-  name: "Navbar",
-  components: {},
   data: () => ({
-    drawer: null,
+    drawer: false,
+    group: null,
     items: [
       {
         title: "Home ",
@@ -49,10 +49,19 @@ export default {
       },
     ],
   }),
+
+  watch: {
+    group() {
+      this.drawer = false;
+    },
+  },
 };
 </script>
-
 <style scoped>
+.v-app-bar {
+  background-color: rgb(22, 22, 22) !important;
+}
+
 #title-logo {
   background-color: #363636;
   color: #fff;
