@@ -1,19 +1,18 @@
 <template>
   <nav>
     <v-app-bar color="white--text" dark dense fixed app flat>
+      <a id="title-logo" href="/" class="title">
+        <div>
+          <img id="logo" src="..\assets\logo.png" alt="img not found" />
+          <h1>TCD Poker Trainer</h1>
+        </div>
+      </a>
+      <v-spacer />
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
-    <v-snackbar v-model="snackbar" timeout="-1" top app>
-      jojojojojo asdfjasldf
-    </v-snackbar>
+
     <v-navigation-drawer temporary dark v-model="drawer" app>
       <v-list>
-        <a id="title-logo" href="/">
-          <div>
-            <img id="logo" src="..\assets\logo.jpg" alt="img not found" />
-            <h1>TCD Poker Trainer</h1>
-          </div>
-        </a>
         <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
           <v-list-item-content>
             <v-list-item-title class="title">
@@ -49,12 +48,6 @@ export default {
       },
     ],
   }),
-
-  watch: {
-    group() {
-      this.drawer = false;
-    },
-  },
 };
 </script>
 <style scoped>
@@ -63,16 +56,17 @@ export default {
 }
 
 #title-logo {
-  background-color: #363636;
+  background-color: rgb(22, 22, 22);
   color: #fff;
   text-decoration: none;
 }
 #title-logo div {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
 #logo {
-  width: 50px;
+  height: 45px;
+  margin: 0 10px 0 -10px;
 }
 </style>
