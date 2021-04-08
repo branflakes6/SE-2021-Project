@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <v-app-bar color="white--text" dark dense fixed app flat>
+    <v-app-bar color=" white--text" dark dense fixed app flat>
       <a id="title-logo" href="/" class="title">
         <div>
           <img id="logo" src="..\assets\logo.png" alt="img not found" />
@@ -11,7 +11,13 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
 
-    <v-navigation-drawer temporary dark v-model="drawer" app>
+    <v-navigation-drawer
+      color="grey darken-4"
+      temporary
+      dark
+      v-model="drawer"
+      app
+    >
       <v-list>
         <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
           <v-list-item-content>
