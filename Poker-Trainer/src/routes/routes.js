@@ -1,18 +1,12 @@
+import Vue from "vue";
 import Router from "vue-router";
 import homePage from "@/components/homePage";
-import accountPage from "@/components/accountPage";
-import leaderboard from "@/components/leaderboard";
-import scenarioPage from "@/components/scenarioPage";
-import createAccountForm from "@/components/createAccount";
-import loginForm from "@/components/loginPage";
-import pageNotFound from "../components/pageNotFound";
-import Vue from "vue";
 
 Vue.use(Router);
 
+// Routes are implemented using lazy-loading to increase app speed
 let router = new Router({
   mode: "history",
-
   routes: [
     {
       path: "/", // '/' acts like index.html would in a multipage website
@@ -23,37 +17,53 @@ let router = new Router({
     {
       path: "/account",
       name: "accountPage",
-      component: accountPage,
-      meta: {},
-    },
-    {
-      path: "/leaderboard",
-      name: "leaderboardPage",
-      component: leaderboard,
+      component: () =>
+        import(
+          /*webpackChunkName: "account"*/ "..\\components\\accountPage.vue"
+        ),
       meta: {},
     },
     {
       path: "/loginPage",
       name: "loginPage",
-      component: loginForm,
+      component: () =>
+        import(/*webpackChunkName: "account"*/ "..\\components\\loginPage.vue"),
       meta: {},
     },
     {
       path: "/createAccount",
       name: "createAccount",
-      component: createAccountForm,
+      component: () =>
+        import(
+          /*webpackChunkName: "account"*/ "..\\components\\createAccount.vue"
+        ),
       meta: {},
     },
     {
       path: "/scenario",
       name: "scenarios",
-      component: scenarioPage,
+      component: () =>
+        import(
+          /*webpackChunkName: "scenario"*/ "..\\components\\scenarioPage.vue"
+        ),
+      meta: {},
+    },
+    {
+      path: "/leaderboard",
+      name: "leaderboardPage",
+      component: () =>
+        import(
+          /*webpackChunkName: "leaderboard"*/ "..\\components\\leaderboard.vue"
+        ),
       meta: {},
     },
     {
       path: "*",
       name: "pageNotFound",
-      component: pageNotFound,
+      component: () =>
+        import(
+          /*webpackChunkName: "pageNotFound"*/ "..\\components\\pageNotFound.vue"
+        ),
       meta: {},
     },
   ],
