@@ -12,7 +12,7 @@ export default {
 
 <style scoped>
 div {
-  background-color: red;
+  background-color: rgb(22, 22, 22);
   min-height: 100vh;
 }
 </style>
