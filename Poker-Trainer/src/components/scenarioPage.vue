@@ -269,6 +269,7 @@ export default {
   padding: 0%;
   margin: 0%;
   min-height: 100vh;
+  min-width: 100%;
   background-color: rgb(22, 22, 22);
   color: aliceblue;
   display: flex;
@@ -308,7 +309,7 @@ export default {
 }
 
 .group-a {
-  /*border: solid lightyellow;*/
+  /*border: solid white;*/
   height: 85%;
   width: 33%;
   margin: 0 0 15px 0;
@@ -319,7 +320,7 @@ export default {
   align-content: center;
 }
 .group-b {
-  /*border: solid lightblue;*/
+  /*border: solid white;*/
   height: 75%;
   width: 33%;
   margin: 0 0 15px 0;
@@ -329,7 +330,7 @@ export default {
 }
 
 .group-c {
-  /*border: solid lightgreen;*/
+  /*border: solid white;*/
   height: 85%;
   width: 33%;
   margin: 0 0 15px 0;
@@ -357,6 +358,26 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+#opponent-2 {
+  /*border: solid white;*/
+  margin: 100px 0 0 0px;
+  transform: rotate(-45deg);
+}
+#opponent-3 {
+  /*border: solid white;*/
+  margin: 100px 0 0 0;
+  transform: rotate(45deg);
+}
+#opponent-4 {
+  /*border: solid white;*/
+  margin: 0 0 100px 0;
+  transform: rotate(45deg);
+}
+#opponent-5 {
+  /*border: solid white;*/
+  margin: 0 0 100px 0;
+  transform: rotate(-45deg);
 }
 .user-container {
   /*border: solid white;*/
