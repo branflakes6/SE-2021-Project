@@ -22,6 +22,7 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
+              <div class="player-chips-container"></div>
             </template>
           </div>
 
@@ -38,6 +39,7 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
+              <div class="player-chips-container"></div>
             </template>
           </div>
         </div>
@@ -46,6 +48,7 @@
           <!-- opponent 1 cards -->
           <div id="opponent-1" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 1">
+              <div class="player-chips-container"></div>
               <div class="player-cards">
                 <vue-playing-card
                   :signature="scenarioParams.opponentOneParams.cardOne"
@@ -89,6 +92,7 @@
           <!-- users cards and options -->
           <div class="user-container">
             <!-- users cards -->
+            <div class="player-chips-container"></div>
             <div class="user-cards">
               <vue-playing-card
                 :signature="scenarioParams.userParams.cardOne"
@@ -105,6 +109,7 @@
           <!-- opponent 3 cards -->
           <div id="opponent-3" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 3">
+              <div class="player-chips-container"></div>
               <div class="player-cards">
                 <vue-playing-card
                   :signature="scenarioParams.opponentThreeParams.cardOne"
@@ -121,6 +126,7 @@
           <!-- opponent 5 cards -->
           <div id="opponent-5" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 5">
+              <div class="player-chips-container"></div>
               <div class="player-cards">
                 <vue-playing-card
                   :signature="scenarioParams.opponentFiveParams.cardOne"
@@ -369,25 +375,48 @@ export default {
   justify-content: center;
   align-items: center;
 }
+.player-chips-container {
+  border: solid black;
+  border-radius: 40%;
+  width: 100px;
+  height: 100%;
+  margin: 0 10px 0 10px;
+}
+#opponent-1 {
+  /*border: solid white;*/
+  display: flex;
+}
 #opponent-2 {
   /*border: solid white;*/
   margin: 100px 0 0 0px;
   transform: rotate(-45deg);
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 40px 0 0;
 }
 #opponent-3 {
   /*border: solid white;*/
   margin: 100px 0 0 0;
   transform: rotate(45deg);
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 0 0 40px;
 }
 #opponent-4 {
-  /*border: solid white;*/
-  margin: 0 0 100px 0;
+  /* /*border: solid white; */
+  margin: 0 0 100px 50px;
   transform: rotate(45deg);
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 40px 0 0;
 }
 #opponent-5 {
   /*border: solid white;*/
-  margin: 0 0 100px 0;
+  margin: 0 50px 100px 0;
   transform: rotate(-45deg);
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 0 0 40px;
 }
 .user-container {
   /*border: solid white;*/
@@ -423,10 +452,36 @@ export default {
   margin: 0 5vw 5vh 5vw !important;
   font-size: 1.5vw;
 }
-@media screen and (max-width: 650px) {
-  #table-cards-background {
-    height: 40vh;
-    width: 105vw;
+@media screen and (max-height: 750px) {
+  .table-cards-container {
+    overflow: auto;
+  }
+  .player-chips-container {
+    border: solid purple;
+    border-radius: 40%;
+    width: 50px;
+    height: 60px;
+    margin: 0 10px 0 10px;
+  }
+  #opponent-2 {
+    /*border: solid white;*/
+    margin: 0 0 0 0px;
+    padding: 0 40px 0 0;
+  }
+  #opponent-3 {
+    /*border: solid white;*/
+    margin: 0 0 0 0;
+    padding: 0 0 0 40px;
+  }
+  #opponent-4 {
+    /* /*border: solid white; */
+    margin: 0 0 0 0;
+    padding: 0 40px 20px 0;
+  }
+  #opponent-5 {
+    /*border: solid white;*/
+    margin: 0 0 0 0;
+    padding: 0 0 20px 40px;
   }
 }
 </style>
