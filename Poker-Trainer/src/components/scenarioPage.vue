@@ -225,10 +225,10 @@ export default {
         (this.flip += 1);
     },
     handleResize() {
-      if (window.innerWidth / 35 < 60) {
-        this.cardWidth = window.innerWidth / 35;
+      if (window.innerWidth < 900) {
+        this.cardWidth = 40;
       } else {
-        this.cardWidth = 60;
+        this.cardWidth = 65;
       }
     },
   },
@@ -243,9 +243,8 @@ export default {
     call: false,
     raise: false,
     fold: false,
-    cardWidth: 0,
     flip: 0,
-    cardWidth: 65, //85 on pc, 40 on mobile
+    cardWidth: 85, //85 on pc, 40 on mobile
     scenarioParams: {
       title: "Sample Scenario",
       context:
@@ -333,7 +332,7 @@ export default {
   width: 100%;
 }
 #table-cards-foreground {
-  /*border: solid white;*/
+  border: solid white;
   padding: 0 0 5vh 0;
   width: 100%;
   height: 100%;
@@ -396,7 +395,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 120px;
 }
 .player-container {
   display: flex;
@@ -494,35 +492,69 @@ export default {
   font-size: 1.5vw;
 }
 @media screen and (max-height: 750px) {
-  .table-cards-container {
-    overflow: auto;
+  .group-b {
+    position: relative;
+    top: 8%;
+    height: 85%;
   }
+  .group-d {
+    height: 45%;
+  }
+
+  .group-e {
+    height: 55%;
+  }
+
   .player-chips-container {
-    border: solid purple;
     border-radius: 40%;
-    width: 50px;
-    height: 60px;
-    margin: 0 10px 0 10px;
+    width: 40px;
+    height: 40px;
+    margin: 10px 0px 10px 0px;
   }
+
+  /* .user-container .player-chips-container {
+    border: solid black;
+    margin: 0;
+  } */
+  .user-container {
+    padding: 0 0 10px 0;
+    justify-content: space-evenly;
+  }
+
+  #opponent-1 {
+    padding: 0 0 10px 0;
+    justify-content: space-evenly;
+  }
+
   #opponent-2 {
     /*border: solid white;*/
-    margin: 0 0 0 0px;
-    padding: 0 40px 0 0;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 30px;
+    left: 10px;
   }
   #opponent-3 {
     /*border: solid white;*/
-    margin: 0 0 0 0;
-    padding: 0 0 0 40px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 30px;
+    right: 10px;
   }
   #opponent-4 {
     /*border: solid white;*/
-    margin: 0 0 0 0;
-    padding: 0 40px 20px 0;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    bottom: 10px;
   }
   #opponent-5 {
     /*border: solid white;*/
-    margin: 0 0 0 0;
-    padding: 0 0 20px 40px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    bottom: 10px;
   }
 }
 </style>
