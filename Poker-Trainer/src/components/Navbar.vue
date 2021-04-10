@@ -3,7 +3,7 @@
     <v-app-bar color=" white--text" dark dense fixed app flat>
       <a id="title-logo" href="/" class="title">
         <div>
-          <img id="logo" src="..\assets\logo.png" alt="img not found" />
+          <img id="logo" src="../assets/logo.png" alt="img not found" />
           <h1>Upper Hand Poker Trainer</h1>
         </div>
       </a>

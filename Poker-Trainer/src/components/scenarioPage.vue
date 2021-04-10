@@ -5,7 +5,7 @@
     <!-- Render the table and cards -->
     <div id="table-cards-container">
       <!-- ie, the table -->
-      <img id="table-cards-background" src="..\assets\red-table.png" alt="" />
+      <img id="table-cards-background" src="../assets/red-table.png" alt="" />
       <!-- ie, the cards and chips -->
       <div id="table-cards-foreground">
         <div class="group-a">
@@ -238,14 +238,20 @@ export default {
       userParams: {
         cardOne: "jh",
         cardTwo: "th",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
       opponentOneParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
       opponentTwoParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
       opponentThreeParams: {
         cardOne: "cover",
@@ -254,10 +260,14 @@ export default {
       opponentFourParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
       opponentFiveParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
     },
   }),
