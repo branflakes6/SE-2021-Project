@@ -5,7 +5,7 @@
     <!-- Render the table and cards -->
     <div id="table-cards-container">
       <!-- ie, the table -->
-      <img id="table-cards-background" src="..\assets\red-table.png" alt="" />
+      <img id="table-cards-background" src="../assets/red-table.png" alt="" />
       <!-- ie, the cards and chips -->
       <div id="table-cards-foreground">
         <div class="group-a">
