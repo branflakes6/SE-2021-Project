@@ -385,10 +385,12 @@ export default {
   align-items: center;
 }
 .group-e {
-  /*border: solid white;*/
+  /* border: solid white; */
   height: 50%;
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
 }
 .community-cards-container {
   /*border: solid white;*/
