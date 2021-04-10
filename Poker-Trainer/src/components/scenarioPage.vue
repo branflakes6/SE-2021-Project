@@ -1,11 +1,10 @@
 <template>
   <div id="main-div">
     <h2>{{ scenarioParams.title }}</h2>
-
     <!-- Render the table and cards -->
     <div id="table-cards-container">
       <!-- ie, the table -->
-      <img id="table-cards-background" src="..\assets\red-table.png" alt="" />
+      <img id="table-cards-background" src="../assets/red-table.png" alt="" />
       <!-- ie, the cards and chips -->
       <div id="table-cards-foreground">
         <div class="group-a">
@@ -149,7 +148,6 @@
         <v-btn x-large dark class="option" @click="fold = true">Fold</v-btn>
       </div>
     </div>
-
     <!-- state of play -->
     <v-card dark class="state-of-play-container">
       <h2>State of Play:</h2>
@@ -214,13 +212,29 @@ export default {
         (this.scenarioParams.opponentOneParams.cardTwo = "as"),
         (this.flip += 1);
     },
+    handleResize() {
+            if( (window.innerWidth / 35) < 60)
+            {
+            this.cardWidth = (window.innerWidth)/35;
+            }
+            else {
+              this.cardWidth = 60;
+            }
+        },
   },
+     created() {
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+    },
+    destroyed() {
+        window.removeEventListener('resize', this.handleResize);
+    },
   data: () => ({
     call: false,
     raise: false,
     fold: false,
+    cardWidth: 0,
     flip: 0,
-    cardWidth: 85, //85 on pc, 40 on mobile
     scenarioParams: {
       title: "Sample Scenario",
       context:
