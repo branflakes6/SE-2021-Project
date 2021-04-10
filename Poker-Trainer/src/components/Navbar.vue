@@ -4,7 +4,7 @@
       <a id="title-logo" href="/" class="title">
         <div>
           <img id="logo" src="../assets/logo.png" alt="img not found" />
-          <h1>TCD Poker Trainer</h1>
+          <h1>Upper Hand Poker Trainer</h1>
         </div>
       </a>
       <v-spacer />

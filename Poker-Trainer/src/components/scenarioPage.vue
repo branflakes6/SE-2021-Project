@@ -21,12 +21,14 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
+              <div class="player-chips-container"></div>
             </template>
           </div>
 
           <!-- opponent 4 cards -->
           <div id="opponent-4" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 4">
+              <div class="player-chips-container"></div>
               <div class="player-cards">
                 <vue-playing-card
                   :signature="scenarioParams.opponentFourParams.cardOne"
@@ -42,61 +44,69 @@
         </div>
 
         <div class="group-b">
-          <!-- opponent 1 cards -->
-          <div id="opponent-1" class="player-container" :key="flip">
-            <template v-if="scenarioParams.numOfOpponents >= 1">
-              <div class="player-cards">
+          <div class="group-d">
+            <div id="pot" class="player-chips-container"></div>
+
+            <!-- the "community" cards -->
+            <div class="community-cards-container">
+              <vue-playing-card
+                :signature="scenarioParams.cardsOnTable.firstCard"
+                :width="cardWidth"
+              ></vue-playing-card>
+              <vue-playing-card
+                :signature="scenarioParams.cardsOnTable.secondCard"
+                :width="cardWidth"
+              ></vue-playing-card>
+              <vue-playing-card
+                :signature="scenarioParams.cardsOnTable.thirdCard"
+                :width="cardWidth"
+              ></vue-playing-card>
+              <vue-playing-card
+                :signature="scenarioParams.cardsOnTable.fourthCard"
+                :width="cardWidth"
+              ></vue-playing-card>
+              <vue-playing-card
+                :signature="scenarioParams.cardsOnTable.fifthCard"
+                :width="cardWidth"
+              ></vue-playing-card>
+              <vue-playing-card
+                :signature="scenarioParams.cardsOnTable.sixthCard"
+                :width="cardWidth"
+              ></vue-playing-card>
+            </div>
+          </div>
+
+          <div class="group-e">
+            <!-- opponent 1 cards -->
+            <div id="opponent-1" class="player-container" :key="flip">
+              <template v-if="scenarioParams.numOfOpponents >= 1">
+                <div class="player-chips-container"></div>
+                <div class="player-cards">
+                  <vue-playing-card
+                    :signature="scenarioParams.opponentOneParams.cardOne"
+                    :width="cardWidth"
+                  ></vue-playing-card>
+                  <vue-playing-card
+                    :signature="scenarioParams.opponentOneParams.cardTwo"
+                    :width="cardWidth"
+                  ></vue-playing-card>
+                </div>
+              </template>
+              <!-- users cards and options -->
+            </div>
+            <div class="user-container">
+              <!-- users cards -->
+              <div class="player-chips-container"></div>
+              <div class="user-cards">
                 <vue-playing-card
-                  :signature="scenarioParams.opponentOneParams.cardOne"
+                  :signature="scenarioParams.userParams.cardOne"
                   :width="cardWidth"
                 ></vue-playing-card>
                 <vue-playing-card
-                  :signature="scenarioParams.opponentOneParams.cardTwo"
+                  :signature="scenarioParams.userParams.cardTwo"
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-            </template>
-          </div>
-
-          <!-- the "community" cards -->
-          <div class="community-cards-container">
-            <vue-playing-card
-              :signature="scenarioParams.cardsOnTable.firstCard"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              :signature="scenarioParams.cardsOnTable.secondCard"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              :signature="scenarioParams.cardsOnTable.thirdCard"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              :signature="scenarioParams.cardsOnTable.fourthCard"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              :signature="scenarioParams.cardsOnTable.fifthCard"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              :signature="scenarioParams.cardsOnTable.sixthCard"
-              :width="cardWidth"
-            ></vue-playing-card>
-          </div>
-          <!-- users cards and options -->
-          <div class="user-container">
-            <!-- users cards -->
-            <div class="user-cards">
-              <vue-playing-card
-                :signature="scenarioParams.userParams.cardOne"
-                :width="cardWidth"
-              ></vue-playing-card>
-              <vue-playing-card
-                :signature="scenarioParams.userParams.cardTwo"
-                :width="cardWidth"
-              ></vue-playing-card>
             </div>
           </div>
         </div>
@@ -114,12 +124,14 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
+              <div class="player-chips-container"></div>
             </template>
           </div>
 
           <!-- opponent 5 cards -->
           <div id="opponent-5" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 5">
+              <div class="player-chips-container"></div>
               <div class="player-cards">
                 <vue-playing-card
                   :signature="scenarioParams.opponentFiveParams.cardOne"
@@ -213,28 +225,26 @@ export default {
         (this.flip += 1);
     },
     handleResize() {
-            if( (window.innerWidth / 35) < 60)
-            {
-            this.cardWidth = (window.innerWidth)/35;
-            }
-            else {
-              this.cardWidth = 60;
-            }
-        },
+      if (window.innerWidth < 900) {
+        this.cardWidth = 40;
+      } else {
+        this.cardWidth = 65;
+      }
+    },
   },
-     created() {
-        window.addEventListener('resize', this.handleResize);
-        this.handleResize();
-    },
-    destroyed() {
-        window.removeEventListener('resize', this.handleResize);
-    },
+  created() {
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.handleResize);
+  },
   data: () => ({
     call: false,
     raise: false,
     fold: false,
-    cardWidth: 0,
     flip: 0,
+    cardWidth: 85, //85 on pc, 40 on mobile
     scenarioParams: {
       title: "Sample Scenario",
       context:
@@ -252,14 +262,20 @@ export default {
       userParams: {
         cardOne: "jh",
         cardTwo: "th",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
       opponentOneParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
       opponentTwoParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
       opponentThreeParams: {
         cardOne: "cover",
@@ -268,10 +284,14 @@ export default {
       opponentFourParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
       opponentFiveParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
     },
   }),
@@ -312,7 +332,7 @@ export default {
   width: 100%;
 }
 #table-cards-foreground {
-  /*border: solid white;*/
+  border: solid white;
   padding: 0 0 5vh 0;
   width: 100%;
   height: 100%;
@@ -341,6 +361,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .group-c {
@@ -354,51 +375,96 @@ export default {
   justify-content: space-between;
   align-content: center;
 }
+
+.group-d {
+  /*border: solid white;*/
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.group-e {
+  /* border: solid white; */
+  height: 50%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
 .community-cards-container {
   /*border: solid white;*/
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 120px;
 }
 .player-container {
-  /*border: solid white;*/
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 120px;
 }
 .player-cards {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#opponent-2 {
+.player-chips-container {
+  border: solid black;
+  border-radius: 40%;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+#pot {
+  border: solid gold;
+}
+#opponent-1 {
   /*border: solid white;*/
-  margin: 100px 0 0 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 10px 0 10px 0;
+  margin: 0 10px 0 10px;
+}
+#opponent-2 {
+  margin: 50px 0 0 0px;
   transform: rotate(-45deg);
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 40px 0 0;
 }
 #opponent-3 {
-  /*border: solid white;*/
-  margin: 100px 0 0 0;
+  margin: 50px 0 0 0;
   transform: rotate(45deg);
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 0 0 40px;
 }
 #opponent-4 {
-  /*border: solid white;*/
-  margin: 0 0 100px 0;
+  margin: 0 0 30px 50px;
   transform: rotate(45deg);
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 40px 0 0;
 }
 #opponent-5 {
-  /*border: solid white;*/
-  margin: 0 0 100px 0;
+  margin: 0 50px 30px 0;
   transform: rotate(-45deg);
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 0 0 40px;
 }
 .user-container {
   /*border: solid white;*/
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  height: 120px;
+  height: 100%;
+  padding: 10px 0 10px 0;
+  margin: 0 10px 0 10px;
 }
 .user-cards {
   display: flex;
@@ -427,10 +493,70 @@ export default {
   margin: 0 5vw 5vh 5vw !important;
   font-size: 1.5vw;
 }
-@media screen and (max-width: 650px) {
-  #table-cards-background {
-    height: 40vh;
-    width: 105vw;
+@media screen and (max-height: 750px) {
+  .group-b {
+    position: relative;
+    top: 8%;
+    height: 85%;
+  }
+  .group-d {
+    height: 45%;
+  }
+
+  .group-e {
+    height: 55%;
+  }
+
+  .player-chips-container {
+    border-radius: 40%;
+    width: 40px;
+    height: 40px;
+    margin: 10px 0px 10px 0px;
+  }
+
+  /* .user-container .player-chips-container {
+    border: solid black;
+    margin: 0;
+  } */
+  .user-container {
+    padding: 0 0 10px 0;
+    justify-content: space-evenly;
+  }
+
+  #opponent-1 {
+    padding: 0 0 10px 0;
+    justify-content: space-evenly;
+  }
+
+  #opponent-2 {
+    /*border: solid white;*/
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 30px;
+    left: 10px;
+  }
+  #opponent-3 {
+    /*border: solid white;*/
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 30px;
+    right: 10px;
+  }
+  #opponent-4 {
+    /*border: solid white;*/
+    margin: 0;
+    padding: 0;
+    position: relative;
+    bottom: 10px;
+  }
+  #opponent-5 {
+    /*border: solid white;*/
+    margin: 0;
+    padding: 0;
+    position: relative;
+    bottom: 10px;
   }
 }
 </style>
