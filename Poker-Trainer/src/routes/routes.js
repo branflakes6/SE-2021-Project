@@ -19,7 +19,7 @@ let router = new Router({
       name: "accountPage",
       component: () =>
         import(
-          /*webpackChunkName: "account"*/ "..\\components\\accountPage.vue"
+          /*webpackChunkName: "account"*/ "..//components//accountPage.vue"
         ),
       meta: {},
     },
@@ -27,7 +27,7 @@ let router = new Router({
       path: "/loginPage",
       name: "loginPage",
       component: () =>
-        import(/*webpackChunkName: "account"*/ "..\\components\\loginPage.vue"),
+        import(/*webpackChunkName: "account"*/ "..//components//loginPage.vue"),
       meta: {},
     },
     {
@@ -35,7 +35,7 @@ let router = new Router({
       name: "createAccount",
       component: () =>
         import(
-          /*webpackChunkName: "account"*/ "..\\components\\createAccount.vue"
+          /*webpackChunkName: "account"*/ "..//components//createAccount.vue"
         ),
       meta: {},
     },
@@ -44,7 +44,7 @@ let router = new Router({
       name: "scenarios",
       component: () =>
         import(
-          /*webpackChunkName: "scenario"*/ "..\\components\\scenarioPage.vue"
+          /*webpackChunkName: "scenario"*/ "..//components//scenarioPage.vue"
         ),
       meta: {},
     },
@@ -53,7 +53,7 @@ let router = new Router({
       name: "leaderboardPage",
       component: () =>
         import(
-          /*webpackChunkName: "leaderboard"*/ "..\\components\\leaderboard.vue"
+          /*webpackChunkName: "leaderboard"*/ "..//components//leaderboard.vue"
         ),
       meta: {},
     },
@@ -62,7 +62,7 @@ let router = new Router({
       name: "pageNotFound",
       component: () =>
         import(
-          /*webpackChunkName: "pageNotFound"*/ "..\\components\\pageNotFound.vue"
+          /*webpackChunkName: "pageNotFound"*/ "..//components//pageNotFound.vue"
         ),
       meta: {},
     },
