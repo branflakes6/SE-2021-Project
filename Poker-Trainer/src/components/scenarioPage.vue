@@ -61,6 +61,7 @@
               </div>
             </template>
           </div>
+          <div class="player-chips-container"></div>
 
           <!-- the "community" cards -->
           <div class="community-cards-container">
@@ -226,7 +227,7 @@ export default {
     raise: false,
     fold: false,
     flip: 0,
-    cardWidth: 85, //85 on pc, 40 on mobile
+    cardWidth: 65, //85 on pc, 40 on mobile
     scenarioParams: {
       title: "Sample Scenario",
       context:
@@ -343,6 +344,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .group-c {
@@ -379,7 +381,7 @@ export default {
   border: solid black;
   border-radius: 40%;
   width: 100px;
-  height: 100%;
+  height: 100px;
   margin: 0 10px 0 10px;
 }
 #opponent-1 {
