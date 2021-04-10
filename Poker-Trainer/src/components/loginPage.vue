@@ -19,7 +19,7 @@
         :type="showPass ? 'text' : 'password'"
       ></v-text-field>
       <v-btn class="login-btn" type="submit" rounded color="black" dark>
-        Create Account
+        Login
       </v-btn>
     </div>
   </div>
