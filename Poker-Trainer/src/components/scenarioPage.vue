@@ -1,82 +1,162 @@
 <template>
   <div id="main-div">
-    <h2>Sample Scenario</h2>
-    <div id="state-of-ply-container">
-      <h4>State of Play:</h4>
-      <p>Opponent went all in!</p>
-    </div>
+    <h2>{{ scenarioParams.title }}</h2>
+
+    <!-- Render the table and cards -->
     <div id="table-cards-container">
+      <!-- ie, the table -->
       <img id="table-cards-background" src="..\assets\red-table.png" alt="" />
+      <!-- ie, the cards and chips -->
       <div id="table-cards-foreground">
-        <v-card class="mx-auto mt-4 pt-8" color="transparent" flat>
-          <div align="center" :key="flip">
-            <vue-playing-card
-              :signature="pCard1"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              :signature="pCard2"
-              :width="cardWidth"
-            ></vue-playing-card>
-          </div>
-
-          <div class="mt-8 pt-8">
-            <vue-playing-card
-              signature="cover"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              signature="kh"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              signature="8s"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              signature="ah"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              signature="3d"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              signature="qh"
-              :width="cardWidth"
-            ></vue-playing-card>
-          </div>
-
-          <div class="mx-auto mt-16 pt-16" align="center">
-            <v-row class="pl-16">
-              <v-col>
+        <div class="group-a">
+          <!-- opponent 2 cards -->
+          <div id="opponent-2" class="player-container" :key="flip">
+            <template v-if="scenarioParams.numOfOpponents >= 2">
+              <div class="player-cards">
                 <vue-playing-card
-                  signature="jh"
+                  :signature="scenarioParams.opponentTwoParams.cardOne"
                   :width="cardWidth"
                 ></vue-playing-card>
                 <vue-playing-card
-                  signature="th"
+                  :signature="scenarioParams.opponentTwoParams.cardTwo"
                   :width="cardWidth"
                 ></vue-playing-card>
-              </v-col>
-
-              <v-col>
-                <v-row class="mb-2">
-                  <v-btn v-on:click="callF"> Call</v-btn>
-                </v-row>
-                <v-row class="mb-2">
-                  <v-btn @click="raise = true"> Raise</v-btn>
-                </v-row>
-                <v-row class="mb-2">
-                  <v-btn @click="fold = true"> Fold</v-btn>
-                </v-row>
-              </v-col>
-            </v-row>
+              </div>
+            </template>
           </div>
-        </v-card>
+
+          <!-- opponent 4 cards -->
+          <div id="opponent-4" class="player-container" :key="flip">
+            <template v-if="scenarioParams.numOfOpponents >= 4">
+              <div class="player-cards">
+                <vue-playing-card
+                  :signature="scenarioParams.opponentFourParams.cardOne"
+                  :width="cardWidth"
+                ></vue-playing-card>
+                <vue-playing-card
+                  :signature="scenarioParams.opponentFourParams.cardTwo"
+                  :width="cardWidth"
+                ></vue-playing-card>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <div class="group-b">
+          <!-- opponent 1 cards -->
+          <div id="opponent-1" class="player-container" :key="flip">
+            <template v-if="scenarioParams.numOfOpponents >= 1">
+              <div class="player-cards">
+                <vue-playing-card
+                  :signature="scenarioParams.opponentOneParams.cardOne"
+                  :width="cardWidth"
+                ></vue-playing-card>
+                <vue-playing-card
+                  :signature="scenarioParams.opponentOneParams.cardTwo"
+                  :width="cardWidth"
+                ></vue-playing-card>
+              </div>
+            </template>
+          </div>
+
+          <!-- the "community" cards -->
+          <div class="community-cards-container">
+            <vue-playing-card
+              :signature="scenarioParams.cardsOnTable.firstCard"
+              :width="cardWidth"
+            ></vue-playing-card>
+            <vue-playing-card
+              :signature="scenarioParams.cardsOnTable.secondCard"
+              :width="cardWidth"
+            ></vue-playing-card>
+            <vue-playing-card
+              :signature="scenarioParams.cardsOnTable.thirdCard"
+              :width="cardWidth"
+            ></vue-playing-card>
+            <vue-playing-card
+              :signature="scenarioParams.cardsOnTable.fourthCard"
+              :width="cardWidth"
+            ></vue-playing-card>
+            <vue-playing-card
+              :signature="scenarioParams.cardsOnTable.fifthCard"
+              :width="cardWidth"
+            ></vue-playing-card>
+            <vue-playing-card
+              :signature="scenarioParams.cardsOnTable.sixthCard"
+              :width="cardWidth"
+            ></vue-playing-card>
+          </div>
+          <!-- users cards and options -->
+          <div class="user-container">
+            <!-- users cards -->
+            <div class="user-cards">
+              <vue-playing-card
+                :signature="scenarioParams.userParams.cardOne"
+                :width="cardWidth"
+              ></vue-playing-card>
+              <vue-playing-card
+                :signature="scenarioParams.userParams.cardTwo"
+                :width="cardWidth"
+              ></vue-playing-card>
+            </div>
+          </div>
+        </div>
+        <div class="group-c">
+          <!-- opponent 3 cards -->
+          <div id="opponent-3" class="player-container" :key="flip">
+            <template v-if="scenarioParams.numOfOpponents >= 3">
+              <div class="player-cards">
+                <vue-playing-card
+                  :signature="scenarioParams.opponentThreeParams.cardOne"
+                  :width="cardWidth"
+                ></vue-playing-card>
+                <vue-playing-card
+                  :signature="scenarioParams.opponentThreeParams.cardTwo"
+                  :width="cardWidth"
+                ></vue-playing-card>
+              </div>
+            </template>
+          </div>
+
+          <!-- opponent 5 cards -->
+          <div id="opponent-5" class="player-container" :key="flip">
+            <template v-if="scenarioParams.numOfOpponents >= 5">
+              <div class="player-cards">
+                <vue-playing-card
+                  :signature="scenarioParams.opponentFiveParams.cardOne"
+                  :width="cardWidth"
+                ></vue-playing-card>
+                <vue-playing-card
+                  :signature="scenarioParams.opponentFiveParams.cardTwo"
+                  :width="cardWidth"
+                ></vue-playing-card>
+              </div>
+            </template>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- users option -->
+    <div class="options-container">
+      <div>
+        <v-btn x-large dark class="option" v-on:click="callF">Call</v-btn>
+      </div>
+      <div>
+        <v-btn x-large dark class="option" @click="raise = true">Raise</v-btn>
+      </div>
+      <div>
+        <v-btn x-large dark class="option" @click="fold = true">Fold</v-btn>
+      </div>
+    </div>
+
+    <!-- state of play -->
+    <v-card dark class="state-of-play-container">
+      <h2>State of Play:</h2>
+      <p>{{ scenarioParams.context }}</p>
+    </v-card>
+
+    <!-- dialogue pop-ups -->
     <v-dialog v-model="call" max-width="260">
       <v-card max-height="260">
         <v-container>
@@ -130,8 +210,8 @@ export default {
   methods: {
     callF: function() {
       (this.call = true),
-        (this.pCard1 = "ad"),
-        (this.pCard2 = "as"),
+        (this.scenarioParams.opponentOneParams.cardOne = "ad"),
+        (this.scenarioParams.opponentOneParams.cardTwo = "as"),
         (this.flip += 1);
     },
   },
@@ -140,9 +220,46 @@ export default {
     raise: false,
     fold: false,
     flip: 0,
-    pCard1: "cover",
-    pCard2: "cover",
-    cardWidth: 85, //35 on mobile
+    cardWidth: 85, //85 on pc, 40 on mobile
+    scenarioParams: {
+      title: "Sample Scenario",
+      context:
+        "Your opponent went all in! Will you call his bluff? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere reprehenderit ullam consectetur fugiat, pariatur labore debitis iste animi nemo ex.",
+      numOfOpponents: 5,
+      cardsOnTable: {
+        firstCard: "cover",
+        secondCard: "kh",
+        thirdCard: "8s",
+        fourthCard: "ah",
+        fifthCard: "3d",
+        sixthCard: "qh",
+      },
+
+      userParams: {
+        cardOne: "jh",
+        cardTwo: "th",
+      },
+      opponentOneParams: {
+        cardOne: "cover",
+        cardTwo: "cover",
+      },
+      opponentTwoParams: {
+        cardOne: "cover",
+        cardTwo: "cover",
+      },
+      opponentThreeParams: {
+        cardOne: "cover",
+        cardTwo: "cover",
+      },
+      opponentFourParams: {
+        cardOne: "cover",
+        cardTwo: "cover",
+      },
+      opponentFiveParams: {
+        cardOne: "cover",
+        cardTwo: "cover",
+      },
+    },
   }),
 };
 </script>
@@ -151,7 +268,7 @@ export default {
 #main-div {
   padding: 0%;
   margin: 0%;
-  min-height: 100%;
+  min-height: 100vh;
   background-color: rgb(22, 22, 22);
   color: aliceblue;
   display: flex;
@@ -180,12 +297,100 @@ export default {
   width: 100%;
 }
 #table-cards-foreground {
+  /*border: solid white;*/
+  padding: 0 0 5vh 0;
   width: 100%;
   height: 100%;
   position: absolute;
   display: flex;
   justify-content: center;
+  align-items: flex-end;
+}
+
+.group-a {
+  /*border: solid lightyellow;*/
+  height: 85%;
+  width: 33%;
+  margin: 0 0 15px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+}
+.group-b {
+  /*border: solid lightblue;*/
+  height: 75%;
+  width: 33%;
+  margin: 0 0 15px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.group-c {
+  /*border: solid lightgreen;*/
+  height: 85%;
+  width: 33%;
+  margin: 0 0 15px 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+}
+.community-cards-container {
+  /*border: solid white;*/
+  display: flex;
+  justify-content: center;
   align-items: center;
+  height: 120px;
+}
+.player-container {
+  /*border: solid white;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+}
+.player-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-container {
+  /*border: solid white;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+}
+.user-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.options-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 40%;
+  margin: 0 0 50px 0;
+}
+.option {
+  background-color: transparent !important;
+  border: solid white !important;
+}
+
+.state-of-play-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: flex-start;
+  padding: 5px 10px 5px 10px;
+  width: 90% !important ;
+  margin: 0 5vw 5vh 5vw !important;
+  font-size: 1.5vw;
 }
 @media screen and (max-width: 650px) {
   #table-cards-background {
