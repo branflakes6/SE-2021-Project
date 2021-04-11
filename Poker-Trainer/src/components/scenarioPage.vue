@@ -270,8 +270,16 @@ export default {
         (this.flip += 1);
     },
     handleResize() {
-      if (window.innerWidth < 900) {
+      if (window.innerWidth < 400) {
+        this.cardWidth = 10;
+      } else if (window.innerWidth < 600) {
+        this.cardWidth = 20;
+      } else if (window.innerWidth < 800) {
+        this.cardWidth = 30;
+      } else if (window.innerWidth < 1000) {
         this.cardWidth = 40;
+      } else if (window.innerWidth < 1200) {
+        this.cardWidth = 50;
       } else {
         this.cardWidth = 65;
       }
@@ -386,7 +394,7 @@ export default {
 }
 #table-cards-foreground {
   /*border: solid white;*/
-  padding: 0 0 5vh 0;
+  padding: 0 0 5% 0;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -407,7 +415,7 @@ export default {
   align-content: center;
 }
 .group-b {
-  /*border: solid white;*/
+  /* border: solid white; */
   min-height: 75%;
   width: 33%;
   margin: 0 0 15px 0;
@@ -447,7 +455,7 @@ export default {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  width: 100%;
+  width: 110%;
 }
 .community-cards-container {
   /*border: solid white;*/
@@ -461,6 +469,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0.1vw;
 }
 .player-details {
   margin: 0.5vw 0 0.5vw 0;
