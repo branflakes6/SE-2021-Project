@@ -10,7 +10,10 @@ Vue.config.productionTip = false;
 const app = new Vue({
   vuetify,
   router,
-  data: { loading: false },
+  data: {
+    loading: false,
+    scenario: 0,
+  },
   render: (h) => h(App),
 }).$mount("#app");
 
