@@ -412,7 +412,7 @@ export default {
     cardWidth: 85, //85 on pc, 40 on mobile
     answered: false,
     scenarioParams: {
-      title: "Sample Scenario",
+      title: "Going All In",
       context: "Your opponent went all in! Will you call his bluff? ",
       pot: 55,
       numOfOpponents: 5,
