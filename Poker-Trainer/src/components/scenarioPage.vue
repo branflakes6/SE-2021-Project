@@ -48,7 +48,7 @@
             <div id="pot" class="player-chips-container"></div>
 
             <!-- the "community" cards -->
-            <div class="community-cards-container">
+            <div class="community-cards-container" :key="loaded">
               <vue-playing-card
                 :signature="scenarioParams.cardsOnTable.firstCard"
                 :width="cardWidth"
@@ -94,10 +94,11 @@
               </template>
               <!-- users cards and options -->
             </div>
+
             <div class="user-container">
               <!-- users cards -->
               <div class="player-chips-container"></div>
-              <div class="user-cards">
+              <div class="user-cards" :key="loaded">
                 <vue-playing-card
                   :signature="scenarioParams.userParams.cardOne"
                   :width="cardWidth"
@@ -110,6 +111,7 @@
             </div>
           </div>
         </div>
+
         <div class="group-c">
           <!-- opponent 3 cards -->
           <div id="opponent-3" class="player-container" :key="flip">
@@ -211,8 +213,10 @@
     </v-dialog>
   </div>
 </template>
-
 <script>
+
+import db from '../firebase'
+
 export default {
   name: "scenarioPage",
   componets: {},
@@ -220,8 +224,6 @@ export default {
   methods: {
     callF: function() {
       (this.call = true),
-        (this.scenarioParams.opponentOneParams.cardOne = "ad"),
-        (this.scenarioParams.opponentOneParams.cardTwo = "as"),
         (this.flip += 1);
     },
     handleResize() {
@@ -235,11 +237,55 @@ export default {
   created() {
     window.addEventListener("resize", this.handleResize);
     this.handleResize();
+
+    const scenarioID = "vcQX3PUIWKDCbsFuf91a";
+
+    db.collection('scenarios').doc(scenarioID).get().then(doc => {
+      this.scenarioParams.cardsOnTable.secondCard = doc.data().cards[0]
+      this.scenarioParams.cardsOnTable.thirdCard = doc.data().cards[1]
+      this.scenarioParams.cardsOnTable.fourthCard = doc.data().cards[2]
+      this.scenarioParams.cardsOnTable.fifthCard = doc.data().cards[3]
+      this.scenarioParams.cardsOnTable.sixthCard = doc.data().cards[4]
+
+      this.scenarioParams.userParams.cardOne = doc.data().pHand[0]
+      this.scenarioParams.userParams.cardTwo = doc.data().pHand[1]
+
+      this.scenarioParams.opponentOneParams.cardOne = doc.data().players[0].hand[0]
+      this.scenarioParams.opponentOneParams.cardTwo = doc.data().players[0].hand[1]
+      if (doc.data().players.length > 1)
+      {
+        this.scenarioParams.opponentTwoParams.cardOne = doc.data().players[1].hand[0]
+        this.scenarioParams.opponentTwoParams.cardTwo = doc.data().players[1].hand[1]
+      }
+
+       if (doc.data().players.length > 2)
+      {
+        this.scenarioParams.opponentThreeParams.cardOne = doc.data().players[2].hand[0]
+        this.scenarioParams.opponentThreeParams.cardTwo = doc.data().players[2].hand[1]
+      }
+
+       if (doc.data().players.length > 3)
+      {
+        this.scenarioParams.opponentFourParams.cardOne = doc.data().players[3].hand[0]
+        this.scenarioParams.opponentFourParams.cardTwo = doc.data().players[3].hand[1]
+      }
+
+       if (doc.data().players.length > 4)
+      {
+        this.scenarioParams.opponentFiveParams.cardOne = doc.data().players[4].hand[0]
+        this.scenarioParams.opponentFiveParams.cardTwo = doc.data().players[4].hand[1]
+      }
+
+      this.numOfOpponents = doc.data().players.length
+      console.log(doc.data().players.length)
+      this.loaded = !this.loaded;
+    })
   },
   destroyed() {
     window.removeEventListener("resize", this.handleResize);
   },
   data: () => ({
+    loaded: false,
     call: false,
     raise: false,
     fold: false,
@@ -247,21 +293,20 @@ export default {
     cardWidth: 85, //85 on pc, 40 on mobile
     scenarioParams: {
       title: "Sample Scenario",
-      context:
-        "Your opponent went all in! Will you call his bluff? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere reprehenderit ullam consectetur fugiat, pariatur labore debitis iste animi nemo ex.",
+      context: "",
       numOfOpponents: 5,
       cardsOnTable: {
-        firstCard: "cover",
-        secondCard: "kh",
-        thirdCard: "8s",
-        fourthCard: "ah",
-        fifthCard: "3d",
-        sixthCard: "qh",
+        firstCard: "",
+        secondCard: "",
+        thirdCard: "",
+        fourthCard: "",
+        fifthCard: "",
+        sixthCard: "",
       },
 
       userParams: {
-        cardOne: "jh",
-        cardTwo: "th",
+        cardOne: "",
+        cardTwo: "",
         chipsBet: 5,
         chipsAvailable: 30,
       },
