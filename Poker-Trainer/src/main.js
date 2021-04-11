@@ -21,4 +21,5 @@ router.beforeEach((to, from, next) => {
 });
 router.afterEach(() => {
   setTimeout(() => ((app.loading = false), 1500)); // timeout for demo purposes
+  window.scrollTo(0, 0);
 });
