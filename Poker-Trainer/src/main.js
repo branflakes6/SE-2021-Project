@@ -3,16 +3,14 @@ import App from "./App.vue";
 import router from "./routes/routes";
 import VuePlayingCard from "vue-playing-card";
 import firebase from 'firebase';
-import '../firebase';
 import './components/firebaseInit';
 
 Vue.use(VuePlayingCard);
 Vue.config.productionTip = false;
-let app;
 firebase.auth().onAuthStateChanged(function() {
-  if (!app) {
+  if (!App) {
     /* eslint-disable no-new */
-    app = new Vue({
+    App = new Vue({
       el: '#app',
       router,
       template: '<App/>',
@@ -24,9 +22,9 @@ firebase.auth().onAuthStateChanged(function() {
 
 Vue.component("loading", { template: "<div>Loading!</div>" });
 router.beforeEach((to, from, next) => {
-  app.loading = true;
+  App.loading = true;
   next();
 });
 router.afterEach(() => {
-  setTimeout(() => ((app.loading = false), 1500)); // timeout for demo purposes
+  setTimeout(() => ((App.loading = false), 1500)); // timeout for demo purposes
 });
