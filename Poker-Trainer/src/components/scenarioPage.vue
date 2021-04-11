@@ -24,8 +24,18 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <div class="player-chips-container">
-                Chips: {{ scenarioParams.opponentTwoParams.chipsAvailable }}
+              <div class="d-c-container">
+                <div class="player-chips-container">
+                  Chips: {{ scenarioParams.opponentTwoParams.chipsAvailable }}
+                </div>
+                <div class="dealer-chip-container">
+                  <img
+                    v-if="scenarioParams.dealer == 2"
+                    class="dealer-chip"
+                    src="../assets/dealer-chip.png"
+                    alt="dealer-chip"
+                  />
+                </div>
               </div>
             </template>
           </div>
@@ -33,8 +43,18 @@
           <!-- opponent 4 cards -->
           <div id="opponent-4" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 4">
-              <div class="player-chips-container">
-                Chips: {{ scenarioParams.opponentFourParams.chipsAvailable }}
+              <div class="d-c-container">
+                <div class="dealer-chip-container">
+                  <img
+                    v-if="scenarioParams.dealer == 4"
+                    class="dealer-chip"
+                    src="../assets/dealer-chip.png"
+                    alt="dealer-chip"
+                  />
+                </div>
+                <div class="player-chips-container">
+                  Chips: {{ scenarioParams.opponentFourParams.chipsAvailable }}
+                </div>
               </div>
               <div class="player-cards">
                 <vue-playing-card
@@ -92,8 +112,18 @@
             <!-- opponent 1 cards -->
             <div id="opponent-1" class="player-container" :key="flip">
               <template v-if="scenarioParams.numOfOpponents >= 1">
-                <div class="player-chips-container">
-                  Chips: {{ scenarioParams.opponentOneParams.chipsAvailable }}
+                <div class="d-c-container">
+                  <div class="dealer-chip-container">
+                    <img
+                      v-if="scenarioParams.dealer == 1"
+                      class="dealer-chip"
+                      src="../assets/dealer-chip.png"
+                      alt="dealer-chip"
+                    />
+                  </div>
+                  <div class="player-chips-container">
+                    Chips: {{ scenarioParams.opponentOneParams.chipsAvailable }}
+                  </div>
                 </div>
                 <div class="player-cards">
                   <vue-playing-card
@@ -113,8 +143,18 @@
             </div>
             <div class="user-container">
               <!-- users cards -->
-              <div class="player-chips-container">
-                Chips: {{ scenarioParams.userParams.chipsAvailable }}
+              <div class="d-c-container">
+                <div class="dealer-chip-container">
+                  <img
+                    v-if="scenarioParams.dealer == 0"
+                    class="dealer-chip"
+                    src="../assets/dealer-chip.png"
+                    alt="dealer-chip"
+                  />
+                </div>
+                <div class="player-chips-container">
+                  Chips: {{ scenarioParams.userParams.chipsAvailable }}
+                </div>
               </div>
               <div class="user-cards">
                 <vue-playing-card
@@ -149,8 +189,18 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <div class="player-chips-container">
-                Chips: {{ scenarioParams.opponentThreeParams.chipsAvailable }}
+              <div class="d-c-container">
+                <div class="player-chips-container">
+                  Chips: {{ scenarioParams.opponentThreeParams.chipsAvailable }}
+                </div>
+                <div class="dealer-chip-container">
+                  <img
+                    v-if="scenarioParams.dealer == 3"
+                    class="dealer-chip"
+                    src="../assets/dealer-chip.png"
+                    alt="dealer-chip"
+                  />
+                </div>
               </div>
             </template>
           </div>
@@ -158,8 +208,18 @@
           <!-- opponent 5 cards -->
           <div id="opponent-5" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 5">
-              <div class="player-chips-container">
-                Chips: {{ scenarioParams.opponentFiveParams.chipsAvailable }}
+              <div class="d-c-container">
+                <div class="dealer-chip-container">
+                  <img
+                    v-if="scenarioParams.dealer == 5"
+                    class="dealer-chip"
+                    src="../assets/dealer-chip.png"
+                    alt="dealer-chip"
+                  />
+                </div>
+                <div class="player-chips-container">
+                  Chips: {{ scenarioParams.opponentFiveParams.chipsAvailable }}
+                </div>
               </div>
               <div class="player-cards">
                 <vue-playing-card
@@ -303,6 +363,7 @@ export default {
       context: "Your opponent went all in! Will you call his bluff? ",
       pot: 55,
       numOfOpponents: 5,
+      dealer: 2,
       cardsOnTable: {
         firstCard: "cover",
         secondCard: "kh",
@@ -464,7 +525,7 @@ export default {
   align-items: center;
 }
 .player-container {
-  /*border: solid white;*/
+  /* border: solid white; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -482,12 +543,36 @@ export default {
   justify-content: center;
   align-items: center;
 }
+.d-c-container {
+  /* border: solid white; */
+  padding: 1%;
+  width: 9vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dealer-chip-container {
+  /* border: solid white; */
+  border-radius: 50%;
+  width: 2vw;
+  height: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dealer-chip {
+  width: 100%;
+  height: auto;
+}
 .player-chips-container {
   border: solid rgba(32, 32, 32, 0.7);
   border-radius: 40%;
-  margin: 10px 0px 10px 0px;
+
   width: 5.5vw;
   height: 5.5vw;
+  /* max-width: 100px;
+  max-height: 100px; */
   padding: 1% 5px 5px 5px;
   font-size: 1vw;
 
@@ -508,7 +593,7 @@ export default {
   padding: 0 0 10px 0;
 }
 #opponent-2 {
-  transform: rotate(-45deg);
+  transform: rotate(-60deg);
   display: flex;
   justify-content: flex-end;
 
@@ -517,7 +602,7 @@ export default {
   left: 10px;
 }
 #opponent-3 {
-  transform: rotate(45deg);
+  transform: rotate(60deg);
   display: flex;
   justify-content: flex-start;
 
@@ -526,7 +611,7 @@ export default {
   right: 10px;
 }
 #opponent-4 {
-  transform: rotate(45deg);
+  transform: rotate(70deg);
   display: flex;
   justify-content: flex-end;
 
@@ -534,7 +619,7 @@ export default {
   bottom: 10px;
 }
 #opponent-5 {
-  transform: rotate(-45deg);
+  transform: rotate(-70deg);
   display: flex;
   justify-content: flex-start;
 
@@ -558,6 +643,7 @@ export default {
 }
 
 .options-container {
+  /* border: solid white; */
   display: flex;
   justify-content: space-evenly;
   width: 40%;
