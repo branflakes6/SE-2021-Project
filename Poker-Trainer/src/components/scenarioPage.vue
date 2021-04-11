@@ -36,9 +36,10 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-card class="player-details">
+              <v-btn class="player-details">
                 {{ scenarioParams.opponentTwoParams.name }}
-              </v-card>
+                <v-icon dark>mdi-information-outline</v-icon>
+              </v-btn>
             </template>
           </div>
 
@@ -70,9 +71,10 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-card class="player-details">
+              <v-btn class="player-details">
                 {{ scenarioParams.opponentFourParams.name }}
-              </v-card>
+                <v-icon dark>mdi-information-outline</v-icon>
+              </v-btn>
             </template>
           </div>
         </div>
@@ -140,9 +142,10 @@
                     :width="cardWidth"
                   ></vue-playing-card>
                 </div>
-                <v-card class="player-details">
+                <v-btn class="player-details">
                   {{ scenarioParams.opponentOneParams.name }}
-                </v-card>
+                  <v-icon dark>mdi-information-outline</v-icon>
+                </v-btn>
               </template>
               <!-- users cards and options -->
             </div>
@@ -173,9 +176,9 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-card class="player-details">
+              <v-btn class="player-details">
                 {{ scenarioParams.userParams.name }}
-              </v-card>
+              </v-btn>
             </div>
           </div>
         </div>
@@ -208,9 +211,10 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-card class="player-details">
+              <v-btn class="player-details">
                 {{ scenarioParams.opponentThreeParams.name }}
-              </v-card>
+                <v-icon dark>mdi-information-outline</v-icon>
+              </v-btn>
             </template>
           </div>
 
@@ -242,9 +246,10 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-card class="player-details">
+              <v-btn class="player-details">
                 {{ scenarioParams.opponentFiveParams.name }}
-              </v-card>
+                <v-icon dark>mdi-information-outline</v-icon>
+              </v-btn>
             </template>
           </div>
         </div>
@@ -596,10 +601,16 @@ export default {
   margin: 0.1vw;
 }
 .player-details {
-  margin: 0.5vw 0 0.5vw 0;
-  padding: 0 2px 0 2px;
+  margin: 0.5vw 0 0.5vw 0 !important;
+  padding: 0 2px 0 2px !important;
   background-color: rgba(22, 32, 32, 0.8) !important ;
   color: white !important;
+  height: auto !important;
+  width: 7vw !important;
+  font-size: 1.5vw !important;
+  text-transform: capitalize !important;
+  display: flex !important;
+  justify-content: space-between !important;
 }
 .player-cards {
   display: flex;
@@ -706,6 +717,9 @@ export default {
   margin: 0 10px 0 10px;
   padding: 0 0 10px 0;
   justify-content: space-evenly;
+}
+.user-container .player-details {
+  justify-content: center !important;
 }
 .user-cards {
   display: flex;
