@@ -741,6 +741,9 @@ export default {
   border: solid white !important;
   margin: 10px 0 10px 0;
 }
+.post-option:hover {
+  background-color: #3d3d3d !important;
+}
 .no-active {
   background-color: black !important;
 }
