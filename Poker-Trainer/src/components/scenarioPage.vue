@@ -11,6 +11,9 @@
           <!-- opponent 2 cards -->
           <div id="opponent-2" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 2">
+              <v-card class="player-details">
+                {{ scenarioParams.opponentTwoParams.name }}
+              </v-card>
               <div class="player-cards">
                 <vue-playing-card
                   :signature="scenarioParams.opponentTwoParams.cardOne"
@@ -43,6 +46,9 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
+              <v-card class="player-details">
+                {{ scenarioParams.opponentFourParams.name }}
+              </v-card>
             </template>
           </div>
         </div>
@@ -99,6 +105,9 @@
                     :width="cardWidth"
                   ></vue-playing-card>
                 </div>
+                <v-card class="player-details">
+                  {{ scenarioParams.opponentOneParams.name }}
+                </v-card>
               </template>
               <!-- users cards and options -->
             </div>
@@ -117,6 +126,9 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
+              <v-card class="player-details">
+                {{ scenarioParams.userParams.name }}
+              </v-card>
             </div>
           </div>
         </div>
@@ -124,6 +136,9 @@
           <!-- opponent 3 cards -->
           <div id="opponent-3" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 3">
+              <v-card class="player-details">
+                {{ scenarioParams.opponentThreeParams.name }}
+              </v-card>
               <div class="player-cards">
                 <vue-playing-card
                   :signature="scenarioParams.opponentThreeParams.cardOne"
@@ -156,6 +171,9 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
+              <v-card class="player-details">
+                {{ scenarioParams.opponentFiveParams.name }}
+              </v-card>
             </template>
           </div>
         </div>
@@ -234,8 +252,21 @@ export default {
   methods: {
     callF: function() {
       (this.call = true),
+        // reveal opponent 1 cards
         (this.scenarioParams.opponentOneParams.cardOne = "ad"),
         (this.scenarioParams.opponentOneParams.cardTwo = "as"),
+        // reveal opponent 2 cards
+        (this.scenarioParams.opponentTwoParams.cardOne = "9s"),
+        (this.scenarioParams.opponentTwoParams.cardTwo = "ts"),
+        // reveal opponent 3 cards
+        (this.scenarioParams.opponentThreeParams.cardOne = "2s"),
+        (this.scenarioParams.opponentThreeParams.cardTwo = "2d"),
+        // reveal opponent 4 cards
+        (this.scenarioParams.opponentFourParams.cardOne = "ks"),
+        (this.scenarioParams.opponentFourParams.cardTwo = "kd"),
+        // reveal opponent 5 cards
+        (this.scenarioParams.opponentFiveParams.cardOne = "qs"),
+        (this.scenarioParams.opponentFiveParams.cardTwo = "qd"),
         (this.flip += 1);
     },
     handleResize() {
@@ -261,8 +292,7 @@ export default {
     cardWidth: 85, //85 on pc, 40 on mobile
     scenarioParams: {
       title: "Sample Scenario",
-      context:
-        "Your opponent went all in! Will you call his bluff? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere reprehenderit ullam consectetur fugiat, pariatur labore debitis iste animi nemo ex.",
+      context: "Your opponent went all in! Will you call his bluff? ",
       pot: 55,
       numOfOpponents: 5,
       cardsOnTable: {
@@ -275,36 +305,42 @@ export default {
       },
 
       userParams: {
+        name: "You",
         cardOne: "jh",
         cardTwo: "th",
         chipsBet: 5,
         chipsAvailable: 55,
       },
       opponentOneParams: {
+        name: "Kylie",
         cardOne: "cover",
         cardTwo: "cover",
         chipsBet: 5,
         chipsAvailable: 33,
       },
       opponentTwoParams: {
+        name: "Jack",
         cardOne: "cover",
         cardTwo: "cover",
         chipsBet: 5,
         chipsAvailable: 35,
       },
       opponentThreeParams: {
+        name: "Daniel",
         cardOne: "cover",
         cardTwo: "cover",
         chipsBet: 5,
         chipsAvailable: 49,
       },
       opponentFourParams: {
+        name: "Alex",
         cardOne: "cover",
         cardTwo: "cover",
         chipsBet: 5,
         chipsAvailable: 42,
       },
       opponentFiveParams: {
+        name: "Kevin",
         cardOne: "cover",
         cardTwo: "cover",
         chipsBet: 5,
@@ -372,13 +408,17 @@ export default {
 }
 .group-b {
   /*border: solid white;*/
-  height: 75%;
+  min-height: 75%;
   width: 33%;
   margin: 0 0 15px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  position: relative;
+  top: 8%;
+  height: 85%;
 }
 
 .group-c {
@@ -395,7 +435,7 @@ export default {
 
 .group-d {
   /*border: solid white;*/
-  height: 50%;
+  height: 45%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -403,7 +443,7 @@ export default {
 }
 .group-e {
   /* border: solid white; */
-  height: 50%;
+  height: 55%;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -422,6 +462,12 @@ export default {
   justify-content: center;
   align-items: center;
 }
+.player-details {
+  margin: 0.5vw 0 0.5vw 0;
+  padding: 0 2px 0 2px;
+  background-color: rgba(22, 32, 32, 0.8) !important ;
+  color: white !important;
+}
 .player-cards {
   display: flex;
   justify-content: center;
@@ -430,9 +476,9 @@ export default {
 .player-chips-container {
   border: solid rgba(32, 32, 32, 0.7);
   border-radius: 40%;
+  margin: 10px 0px 10px 0px;
   width: 5.5vw;
   height: 5.5vw;
-  margin: 10px;
   padding: 1% 5px 5px 5px;
   font-size: 1vw;
 
@@ -447,48 +493,54 @@ export default {
   /*border: solid white;*/
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: 100%;
-  padding: 10px 0 10px 0;
   margin: 0 10px 0 10px;
+  padding: 0 0 10px 0;
 }
 #opponent-2 {
-  margin: 50px 0 0 0px;
   transform: rotate(-45deg);
   display: flex;
   justify-content: flex-end;
-  padding: 0 40px 0 0;
+
+  position: relative;
+  top: 30px;
+  left: 10px;
 }
 #opponent-3 {
-  margin: 50px 0 0 0;
   transform: rotate(45deg);
   display: flex;
   justify-content: flex-start;
-  padding: 0 0 0 40px;
+
+  position: relative;
+  top: 30px;
+  right: 10px;
 }
 #opponent-4 {
-  margin: 0 0 30px 50px;
   transform: rotate(45deg);
   display: flex;
   justify-content: flex-end;
-  padding: 0 40px 0 0;
+
+  position: relative;
+  bottom: 10px;
 }
 #opponent-5 {
-  margin: 0 50px 30px 0;
   transform: rotate(-45deg);
   display: flex;
   justify-content: flex-start;
-  padding: 0 0 0 40px;
+
+  position: relative;
+  bottom: 10px;
 }
 .user-container {
   /*border: solid white;*/
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   height: 100%;
-  padding: 10px 0 10px 0;
   margin: 0 10px 0 10px;
+  padding: 0 0 10px 0;
+  justify-content: space-evenly;
 }
 .user-cards {
   display: flex;
@@ -516,67 +568,5 @@ export default {
   width: 90% !important ;
   margin: 0 5vw 5vh 5vw !important;
   font-size: 1.5vw;
-}
-@media screen and (max-height: 750px) {
-  .group-b {
-    position: relative;
-    top: 8%;
-    height: 85%;
-  }
-  .group-d {
-    height: 45%;
-  }
-
-  .group-e {
-    height: 55%;
-  }
-
-  .player-chips-container {
-    border-radius: 40%;
-    /* width: 40px;
-    height: 40px; */
-    margin: 10px 0px 10px 0px;
-  }
-
-  .user-container {
-    padding: 0 0 10px 0;
-    justify-content: space-evenly;
-  }
-
-  #opponent-1 {
-    padding: 0 0 10px 0;
-    justify-content: space-evenly;
-  }
-
-  #opponent-2 {
-    /*border: solid white;*/
-    margin: 0;
-    padding: 0;
-    position: relative;
-    top: 30px;
-    left: 10px;
-  }
-  #opponent-3 {
-    /*border: solid white;*/
-    margin: 0;
-    padding: 0;
-    position: relative;
-    top: 30px;
-    right: 10px;
-  }
-  #opponent-4 {
-    /*border: solid white;*/
-    margin: 0;
-    padding: 0;
-    position: relative;
-    bottom: 10px;
-  }
-  #opponent-5 {
-    /*border: solid white;*/
-    margin: 0;
-    padding: 0;
-    position: relative;
-    bottom: 10px;
-  }
 }
 </style>
