@@ -21,14 +21,18 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <div class="player-chips-container"></div>
+              <div class="player-chips-container">
+                Chips: {{ scenarioParams.opponentTwoParams.chipsAvailable }}
+              </div>
             </template>
           </div>
 
           <!-- opponent 4 cards -->
           <div id="opponent-4" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 4">
-              <div class="player-chips-container"></div>
+              <div class="player-chips-container">
+                Chips: {{ scenarioParams.opponentFourParams.chipsAvailable }}
+              </div>
               <div class="player-cards">
                 <vue-playing-card
                   :signature="scenarioParams.opponentFourParams.cardOne"
@@ -45,7 +49,9 @@
 
         <div class="group-b">
           <div class="group-d">
-            <div id="pot" class="player-chips-container"></div>
+            <div id="pot" class="player-chips-container">
+              Pot: {{ scenarioParams.pot }}
+            </div>
 
             <!-- the "community" cards -->
             <div class="community-cards-container">
@@ -80,7 +86,9 @@
             <!-- opponent 1 cards -->
             <div id="opponent-1" class="player-container" :key="flip">
               <template v-if="scenarioParams.numOfOpponents >= 1">
-                <div class="player-chips-container"></div>
+                <div class="player-chips-container">
+                  Chips: {{ scenarioParams.opponentOneParams.chipsAvailable }}
+                </div>
                 <div class="player-cards">
                   <vue-playing-card
                     :signature="scenarioParams.opponentOneParams.cardOne"
@@ -96,7 +104,9 @@
             </div>
             <div class="user-container">
               <!-- users cards -->
-              <div class="player-chips-container"></div>
+              <div class="player-chips-container">
+                Chips: {{ scenarioParams.userParams.chipsAvailable }}
+              </div>
               <div class="user-cards">
                 <vue-playing-card
                   :signature="scenarioParams.userParams.cardOne"
@@ -124,14 +134,18 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <div class="player-chips-container"></div>
+              <div class="player-chips-container">
+                Chips: {{ scenarioParams.opponentThreeParams.chipsAvailable }}
+              </div>
             </template>
           </div>
 
           <!-- opponent 5 cards -->
           <div id="opponent-5" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 5">
-              <div class="player-chips-container"></div>
+              <div class="player-chips-container">
+                Chips: {{ scenarioParams.opponentFiveParams.chipsAvailable }}
+              </div>
               <div class="player-cards">
                 <vue-playing-card
                   :signature="scenarioParams.opponentFiveParams.cardOne"
@@ -249,6 +263,7 @@ export default {
       title: "Sample Scenario",
       context:
         "Your opponent went all in! Will you call his bluff? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere reprehenderit ullam consectetur fugiat, pariatur labore debitis iste animi nemo ex.",
+      pot: 55,
       numOfOpponents: 5,
       cardsOnTable: {
         firstCard: "cover",
@@ -263,35 +278,37 @@ export default {
         cardOne: "jh",
         cardTwo: "th",
         chipsBet: 5,
-        chipsAvailable: 30,
+        chipsAvailable: 55,
       },
       opponentOneParams: {
         cardOne: "cover",
         cardTwo: "cover",
         chipsBet: 5,
-        chipsAvailable: 30,
+        chipsAvailable: 33,
       },
       opponentTwoParams: {
         cardOne: "cover",
         cardTwo: "cover",
         chipsBet: 5,
-        chipsAvailable: 30,
+        chipsAvailable: 35,
       },
       opponentThreeParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 49,
       },
       opponentFourParams: {
         cardOne: "cover",
         cardTwo: "cover",
         chipsBet: 5,
-        chipsAvailable: 30,
+        chipsAvailable: 42,
       },
       opponentFiveParams: {
         cardOne: "cover",
         cardTwo: "cover",
         chipsBet: 5,
-        chipsAvailable: 30,
+        chipsAvailable: 47,
       },
     },
   }),
@@ -332,7 +349,7 @@ export default {
   width: 100%;
 }
 #table-cards-foreground {
-  border: solid white;
+  /*border: solid white;*/
   padding: 0 0 5vh 0;
   width: 100%;
   height: 100%;
@@ -381,7 +398,7 @@ export default {
   height: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 .group-e {
@@ -399,6 +416,7 @@ export default {
   align-items: center;
 }
 .player-container {
+  /*border: solid white;*/
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -410,14 +428,20 @@ export default {
   align-items: center;
 }
 .player-chips-container {
-  border: solid black;
+  border: solid rgba(32, 32, 32, 0.7);
   border-radius: 40%;
-  width: 100px;
-  height: 100px;
+  width: 5.5vw;
+  height: 5.5vw;
   margin: 10px;
+  padding: 1% 5px 5px 5px;
+  font-size: 1vw;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 #pot {
-  border: solid gold;
+  border: solid rgba(255, 217, 0, 0.6);
 }
 #opponent-1 {
   /*border: solid white;*/
@@ -509,15 +533,11 @@ export default {
 
   .player-chips-container {
     border-radius: 40%;
-    width: 40px;
-    height: 40px;
+    /* width: 40px;
+    height: 40px; */
     margin: 10px 0px 10px 0px;
   }
 
-  /* .user-container .player-chips-container {
-    border: solid black;
-    margin: 0;
-  } */
   .user-container {
     padding: 0 0 10px 0;
     justify-content: space-evenly;
