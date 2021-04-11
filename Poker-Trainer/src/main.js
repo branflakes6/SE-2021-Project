@@ -1,18 +1,26 @@
 import Vue from "vue";
 import App from "./App.vue";
-import vuetify from "./plugins/vuetify";
 import router from "./routes/routes";
 import VuePlayingCard from "vue-playing-card";
+import firebase from 'firebase';
+import '../firebase';
+import './components/firebaseInit';
 
 Vue.use(VuePlayingCard);
 Vue.config.productionTip = false;
+let app;
+firebase.auth().onAuthStateChanged(function() {
+  if (!app) {
+    /* eslint-disable no-new */
+    app = new Vue({
+      el: '#app',
+      router,
+      template: '<App/>',
+      components: { App }
+    });
+  }
+});
 
-const app = new Vue({
-  vuetify,
-  router,
-  data: { loading: false },
-  render: (h) => h(App),
-}).$mount("#app");
 
 Vue.component("loading", { template: "<div>Loading!</div>" });
 router.beforeEach((to, from, next) => {

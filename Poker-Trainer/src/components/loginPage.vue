@@ -18,7 +18,7 @@
         required
         :type="showPass ? 'text' : 'password'"
       ></v-text-field>
-      <v-btn class="login-btn" type="submit" rounded color="black" dark>
+      <v-btn v-on:click="login" class="login-btn" type="submit" rounded color="black" dark>
         Login
       </v-btn>
     </div>
@@ -26,10 +26,28 @@
 </template>
 
 <script>
+import firebase from 'firebase';
 export default {
   name: "loginForm",
-  componets: {},
-  data: () => ({}),
-  methods: {},
+  data: function(){
+    return{
+      email: ' ',
+      password: ' '
+    };
+  },
+  methods:{
+    register: function(e){
+        firebase.auth().signInWithEmailAndPassword(this.email,this.password)
+            .then(user => {
+              alert('You are logged in as ${user.email}');
+              this.$router.push('/');
+              console.log(user)
+              },
+              err => {
+                  alert(err.message)
+            })
+        e.preventDefault();
+    }
+  }
 };
 </script>

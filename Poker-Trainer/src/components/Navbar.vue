@@ -1,3 +1,4 @@
+
 <template>
   <nav>
     <v-app-bar color=" white--text" dark dense fixed app flat>
@@ -34,6 +35,7 @@
   </nav>
 </template>
 <script>
+import firebase from 'firebase';
 export default {
   data: () => ({
     isLoggedIn: false,
@@ -60,6 +62,13 @@ export default {
       
     ],
   }),
+  created(){
+    if(firebase.auth().currentUser){
+      this.isLoggedIn =true;
+      this.currentUser = firebase.auth().currentUser = firebase.auth().currentUser.email
+    }
+
+  },
   methods: {
     logout: function(){
       firebase.auth.signOut().then(()=> {
