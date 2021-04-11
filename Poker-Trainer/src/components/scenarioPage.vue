@@ -270,33 +270,84 @@
     </v-card>
 
     <!-- call dialogue -->
-    <v-dialog v-model="call" max-width="260">
-      <v-card max-height="260">
-        <v-container>
-          <h3 align="center">{{ scenarioParams.callType }} Decision</h3>
-          <h4>{{ scenarioParams.callText }}</h4>
-        </v-container>
+    <v-dialog dark v-model="call" max-width="260">
+      <v-card>
+        <h3 align="center">{{ scenarioParams.callType }} Decision</h3>
+        <h4>{{ scenarioParams.callText }}</h4>
       </v-card>
+
+      <!-- scenario options after user answered, wont display on invalid decision -->
+      <template v-if="scenarioParams.callType != 'Invalid'">
+        <v-btn to="/" dark class="post-option" v-model="answered">
+          <h1>Next</h1>
+        </v-btn>
+        <v-btn
+          active-class="no-active"
+          @click.stop="reload()"
+          dark
+          class="post-option"
+          v-model="answered"
+        >
+          <h1>Retry</h1>
+        </v-btn>
+        <v-btn to="/" dark class="post-option" v-model="answered">
+          <h1>Home</h1>
+        </v-btn>
+      </template>
     </v-dialog>
 
     <!-- raise dialogue -->
-    <v-dialog v-model="raise" max-width="260">
+    <v-dialog dark v-model="raise" max-width="260">
       <v-card>
-        <v-container>
-          <h3 align="center">{{ scenarioParams.raiseType }} Decision</h3>
-          <h4 class="ma-4">{{ scenarioParams.raiseText }}</h4>
-        </v-container>
+        <h3 align="center">{{ scenarioParams.raiseType }} Decision</h3>
+        <h4>{{ scenarioParams.raiseText }}</h4>
       </v-card>
+
+      <!-- scenario options after user answered, wont display on invalid decision -->
+      <template v-if="scenarioParams.raiseType != 'Invalid'">
+        <v-btn to="/" dark class="post-option" v-model="answered">
+          <h1>Next</h1>
+        </v-btn>
+        <v-btn
+          active-class="no-active"
+          @click.stop="reload()"
+          dark
+          class="post-option"
+          v-model="answered"
+        >
+          <h1>Retry</h1>
+        </v-btn>
+        <v-btn to="/" dark class="post-option" v-model="answered">
+          <h1>Home</h1>
+        </v-btn>
+      </template>
     </v-dialog>
 
     <!-- fold dialogue -->
-    <v-dialog v-model="fold" max-width="260">
+    <v-dialog dark v-model="fold" max-width="260">
       <v-card>
-        <v-container>
-          <h3 align="center">{{ scenarioParams.foldType }} Decision</h3>
-          <h4 class="ma-4">{{ scenarioParams.foldText }}</h4>
-        </v-container>
+        <h3 align="center">{{ scenarioParams.foldType }} Decision</h3>
+        <h4>{{ scenarioParams.foldText }}</h4>
       </v-card>
+
+      <!-- scenario options after user answered, wont display on invalid decision -->
+      <template v-if="scenarioParams.foldType != 'Invalid'">
+        <v-btn to="/" dark class="post-option" v-model="answered">
+          <h1>Next</h1>
+        </v-btn>
+        <v-btn
+          active-class="no-active"
+          @click.stop="reload()"
+          dark
+          class="post-option"
+          v-model="answered"
+        >
+          <h1>Retry</h1>
+        </v-btn>
+        <v-btn to="/" dark class="post-option" v-model="answered">
+          <h1>Home</h1>
+        </v-btn>
+      </template>
     </v-dialog>
   </div>
 </template>
@@ -324,6 +375,7 @@ export default {
         // reveal opponent 5 cards
         (this.scenarioParams.opponentFiveParams.cardOne = "qs"),
         (this.scenarioParams.opponentFiveParams.cardTwo = "qd"),
+        (this.answered = true),
         (this.flip += 1);
     },
     handleResize() {
@@ -341,6 +393,9 @@ export default {
         this.cardWidth = 65;
       }
     },
+    reload() {
+      window.location.reload();
+    },
   },
   created() {
     window.addEventListener("resize", this.handleResize);
@@ -355,6 +410,7 @@ export default {
     fold: false,
     flip: 0,
     cardWidth: 85, //85 on pc, 40 on mobile
+    answered: false,
     scenarioParams: {
       title: "Sample Scenario",
       context: "Your opponent went all in! Will you call his bluff? ",
@@ -456,7 +512,7 @@ export default {
   margin: 50px 0 50px 0;
 }
 #table-cards-background {
-  position: static;
+  background-color: #1e1e1e;
   width: 100%;
 }
 #table-cards-foreground {
@@ -664,7 +720,7 @@ export default {
   margin: 0 0 50px 0;
 }
 .option {
-  background-color: transparent !important;
+  background-color: rgb(99, 22, 22) !important;
   border: solid white !important;
 }
 
@@ -677,5 +733,14 @@ export default {
   width: 90% !important ;
   margin: 0 5vw 5vh 5vw !important;
   font-size: 1.5vw;
+}
+
+.post-option {
+  background-color: #2d2d2d !important;
+  border: solid white !important;
+  margin: 10px 0 10px 0;
+}
+.no-active {
+  background-color: black !important;
 }
 </style>
