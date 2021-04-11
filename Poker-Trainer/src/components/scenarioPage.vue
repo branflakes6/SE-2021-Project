@@ -275,7 +275,7 @@
     </v-card>
 
     <!-- call dialogue -->
-    <v-dialog dark v-model="call" max-width="260">
+    <v-dialog persistent dark v-model="call" max-width="260">
       <v-card>
         <h3 align="center">{{ scenarioParams.callType }} Decision</h3>
         <h4>{{ scenarioParams.callText }}</h4>
@@ -302,7 +302,7 @@
     </v-dialog>
 
     <!-- raise dialogue -->
-    <v-dialog dark v-model="raise" max-width="260">
+    <v-dialog persistent dark v-model="raise" max-width="260">
       <v-card>
         <h3 align="center">{{ scenarioParams.raiseType }} Decision</h3>
         <h4>{{ scenarioParams.raiseText }}</h4>
@@ -329,7 +329,7 @@
     </v-dialog>
 
     <!-- fold dialogue -->
-    <v-dialog dark v-model="fold" max-width="260">
+    <v-dialog persistent dark v-model="fold" max-width="260">
       <v-card>
         <h3 align="center">{{ scenarioParams.foldType }} Decision</h3>
         <h4>{{ scenarioParams.foldText }}</h4>
