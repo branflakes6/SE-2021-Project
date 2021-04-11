@@ -11,9 +11,21 @@
           <!-- opponent 2 cards -->
           <div id="opponent-2" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 2">
-              <v-card class="player-details">
-                {{ scenarioParams.opponentTwoParams.name }}
-              </v-card>
+              <div class="d-c-container">
+                <div class="player-chips-container">
+                  Chips: {{ scenarioParams.opponentTwoParams.chipsAvailable }}
+                </div>
+                <div
+                  v-if="scenarioParams.dealer == 2"
+                  class="dealer-chip-container"
+                >
+                  <img
+                    class="dealer-chip"
+                    src="../assets/dealer-chip.png"
+                    alt="dealer-chip"
+                  />
+                </div>
+              </div>
               <div class="player-cards">
                 <vue-playing-card
                   :signature="scenarioParams.opponentTwoParams.cardOne"
@@ -24,19 +36,9 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <div class="d-c-container">
-                <div class="player-chips-container">
-                  Chips: {{ scenarioParams.opponentTwoParams.chipsAvailable }}
-                </div>
-                <div class="dealer-chip-container">
-                  <img
-                    v-if="scenarioParams.dealer == 2"
-                    class="dealer-chip"
-                    src="../assets/dealer-chip.png"
-                    alt="dealer-chip"
-                  />
-                </div>
-              </div>
+              <v-card class="player-details">
+                {{ scenarioParams.opponentTwoParams.name }}
+              </v-card>
             </template>
           </div>
 
@@ -44,9 +46,11 @@
           <div id="opponent-4" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 4">
               <div class="d-c-container">
-                <div class="dealer-chip-container">
+                <div
+                  v-if="scenarioParams.dealer == 4"
+                  class="dealer-chip-container"
+                >
                   <img
-                    v-if="scenarioParams.dealer == 4"
                     class="dealer-chip"
                     src="../assets/dealer-chip.png"
                     alt="dealer-chip"
@@ -112,9 +116,11 @@
             <div id="opponent-1" class="player-container" :key="flip">
               <template v-if="scenarioParams.numOfOpponents >= 1">
                 <div class="d-c-container">
-                  <div class="dealer-chip-container">
+                  <div
+                    v-if="scenarioParams.dealer == 1"
+                    class="dealer-chip-container"
+                  >
                     <img
-                      v-if="scenarioParams.dealer == 1"
                       class="dealer-chip"
                       src="../assets/dealer-chip.png"
                       alt="dealer-chip"
@@ -143,9 +149,11 @@
             <div class="user-container">
               <!-- users cards -->
               <div class="d-c-container">
-                <div class="dealer-chip-container">
+                <div
+                  v-if="scenarioParams.dealer == 0"
+                  class="dealer-chip-container"
+                >
                   <img
-                    v-if="scenarioParams.dealer == 0"
                     class="dealer-chip"
                     src="../assets/dealer-chip.png"
                     alt="dealer-chip"
@@ -175,9 +183,21 @@
           <!-- opponent 3 cards -->
           <div id="opponent-3" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 3">
-              <v-card class="player-details">
-                {{ scenarioParams.opponentThreeParams.name }}
-              </v-card>
+              <div class="d-c-container">
+                <div class="player-chips-container">
+                  Chips: {{ scenarioParams.opponentThreeParams.chipsAvailable }}
+                </div>
+                <div
+                  v-if="scenarioParams.dealer == 3"
+                  class="dealer-chip-container"
+                >
+                  <img
+                    class="dealer-chip"
+                    src="../assets/dealer-chip.png"
+                    alt="dealer-chip"
+                  />
+                </div>
+              </div>
               <div class="player-cards">
                 <vue-playing-card
                   :signature="scenarioParams.opponentThreeParams.cardOne"
@@ -188,19 +208,9 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <div class="d-c-container">
-                <div class="player-chips-container">
-                  Chips: {{ scenarioParams.opponentThreeParams.chipsAvailable }}
-                </div>
-                <div class="dealer-chip-container">
-                  <img
-                    v-if="scenarioParams.dealer == 3"
-                    class="dealer-chip"
-                    src="../assets/dealer-chip.png"
-                    alt="dealer-chip"
-                  />
-                </div>
-              </div>
+              <v-card class="player-details">
+                {{ scenarioParams.opponentThreeParams.name }}
+              </v-card>
             </template>
           </div>
 
@@ -208,9 +218,11 @@
           <div id="opponent-5" class="player-container" :key="flip">
             <template v-if="scenarioParams.numOfOpponents >= 5">
               <div class="d-c-container">
-                <div class="dealer-chip-container">
+                <div
+                  v-if="scenarioParams.dealer == 5"
+                  class="dealer-chip-container"
+                >
                   <img
-                    v-if="scenarioParams.dealer == 5"
                     class="dealer-chip"
                     src="../assets/dealer-chip.png"
                     alt="dealer-chip"
@@ -362,7 +374,7 @@ export default {
       context: "Your opponent went all in! Will you call his bluff? ",
       pot: 55,
       numOfOpponents: 5,
-      dealer: 2,
+      dealer: 5,
       cardsOnTable: {
         firstCard: "cover",
         secondCard: "kh",
@@ -547,7 +559,7 @@ export default {
   padding: 1%;
   width: 9vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -559,6 +571,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 7% 0 7%;
 }
 .dealer-chip {
   width: 100%;
@@ -581,6 +594,8 @@ export default {
 }
 #pot {
   border: solid rgba(255, 217, 0, 0.6);
+  width: 6.5vw;
+  height: 6.5vw;
   margin: 3% 0 0 0;
 }
 #opponent-1 {
@@ -593,7 +608,7 @@ export default {
   padding: 0 0 10px 0;
 }
 #opponent-2 {
-  transform: rotate(-60deg);
+  transform: rotate(90deg);
   display: flex;
   justify-content: flex-end;
 
@@ -601,8 +616,9 @@ export default {
   top: 30px;
   left: 10px;
 }
+
 #opponent-3 {
-  transform: rotate(60deg);
+  transform: rotate(-90deg);
   display: flex;
   justify-content: flex-start;
 
@@ -610,21 +626,24 @@ export default {
   top: 30px;
   right: 10px;
 }
+
 #opponent-4 {
-  transform: rotate(70deg);
+  transform: rotate(45deg);
   display: flex;
   justify-content: flex-end;
 
   position: relative;
   bottom: 10px;
+  left: 10px;
 }
 #opponent-5 {
-  transform: rotate(-70deg);
+  transform: rotate(-45deg);
   display: flex;
   justify-content: flex-start;
 
   position: relative;
   bottom: 10px;
+  right: 10px;
 }
 .user-container {
   /*border: solid white;*/
