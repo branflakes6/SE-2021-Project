@@ -269,46 +269,32 @@
       <p>{{ scenarioParams.context }}</p>
     </v-card>
 
-    <!-- dialogue pop-ups -->
+    <!-- call dialogue -->
     <v-dialog v-model="call" max-width="260">
       <v-card max-height="260">
         <v-container>
-          <h3 align="center">
-            Correct Decision
-          </h3>
-          <h4>
-            Your opponent went all in and you had a Royal Flush, the best
-            possible hand. The only correct decision in this situation is to go
-            all in!
-          </h4>
+          <h3 align="center">{{ scenarioParams.callType }} Decision</h3>
+          <h4>{{ scenarioParams.callText }}</h4>
         </v-container>
       </v-card>
     </v-dialog>
 
+    <!-- raise dialogue -->
     <v-dialog v-model="raise" max-width="260">
       <v-card>
         <v-container>
-          <h3 align="center">
-            Invalid
-          </h3>
-          <h4 class="ma-4">
-            Your opponent went all in, you cannot raise you can only call.
-          </h4>
+          <h3 align="center">{{ scenarioParams.raiseType }} Decision</h3>
+          <h4 class="ma-4">{{ scenarioParams.raiseText }}</h4>
         </v-container>
       </v-card>
     </v-dialog>
 
+    <!-- fold dialogue -->
     <v-dialog v-model="fold" max-width="260">
       <v-card>
         <v-container>
-          <h3 align="center">
-            Wrong Decision
-          </h3>
-          <h4 class="ma-4">
-            Your opponent went all in and you had a Royal Flush, the best
-            possible hand. The only correct decision in this situation is to go
-            all in!
-          </h4>
+          <h3 align="center">{{ scenarioParams.foldType }} Decision</h3>
+          <h4 class="ma-4">{{ scenarioParams.foldText }}</h4>
         </v-container>
       </v-card>
     </v-dialog>
@@ -375,6 +361,15 @@ export default {
       pot: 55,
       numOfOpponents: 5,
       dealer: 5,
+      callType: "Correct",
+      callText:
+        "Your opponent went all in and you had a Royal Flush, the best possible hand. The only correct decision in this situation is to go all in!",
+      foldType: "Wrong",
+      foldText:
+        "Your opponent went all in and you had a Royal Flush, the best possible hand. The only correct decision in this situation is to go all in!",
+      raiseType: "Invalid",
+      raiseText:
+        "Your opponent went all in, you cannot raise you can only call.",
       cardsOnTable: {
         firstCard: "cover",
         secondCard: "kh",
