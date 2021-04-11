@@ -376,10 +376,10 @@
 </template>
 
 <script>
-import database from "../fake-database";
+
 export default {
   name: "scenario",
-  props: ["address"],
+  props: ["scenarioParams"],
 
   methods: {
     reveal() {
@@ -431,7 +431,6 @@ export default {
   },
   data: function() {
     return {
-      scenarioParams: database[this.address],
       call: false,
       raise: false,
       fold: false,
