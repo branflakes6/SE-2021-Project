@@ -75,10 +75,6 @@
 
         <div class="group-b">
           <div class="group-d">
-            <div id="pot" class="player-chips-container">
-              Pot: {{ scenarioParams.pot }}
-            </div>
-
             <!-- the "community" cards -->
             <div class="community-cards-container">
               <vue-playing-card
@@ -105,6 +101,9 @@
                 :signature="scenarioParams.cardsOnTable.sixthCard"
                 :width="cardWidth"
               ></vue-playing-card>
+            </div>
+            <div id="pot" class="player-chips-container">
+              Pot: {{ scenarioParams.pot }}
             </div>
           </div>
 
@@ -482,7 +481,7 @@ export default {
   margin: 0 0 15px 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 
   position: relative;
@@ -504,7 +503,6 @@ export default {
 
 .group-d {
   /*border: solid white;*/
-  height: 45%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -523,6 +521,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 20px 0 0 0;
 }
 .player-container {
   /* border: solid white; */
@@ -582,6 +581,7 @@ export default {
 }
 #pot {
   border: solid rgba(255, 217, 0, 0.6);
+  margin: 3% 0 0 0;
 }
 #opponent-1 {
   /*border: solid white;*/
