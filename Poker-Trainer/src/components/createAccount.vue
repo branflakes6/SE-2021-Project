@@ -26,7 +26,7 @@
         required
         :type="showPass ? 'text' : 'password'"
       ></v-text-field>
-      <v-btn class="createAccount-btn" type="submit" rounded color="black" dark>
+      <v-btn v-on:click="register" class="createAccount-btn" type="submit" rounded color="black" dark>
         Create Account
       </v-btn>
     </div>
@@ -34,10 +34,28 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
   name: "createAccountForm",
-  componets: {},
-  data: () => ({}),
-  methods: {},
+  data: function(){
+    return{
+      email: ' ',
+      password: ' '
+    };
+  },
+  methods:{
+    register: function(e){
+        firebase.auth().createUserWithEmailAndPassword(this.email,this.password)
+            .then(user => {
+              alert('Account Created For ${user.email}');
+              this.$router.push('/');
+              console.log(user)
+              },
+              err => {
+                  alert(err.message)
+            })
+        e.preventDefault();
+    }
+  }
 };
 </script>

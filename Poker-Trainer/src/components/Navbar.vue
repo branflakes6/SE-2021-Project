@@ -8,6 +8,9 @@
         </div>
       </a>
       <v-spacer />
+      <button v-on:click="logout" class="logOut-btn" rounded color="black" dark>
+        Logout
+      </button>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
 
@@ -33,6 +36,8 @@
 <script>
 export default {
   data: () => ({
+    isLoggedIn: false,
+    currentUser: false,
     drawer: false,
     group: null,
     items: [
@@ -52,8 +57,16 @@ export default {
         title: "Leaderboard",
         to: "/leaderboard",
       },
+      
     ],
   }),
+  methods: {
+    logout: function(){
+      firebase.auth.signOut().then(()=> {
+        this.$router.push('/loginPage')
+    });
+    }
+  }
 };
 </script>
 <style scoped>
