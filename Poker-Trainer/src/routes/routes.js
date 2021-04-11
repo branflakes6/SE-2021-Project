@@ -40,8 +40,8 @@ let router = new Router({
       meta: {},
     },
     {
-      path: "/scenario",
-      name: "scenarios",
+      path: "/scenarioPage",
+      name: "scenarioPage",
       component: () =>
         import(
           /*webpackChunkName: "scenario"*/ "..//components//scenarioPage.vue"

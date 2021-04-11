@@ -8,7 +8,7 @@
         <router-link v-if="!signedIn" to="/account" class="signup">
           Sign Up
         </router-link>
-        <router-link v-if="signedIn" to="/scenario" class="signup">
+        <router-link v-if="signedIn" to="/scenarioPage" class="signup">
           Practice
         </router-link>
       </div>
@@ -19,6 +19,7 @@
 <script>
 export default {
   name: "homePage",
+
   data: () => ({
     signedIn: true,
     drawer: false,
@@ -30,7 +31,7 @@ export default {
 #main-div {
   padding: 0%;
   margin: 0%;
-  min-height: 200%;
+  min-height: 100vh;
   background-color: rgb(22, 22, 22);
   color: aliceblue;
   display: flex;

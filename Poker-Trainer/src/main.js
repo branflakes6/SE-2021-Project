@@ -11,7 +11,10 @@ Vue.config.productionTip = false;
 const app = new Vue({
   vuetify,
   router,
-  data: { loading: false },
+  data: {
+    loading: false,
+    scenario: 0,
+  },
   render: (h) => h(App),
 }).$mount("#app");
 
@@ -22,4 +25,5 @@ router.beforeEach((to, from, next) => {
 });
 router.afterEach(() => {
   setTimeout(() => ((app.loading = false), 1500)); // timeout for demo purposes
+  window.scrollTo(0, 0);
 });

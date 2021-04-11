@@ -46,7 +46,7 @@ export default {
       },
       {
         title: "Scenario",
-        to: "/scenario",
+        to: "/scenarioPage",
       },
       {
         title: "Leaderboard",
