@@ -28,11 +28,11 @@
               </div>
               <div class="player-cards">
                 <vue-playing-card
-                  :signature="scenarioParams.opponentTwoParams.cardOne"
+                  :signature="op2c1"
                   :width="cardWidth"
                 ></vue-playing-card>
                 <vue-playing-card
-                  :signature="scenarioParams.opponentTwoParams.cardTwo"
+                  :signature="op2c2"
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
@@ -63,11 +63,11 @@
               </div>
               <div class="player-cards">
                 <vue-playing-card
-                  :signature="scenarioParams.opponentFourParams.cardOne"
+                  :signature="op4c1"
                   :width="cardWidth"
                 ></vue-playing-card>
                 <vue-playing-card
-                  :signature="scenarioParams.opponentFourParams.cardTwo"
+                  :signature="op4c2"
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
@@ -134,11 +134,11 @@
                 </div>
                 <div class="player-cards">
                   <vue-playing-card
-                    :signature="scenarioParams.opponentOneParams.cardOne"
+                    :signature="op1c1"
                     :width="cardWidth"
                   ></vue-playing-card>
                   <vue-playing-card
-                    :signature="scenarioParams.opponentOneParams.cardTwo"
+                    :signature="op1c2"
                     :width="cardWidth"
                   ></vue-playing-card>
                 </div>
@@ -203,11 +203,11 @@
               </div>
               <div class="player-cards">
                 <vue-playing-card
-                  :signature="scenarioParams.opponentThreeParams.cardOne"
+                  :signature="op3c1"
                   :width="cardWidth"
                 ></vue-playing-card>
                 <vue-playing-card
-                  :signature="scenarioParams.opponentThreeParams.cardTwo"
+                  :signature="op3c2"
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
@@ -238,11 +238,11 @@
               </div>
               <div class="player-cards">
                 <vue-playing-card
-                  :signature="scenarioParams.opponentFiveParams.cardOne"
+                  :signature="op5c1"
                   :width="cardWidth"
                 ></vue-playing-card>
                 <vue-playing-card
-                  :signature="scenarioParams.opponentFiveParams.cardTwo"
+                  :signature="op5c2"
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
@@ -258,14 +258,32 @@
 
     <!-- users option -->
     <div class="options-container">
-      <div>
-        <v-btn x-large dark class="option" v-on:click="callF">Call</v-btn>
+      <div v-if="scenarioParams.callType != 'Invalid'">
+        <v-btn
+          x-large
+          dark
+          class="option"
+          v-on:click="reveal(), (call = true), (answered = true)"
+          >Call</v-btn
+        >
       </div>
-      <div>
-        <v-btn x-large dark class="option" @click="raise = true">Raise</v-btn>
+      <div v-if="scenarioParams.raiseType != 'Invalid'">
+        <v-btn
+          x-large
+          dark
+          class="option"
+          @click="reveal(), (raise = true), (answered = true)"
+          >Raise</v-btn
+        >
       </div>
-      <div>
-        <v-btn x-large dark class="option" @click="fold = true">Fold</v-btn>
+      <div v-if="scenarioParams.foldType != 'Invalid'">
+        <v-btn
+          x-large
+          dark
+          class="option"
+          @click="reveal(), (fold = true), (answered = true)"
+          >Fold</v-btn
+        >
       </div>
     </div>
     <!-- state of play -->
@@ -309,7 +327,7 @@
       </v-card>
 
       <!-- scenario options after user answered, wont display on invalid decision -->
-      <template v-if="scenarioParams.raiseType != 'Invalid'">
+      <template>
         <v-btn to="/" dark class="post-option" v-model="answered">
           <h1>Next</h1>
         </v-btn>
@@ -364,25 +382,25 @@ export default {
   componets: {},
 
   methods: {
-    callF: function() {
-      (this.call = true),
+    reveal() {
+      if (this.scenarioParams.showCardsAfter) {
         // reveal opponent 1 cards
-        (this.scenarioParams.opponentOneParams.cardOne = "ad"),
-        (this.scenarioParams.opponentOneParams.cardTwo = "as"),
+        this.op1c1 = this.scenarioParams.opponentOneParams.cardOne;
+        this.op1c2 = this.scenarioParams.opponentOneParams.cardTwo;
         // reveal opponent 2 cards
-        (this.scenarioParams.opponentTwoParams.cardOne = "9s"),
-        (this.scenarioParams.opponentTwoParams.cardTwo = "ts"),
+        this.op2c1 = this.scenarioParams.opponentTwoParams.cardOne;
+        this.op2c2 = this.scenarioParams.opponentTwoParams.cardTwo;
         // reveal opponent 3 cards
-        (this.scenarioParams.opponentThreeParams.cardOne = "2s"),
-        (this.scenarioParams.opponentThreeParams.cardTwo = "2d"),
+        this.op3c1 = this.scenarioParams.opponentThreeParams.cardOne;
+        this.op3c2 = this.scenarioParams.opponentThreeParams.cardTwo;
         // reveal opponent 4 cards
-        (this.scenarioParams.opponentFourParams.cardOne = "ks"),
-        (this.scenarioParams.opponentFourParams.cardTwo = "kd"),
+        this.op4c1 = this.scenarioParams.opponentFourParams.cardOne;
+        this.op4c2 = this.scenarioParams.opponentFourParams.cardTwo;
         // reveal opponent 5 cards
-        (this.scenarioParams.opponentFiveParams.cardOne = "qs"),
-        (this.scenarioParams.opponentFiveParams.cardTwo = "qd"),
-        (this.answered = true),
-        (this.flip += 1);
+        this.op5c1 = this.scenarioParams.opponentFiveParams.cardOne;
+        this.op5c2 = this.scenarioParams.opponentFiveParams.cardTwo;
+      }
+      this.flip += 1;
     },
     handleResize() {
       if (window.innerWidth < 400) {
@@ -418,7 +436,17 @@ export default {
     flip: 0,
     cardWidth: 85, //85 on pc, 40 on mobile
     answered: false,
-    scenarioParams: database[1],
+    op1c1: "cover",
+    op1c2: "cover",
+    op2c1: "cover",
+    op2c2: "cover",
+    op3c1: "cover",
+    op3c2: "cover",
+    op4c1: "cover",
+    op4c2: "cover",
+    op5c1: "cover",
+    op5c2: "cover",
+    scenarioParams: database[0],
   }),
 };
 </script>
