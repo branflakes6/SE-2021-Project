@@ -1,6 +1,6 @@
 <template>
   <div id="main-div">
-    <h2>{{ scenarioParams.title }}</h2>
+    <h2 id="scenario-title">{{ scenarioParams.title }}</h2>
     <!-- Render the table and cards -->
     <div id="table-cards-container">
       <!-- ie, the table -->
@@ -418,7 +418,7 @@ export default {
     flip: 0,
     cardWidth: 85, //85 on pc, 40 on mobile
     answered: false,
-    scenarioParams: database[0],
+    scenarioParams: database[1],
   }),
 };
 </script>
@@ -437,6 +437,9 @@ export default {
   align-items: center;
   text-align: center;
   font-size: 2vw;
+}
+#scenario-title {
+  text-transform: capitalize;
 }
 #flop {
   position: fixed;
