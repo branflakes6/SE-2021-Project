@@ -103,7 +103,7 @@ export default {
   background-color: #2e2e2e;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1250px) {
   #scenarioThumbnail-container {
     flex-direction: row;
     padding: 0;
