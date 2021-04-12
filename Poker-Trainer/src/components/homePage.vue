@@ -5,9 +5,15 @@
 
       <div id="home-banner-foreground">
         <h2>Want to be the best at the table?</h2>
-        <router-link v-if="!signedIn" to="/account" class="signup">
+        <v-btn
+          width="200"
+          outlined
+          v-if="!signedIn"
+          class="signup"
+          v-on:click="showSignUpForm = !showSignUpForm"
+        >
           Sign Up
-        </router-link>
+        </v-btn>
         <router-link v-if="signedIn" to="/scenarioPage" class="signup">
           Practice
         </router-link>
@@ -34,19 +40,25 @@
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
       />
     </div>
+    <v-dialog v-model="showSignUpForm" max-width="640">
+      <sign-up-form />
+    </v-dialog>
   </div>
 </template>
 
 <script>
 import scenarioThumbnail from "./scenarioThumbnail";
+import signUpForm from "./signUpForm";
 export default {
   name: "homePage",
   components: {
     scenarioThumbnail,
+    signUpForm,
   },
   data: () => ({
-    signedIn: true,
+    signedIn: false,
     drawer: false,
+    showSignUpForm: false,
   }),
 };
 </script>
@@ -64,6 +76,7 @@ export default {
 }
 .signup {
   color: red;
+  font-size: 1.5vw !important;
 }
 #home-banner {
   position: relative;
