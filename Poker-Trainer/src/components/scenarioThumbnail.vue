@@ -5,14 +5,14 @@
     <div id="spacer"></div>
     <p id="thbml-description">{{ description }}</p>
     <div id="spacer"></div>
-    <v-btn to="/scenarioPage" width="200">Play</v-btn>
+    <v-btn :to="`scenarioPage/${scenarioID}`" width="200">Play</v-btn>
   </v-card>
 </template>
 
 <script>
 export default {
   name: "scenarioThumbnail",
-  props: ["title", "author", "description"],
+  props: ["title", "author", "description", "scenarioID"],
 };
 </script>
 

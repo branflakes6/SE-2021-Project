@@ -49,7 +49,7 @@ let router = new Router({
       meta: {},
     },
     {
-      path: "/scenarioPage",
+      path: "/scenarioPage/:scenarioID",
       name: "scenarioPage",
       component: () =>
         import(
