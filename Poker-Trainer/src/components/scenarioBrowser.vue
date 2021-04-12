@@ -518,7 +518,7 @@
           <v-btn color="red darken-1" text @click="showForm = false">
             Close
           </v-btn>
-          <v-btn color="red darken-1" text @click="showForm = false">
+          <v-btn color="red darken-1" text @click="sendScenario">
             Submit
           </v-btn>
         </v-card-actions>
@@ -529,11 +529,121 @@
 
 <script>
 import scenarioThumbnail from "./scenarioThumbnail";
-
+import db from "../firebase";
 export default {
   name: "scenarioBrowser",
   components: {
     scenarioThumbnail,
+  },
+  methods: {
+    sendScenario() {
+      if(this.turn == 1){
+        this.scenarioParams.dCards = 3
+      }
+      if(this.correctAnswer == "Call")
+      {
+        this.scenarioParams.callType = "Correct"
+      }
+      else{
+        this.scenarioParams.callType = "Incorrect"
+      }
+      if(this.correctAnswer == "Fold")
+      {
+        this.scenarioParams.foldType = "Correct"
+      }
+      else{
+        this.scenarioParams.foldType = "Incorrect"
+      }
+      if(this.correctAnswer == "Raise")
+      {
+        this.scenarioParams.raiseType = "Correct"
+      }
+      else{
+        this.scenarioParams.raiseType = "Incorrect"
+      }
+      db.collection('scenarios').add({
+        call: {
+          text: this.scenarioParams.callText,
+          type: this.scenarioParams.callType
+        },
+        dCards: this.scenarioParams.dCards,
+        dealer: this.scenarioParams.dealer,
+        fold: {
+          text: this.scenarioParams.foldText,
+          type: this.scenarioParams.foldType,
+        },
+        numPlayers: this.scenarioParams.numOfOpponents,
+        player: {
+          hand: [this.uc1v.concat(this.uc1s), this.uc2v.concat(this.uc2s)],
+          money: {
+            available: this.scenarioParams.userParams.chipsAvailable,
+            bet: this.scenarioParams.currentBet
+          }
+        },
+        players: {
+          player2:{
+            attributes: "",
+            hand: [this.o1c1v.concat(this.o1c1s),this.o1c2v.concat(this.o1c2s)],
+            money: {
+              available: this.scenarioParams.opponentOneParams.chipsAvailable,
+              bet: ""
+            },
+            name: this.scenarioParams.opponentOneParams.name
+          },
+          player3:{
+            attributes: "",
+            hand: [this.o2c1v.concat(this.o2c1s),this.o1c2v.concat(this.o2c2s)],
+            money: {
+              available: this.scenarioParams.opponentTwoParams.chipsAvailable,
+              bet: ""
+            },
+            name: this.scenarioParams.opponentTwoParams.name
+          },
+          player4:{
+            attributes: "",
+            hand: [this.o3c1v.concat(this.o3c1s),this.o3c2v.concat(this.o3c2s)],
+            money: {
+              available: this.scenarioParams.opponentThreeParams.chipsAvailable,
+              bet: ""
+            },
+            name: this.scenarioParams.opponentThreeParams.name
+          },
+          player5:{
+            attributes: "",
+            hand: [this.o4c1v.concat(this.o4c1s),this.o4c2v.concat(this.o4c2s)],
+            money: {
+              available: this.scenarioParams.opponentFourParams.chipsAvailable,
+              bet: ""
+            },
+            name: this.scenarioParams.opponentFourParams.name
+          },
+          player6:{
+            attributes: "",
+            hand: [this.o5c1v.concat(this.o5c1s),this.o5c2v.concat(this.o5c2s)],
+            money: {
+              available: this.scenarioParams.opponentFiveParams.chipsAvailable,
+              bet: ""
+            },
+            name: this.scenarioParams.opponentFiveParams.name
+          },
+        },
+        raise: {
+          text: this.scenarioParams.raiseText,
+          type: this.scenarioParams.raiseType
+        },
+        showCards: this.scenarioParams.reveal,
+        stateOfPlay: this.scenarioParams.context,
+        tableCards: [
+          this.cc1v.concat(this.cc1s),
+          this.cc2v.concat(this.cc2s),
+          this.cc3v.concat(this.cc3s),
+          this.cc4v.concat(this.cc4s),
+          this.cc5v.concat(this.cc5s),
+          this.cc6v.concat(this.cc6s)
+          ],
+        title: this.scenarioParams.title
+      })
+    }
   },
   data: () => ({
     showForm: false,
@@ -572,12 +682,12 @@ export default {
 
     turn: 0,
     // community card values
-    cc1v: undefined,
-    cc2v: undefined,
-    cc3v: undefined,
-    cc4v: undefined,
-    cc5v: undefined,
-    cc6v: undefined,
+    cc1v: "",
+    cc2v: "",
+    cc3v: "",
+    cc4v: "",
+    cc5v: "",
+    cc6v: "",
     cc1s: "",
     cc2s: "",
     cc3s: "",
@@ -586,38 +696,39 @@ export default {
     cc6s: "",
 
     // for values for user
-    uc1v: undefined,
-    uc2v: undefined,
+    uc1v: "",
+    uc2v: "",
     uc1s: "",
     uc2s: "",
     // form values for opponent 1
-    o1c1v: undefined,
-    o1c2v: undefined,
+    o1c1v: "",
+    o1c2v: "",
     o1c1s: "",
     o1c2s: "",
     // form values for opponent 2
-    o2c1v: undefined,
-    o2c2v: undefined,
+    o2c1v: "",
+    o2c2v: "",
     o2c1s: "",
     o2c2s: "",
     // form values for opponent 3
-    o3c1v: undefined,
-    o3c2v: undefined,
+    o3c1v: "",
+    o3c2v: "",
     o3c1s: "",
     o3c2s: "",
     // form values for opponent 4
-    o4c1v: undefined,
-    o4c2v: undefined,
+    o4c1v: "",
+    o4c2v: "",
     o4c1s: "",
     o4c2s: "",
     // form values for opponent 5
-    o5c1v: undefined,
-    o5c2v: undefined,
+    o5c1v: "",
+    o5c2v: "",
     o5c1s: "",
     o5c2s: "",
 
     // default params
     scenarioParams: {
+      dCards: " ",
       title: " ",
       description: " ",
       context: " ",
