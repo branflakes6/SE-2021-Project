@@ -45,16 +45,12 @@ export default {
         to: "/account",
       },
       {
-        title: "Browse",
+        title: "Scenarios",
         to: "/scenarioBrowser",
       },
       {
-        title: "Scenario",
-        to: "/scenarioPage",
-      },
-      {
         title: "Leaderboard",
-        to: "/leaderboard",
+        to: "/fakeLeaderboard",
       },
     ],
   }),
