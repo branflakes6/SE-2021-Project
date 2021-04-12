@@ -21,6 +21,7 @@
         description="A sample scenario by us here at Upper Hand Poker. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
       />
       <scenarioThumbnail
+        scenarioID="WXSyM3c4DHKftSwMUafW"
         title="How aggressive should i play?"
         author="Upper Hand Poker"
         description="A sample scenario by us here at Upper Hand Poker. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."

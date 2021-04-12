@@ -13,7 +13,9 @@ export default {
   components: {
     scenario,
   },
-  data: () => ({
+  data () {
+    return {
+    sID: null,
     clicked: false,
     loaded: false,
     showCards: false,
@@ -65,10 +67,11 @@ export default {
         chipsAvailable: 30,
       },
     },
-  }),
+    }
+  },
   created() {
-    const scenarioID = "WXSyM3c4DHKftSwMUafW";
-    db.collection('scenarios').doc(scenarioID).get().then(doc => {
+    this.sID = this.$route.params.scenarioID
+    db.collection('scenarios').doc(this.sID).get().then(doc => {
 
       this.scenarioParams.showCardsAfter = doc.data().showCards
       this.scenarioParams.title = doc.data().title
