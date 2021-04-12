@@ -22,14 +22,7 @@ export default {
       title: "Sample Scenario",
       context: "",
       numOfOpponents: 5,
-      cardsOnTable: {
-        firstCard: "",
-        secondCard: "",
-        thirdCard: "",
-        fourthCard: "",
-        fifthCard: "",
-        sixthCard: "",
-      },
+      cardsOnTable: [],
       userParams: {
         cardOne: "cover",
         cardTwo: "cover",
@@ -72,11 +65,10 @@ export default {
 
       this.scenarioParams.showCardsAfter = doc.data().showCards
       this.scenarioParams.title = doc.data().title
-      this.scenarioParams.cardsOnTable.secondCard = doc.data().tableCards[0]
-      this.scenarioParams.cardsOnTable.thirdCard = doc.data().tableCards[1]
-      this.scenarioParams.cardsOnTable.fourthCard = doc.data().tableCards[2]
-      this.scenarioParams.cardsOnTable.fifthCard = doc.data().tableCards[3]
-      this.scenarioParams.cardsOnTable.sixthCard = doc.data().tableCards[4]
+
+      for(var i = 0; i < doc.data().tableCards.length; i++){
+        this.scenarioParams.cardsOnTable[i] = doc.data().tableCards[i]
+      }
 
       this.scenarioParams.userParams.cardOne = doc.data().player.hand[0]
       this.scenarioParams.userParams.cardTwo = doc.data().player.hand[1]

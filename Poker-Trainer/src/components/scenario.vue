@@ -83,30 +83,7 @@
           <div class="group-d">
             <!-- the "community" cards -->
             <div class="community-cards-container">
-              <vue-playing-card
-                :signature="scenarioParams.cardsOnTable.firstCard"
-                :width="cardWidth"
-              ></vue-playing-card>
-              <vue-playing-card
-                :signature="scenarioParams.cardsOnTable.secondCard"
-                :width="cardWidth"
-              ></vue-playing-card>
-              <vue-playing-card
-                :signature="scenarioParams.cardsOnTable.thirdCard"
-                :width="cardWidth"
-              ></vue-playing-card>
-              <vue-playing-card
-                :signature="scenarioParams.cardsOnTable.fourthCard"
-                :width="cardWidth"
-              ></vue-playing-card>
-              <vue-playing-card
-                :signature="scenarioParams.cardsOnTable.fifthCard"
-                :width="cardWidth"
-              ></vue-playing-card>
-              <vue-playing-card
-                :signature="scenarioParams.cardsOnTable.sixthCard"
-                :width="cardWidth"
-              ></vue-playing-card>
+             <dealersCards :cards="scenarioParams.cardsOnTable"> </dealersCards>
             </div>
             <div id="pot" class="player-chips-container">
               Pot: {{ scenarioParams.pot }}
@@ -377,10 +354,13 @@
 
 <script>
 
+import dealersCards from "./dealersCards"
 export default {
   name: "scenario",
   props: ["scenarioParams"],
-
+  components: {
+    dealersCards
+  },
   methods: {
     reveal() {
       if (this.scenarioParams.showCardsAfter) {
@@ -429,12 +409,12 @@ export default {
   destroyed() {
     window.removeEventListener("resize", this.handleResize);
   },
-  data: function() {
-    return {
+  data: () => ({
       call: false,
       raise: false,
       fold: false,
       flip: 0,
+      loaded: false,
       cardWidth: 85, //85 on pc, 40 on mobile
       answered: false,
       op1c1: "cover",
@@ -447,8 +427,7 @@ export default {
       op4c2: "cover",
       op5c1: "cover",
       op5c2: "cover",
-    };
-  },
+  }),
 };
 </script>
 
