@@ -99,6 +99,32 @@
 export default {
   name: "dealersCards",
   props: ["cards"],
+  methods: {
+   handleResize() {
+      if (window.innerWidth < 400) {
+        this.cardWidth = 10;
+      } else if (window.innerWidth < 600) {
+        this.cardWidth = 20;
+      } else if (window.innerWidth < 800) {
+        this.cardWidth = 30;
+      } else if (window.innerWidth < 1000) {
+        this.cardWidth = 40;
+      } else if (window.innerWidth < 1200) {
+        this.cardWidth = 50;
+      } else {
+        this.cardWidth = 65;
+      }
+    },
+   
+  },
+  created() {
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+   },
+   destroyed() {
+    window.removeEventListener("resize", this.handleResize);
+   },
+   
   data: function() {
     return {
       OneCard: false,
