@@ -83,7 +83,8 @@
           <div class="group-d">
             <!-- the "community" cards -->
             <div class="community-cards-container">
-             <dealersCards :cards="scenarioParams.cardsOnTable"> </dealersCards>
+              <dealersCards :cards="scenarioParams.cardsOnTable">
+              </dealersCards>
             </div>
             <div id="pot" class="player-chips-container">
               Pot: {{ scenarioParams.pot }}
@@ -154,7 +155,7 @@
                 ></vue-playing-card>
               </div>
               <v-btn class="player-details">
-                {{ scenarioParams.userParams.name }}
+                you
               </v-btn>
             </div>
           </div>
@@ -353,13 +354,12 @@
 </template>
 
 <script>
-
-import dealersCards from "./dealersCards"
+import dealersCards from "./dealersCards";
 export default {
   name: "scenario",
   props: ["scenarioParams"],
   components: {
-    dealersCards
+    dealersCards,
   },
   methods: {
     reveal() {
@@ -410,23 +410,23 @@ export default {
     window.removeEventListener("resize", this.handleResize);
   },
   data: () => ({
-      call: false,
-      raise: false,
-      fold: false,
-      flip: 0,
-      loaded: false,
-      cardWidth: 85, //85 on pc, 40 on mobile
-      answered: false,
-      op1c1: "cover",
-      op1c2: "cover",
-      op2c1: "cover",
-      op2c2: "cover",
-      op3c1: "cover",
-      op3c2: "cover",
-      op4c1: "cover",
-      op4c2: "cover",
-      op5c1: "cover",
-      op5c2: "cover",
+    call: false,
+    raise: false,
+    fold: false,
+    flip: 0,
+    loaded: false,
+    cardWidth: 85, //85 on pc, 40 on mobile
+    answered: false,
+    op1c1: "cover",
+    op1c2: "cover",
+    op2c1: "cover",
+    op2c2: "cover",
+    op3c1: "cover",
+    op3c2: "cover",
+    op4c1: "cover",
+    op4c2: "cover",
+    op5c1: "cover",
+    op5c2: "cover",
   }),
 };
 </script>
@@ -552,7 +552,7 @@ export default {
   background-color: rgba(22, 32, 32, 0.8) !important ;
   color: white !important;
   height: auto !important;
-  width: 7vw !important;
+  min-width: 7vw !important;
   font-size: 0.7vw !important;
   text-transform: capitalize !important;
   display: flex !important;
