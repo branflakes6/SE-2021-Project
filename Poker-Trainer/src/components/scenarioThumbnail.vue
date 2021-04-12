@@ -40,14 +40,18 @@ export default {
 #thbml-description {
   background-color: #2d2d2d;
   height: 150px;
+  width: 100%;
   overflow-y: auto;
   color: white;
 }
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1250px) {
   #thumbnail {
-    width: 90%;
+    min-width: 70%;
     margin: 10px 0 10px 0;
     flex-grow: 0;
+  }
+  #thbml-description {
+    width: 90%;
   }
 }
 </style>

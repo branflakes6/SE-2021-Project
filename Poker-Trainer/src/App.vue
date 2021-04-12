@@ -22,4 +22,7 @@ export default {
 </script>
 
 <style scoped>
+#app {
+  background-color: rgb(22, 22, 22) !important;
+}
 </style>

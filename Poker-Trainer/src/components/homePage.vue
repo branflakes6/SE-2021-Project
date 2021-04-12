@@ -89,6 +89,7 @@ export default {
   font-size: 3vw;
 }
 #home-banner-foreground h2 {
+  text-transform: capitalize;
   margin-bottom: 10%;
 }
 
@@ -105,7 +106,7 @@ export default {
   background-color: #2e2e2e;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1250px) {
   #scenarioThumbnail-container {
     flex-direction: row;
     padding: 0;

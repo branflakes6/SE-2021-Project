@@ -40,6 +40,15 @@ let router = new Router({
       meta: {},
     },
     {
+      path: "/scenarioBrowser",
+      name: "scenarioBrowser",
+      component: () =>
+        import(
+          /*webpackChunkName: "scenario"*/ "..//components//scenarioBrowser.vue"
+        ),
+      meta: {},
+    },
+    {
       path: "/scenarioPage/:scenarioID",
       name: "scenarioPage",
       component: () =>
