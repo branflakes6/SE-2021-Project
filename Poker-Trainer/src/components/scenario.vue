@@ -587,7 +587,7 @@ export default {
   height: auto;
 }
 .player-chips-container {
-  border: solid rgba(32, 32, 32, 0.7);
+ /* border: solid rgba(32, 32, 32, 0.7); */
   border-radius: 40%;
 
   width: 5.5vw;
