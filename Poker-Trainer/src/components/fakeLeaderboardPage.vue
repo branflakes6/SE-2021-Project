@@ -1,6 +1,6 @@
 <template>
   <div id="main-div">
-    <h1>Fake Leaderboard</h1>
+    <h1>Upper Hand Leaderboard</h1>
     <fakeLeaderboard />
   </div>
 </template>
