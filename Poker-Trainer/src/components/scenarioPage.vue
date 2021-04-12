@@ -73,6 +73,8 @@ export default {
     this.sID = this.$route.params.scenarioID
     db.collection('scenarios').doc(this.sID).get().then(doc => {
 
+      this.scenarioParams.numOfOpponents = Object.keys(doc.data().players).length
+
       this.scenarioParams.showCardsAfter = doc.data().showCards
       this.scenarioParams.title = doc.data().title
 
@@ -83,7 +85,6 @@ export default {
       this.scenarioParams.dealer = doc.data().dealer
       this.scenarioParams.context = doc.data().stateOfPlay
      
-
       this.scenarioParams.callType = doc.data().call.type
       this.scenarioParams.callText = doc.data().call.text
 
@@ -96,49 +97,44 @@ export default {
       this.scenarioParams.userParams.cardOne = doc.data().player.hand[0]
       this.scenarioParams.userParams.cardTwo = doc.data().player.hand[1]
 
+      this.scenarioParams.opponentOneParams.cardOne = doc.data().players.player2.hand[0]
+      this.scenarioParams.opponentOneParams.cardTwo = doc.data().players.player2.hand[1]
       this.scenarioParams.opponentOneParams.chipsAvailable = doc.data().players.player2.money.available
-      this.scenarioParams.opponentTwoParams.chipsAvailable = doc.data().players.player3.money.available
-      this.scenarioParams.opponentThreeParams.chipsAvailable = doc.data().players.player4.money.available
-      this.scenarioParams.opponentFourParams.chipsAvailable = doc.data().players.player5.money.available
-      this.scenarioParams.opponentFiveParams.chipsAvailable = doc.data().players.player6.money.available
-      
       this.scenarioParams.opponentOneParams.name = doc.data().players.player2.name
-      this.scenarioParams.opponentTwoParams.name = doc.data().players.player3.name
-      this.scenarioParams.opponentThreeParams.name = doc.data().players.player4.name
-      this.scenarioParams.opponentFourParams.name = doc.data().players.player5.name
-      this.scenarioParams.opponentFiveParams.name = doc.data().players.player6.name
-      
-    
-      if(doc.data().showCards){ 
-
-          this.scenarioParams.opponentOneParams.cardOne = doc.data().players.players2.hand[0]
-          this.scenarioParams.opponentOneParams.cardTwo = doc.data().players.players2.hand[1]
   
-        if (doc.data().players.length > 1)
+        if (this.scenarioParams.numOfOpponents > 1)
         {
-          this.scenarioParams.opponentTwoParams.cardOne = doc.data().players.players3.hand[0]
-          this.scenarioParams.opponentTwoParams.cardTwo = doc.data().players.players3.hand[1]
+          this.scenarioParams.opponentTwoParams.cardOne = doc.data().players.player3.hand[0]
+          this.scenarioParams.opponentTwoParams.cardTwo = doc.data().players.player3.hand[1]
+          this.scenarioParams.opponentTwoParams.chipsAvailable = doc.data().players.player3.money.available
+          this.scenarioParams.opponentTwoParams.name = doc.data().players.player3.name
         }
 
-        if (doc.data().players.length > 2)
+        if (this.scenarioParams.numOfOpponents > 2)
        {
-          this.scenarioParams.opponentThreeParams.cardOne = doc.data().players.players4.hand[0]
-          this.scenarioParams.opponentThreeParams.cardTwo = doc.data().players.players4.hand[1]
+          this.scenarioParams.opponentThreeParams.cardOne = doc.data().players.player4.hand[0]
+          this.scenarioParams.opponentThreeParams.cardTwo = doc.data().players.player4.hand[1]
+          this.scenarioParams.opponentThreeParams.chipsAvailable = doc.data().players.player4.money.available
+          this.scenarioParams.opponentThreeParams.name = doc.data().players.player4.name
         }
 
-        if (doc.data().players.length > 3)
+        if (this.scenarioParams.numOfOpponents > 3)
         {
-          this.scenarioParams.opponentFourParams.cardOne = doc.data().players.players5.hand[0]
-          this.scenarioParams.opponentFourParams.cardTwo = doc.data().players.players5.hand[1]
+          this.scenarioParams.opponentFourParams.cardOne = doc.data().players.player5.hand[0]
+          this.scenarioParams.opponentFourParams.cardTwo = doc.data().players.player5.hand[1]
+          this.scenarioParams.opponentFourParams.chipsAvailable = doc.data().players.player5.money.available
+          this.scenarioParams.opponentFourParams.name = doc.data().players.player5.name
         }
 
-       if (doc.data().players.length > 4)
+       if (this.scenarioParams.numOfOpponents > 4)
         {
-          this.scenarioParams.opponentFiveParams.cardOne = doc.data().players.players[4].hand[0]
-          this.scenarioParams.opponentFiveParams.cardTwo = doc.data().players.players[4].hand[1]
+          this.scenarioParams.opponentFiveParams.cardOne = doc.data().players.player[4].hand[0]
+          this.scenarioParams.opponentFiveParams.cardTwo = doc.data().players.player[4].hand[1]
+          this.scenarioParams.opponentFiveParams.chipsAvailable = doc.data().players.player6.money.available
+          this.scenarioParams.opponentFiveParams.name = doc.data().players.player6.name
+
         }
-      }
-      this.scenarioParams.numOfOpponents = Object.keys(doc.data().players).length
+      
       this.loaded = true;
     })
   },

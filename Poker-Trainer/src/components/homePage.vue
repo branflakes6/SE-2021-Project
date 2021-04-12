@@ -16,7 +16,8 @@
 
     <div id="scenarioThumbnail-container">
       <scenarioThumbnail
-        title="Going all in"
+        scenarioID="DNbZQrDKW4aDWZA3Hqi6"
+        title="Victory Royale"
         author="Upper Hand Poker"
         description="A sample scenario by us here at Upper Hand Poker. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
       />
