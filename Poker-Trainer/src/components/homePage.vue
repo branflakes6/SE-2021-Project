@@ -14,9 +14,15 @@
         >
           Sign Up
         </v-btn>
-        <router-link v-if="signedIn" to="/scenarioPage" class="signup">
+        <v-btn
+          width="200"
+          outlined
+          v-if="signedIn"
+          class="signup"
+          to="/scenarioBrowser"
+        >
           Practice
-        </router-link>
+        </v-btn>
       </div>
     </div>
 
@@ -56,7 +62,7 @@ export default {
     signUpForm,
   },
   data: () => ({
-    signedIn: false,
+    signedIn: true,
     drawer: false,
     showSignUpForm: false,
   }),
