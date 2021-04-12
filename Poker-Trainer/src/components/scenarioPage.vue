@@ -21,6 +21,13 @@ export default {
       scenarioParams: {
       title: "Sample Scenario",
       context: "",
+      dealer: 1,
+      callType: "",
+      foldType: "",
+      raiseType: "",
+      callText: "",
+      raiseText: "",
+      foldText: "",
       numOfOpponents: 5,
       cardsOnTable: [],
       userParams: {
@@ -69,6 +76,19 @@ export default {
       for(var i = 0; i < doc.data().tableCards.length; i++){
         this.scenarioParams.cardsOnTable[i] = doc.data().tableCards[i]
       }
+
+      this.scenarioParams.dealer = doc.data().dealer
+      this.scenarioParams.context = doc.data().stateOfPlay
+     
+
+      this.scenarioParams.callType = doc.data().call.type
+      this.scenarioParams.callText = doc.data().call.text
+
+      this.scenarioParams.raiseType = doc.data().raise.type
+      this.scenarioParams.raiseText = doc.data().raise.text
+
+      this.scenarioParams.foldType = doc.data().fold.type
+      this.scenarioParams.foldText = doc.data().fold.text
 
       this.scenarioParams.userParams.cardOne = doc.data().player.hand[0]
       this.scenarioParams.userParams.cardTwo = doc.data().player.hand[1]
