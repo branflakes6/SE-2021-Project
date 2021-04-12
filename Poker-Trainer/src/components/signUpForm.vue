@@ -1,8 +1,5 @@
 <template>
   <v-card dark id="signup-form">
-    <v-card-title>
-      <span class="headline">Sign up</span>
-    </v-card-title>
     <v-card-text>
       <v-container>
         <v-row>
