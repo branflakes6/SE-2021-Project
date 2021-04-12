@@ -45,6 +45,10 @@ export default {
         to: "/account",
       },
       {
+        title: "Browse",
+        to: "/scenarioBrowser",
+      },
+      {
         title: "Scenario",
         to: "/scenarioPage",
       },
