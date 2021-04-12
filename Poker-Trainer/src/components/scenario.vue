@@ -574,7 +574,7 @@ export default {
   color: white !important;
   height: auto !important;
   width: 7vw !important;
-  font-size: 1.5vw !important;
+  font-size: 0.7vw !important;
   text-transform: capitalize !important;
   display: flex !important;
   justify-content: space-between !important;

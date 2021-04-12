@@ -16,6 +16,8 @@ export default {
   data: () => ({
     clicked: false,
     loaded: false,
+    showCards: false,
+    title:  "",
       scenarioParams: {
       title: "Sample Scenario",
       context: "",
@@ -28,10 +30,9 @@ export default {
         fifthCard: "",
         sixthCard: "",
       },
-
       userParams: {
-        cardOne: "",
-        cardTwo: "",
+        cardOne: "cover",
+        cardTwo: "cover",
         chipsBet: 5,
         chipsAvailable: 30,
       },
@@ -66,44 +67,63 @@ export default {
     },
   }),
   created() {
-    const scenarioID = "vcQX3PUIWKDCbsFuf91a";
+    const scenarioID = "WXSyM3c4DHKftSwMUafW";
     db.collection('scenarios').doc(scenarioID).get().then(doc => {
-      this.scenarioParams.cardsOnTable.secondCard = doc.data().cards[0]
-      this.scenarioParams.cardsOnTable.thirdCard = doc.data().cards[1]
-      this.scenarioParams.cardsOnTable.fourthCard = doc.data().cards[2]
-      this.scenarioParams.cardsOnTable.fifthCard = doc.data().cards[3]
-      this.scenarioParams.cardsOnTable.sixthCard = doc.data().cards[4]
 
-      this.scenarioParams.userParams.cardOne = doc.data().pHand[0]
-      this.scenarioParams.userParams.cardTwo = doc.data().pHand[1]
+      this.scenarioParams.showCardsAfter = doc.data().showCards
+      this.scenarioParams.title = doc.data().title
+      this.scenarioParams.cardsOnTable.secondCard = doc.data().tableCards[0]
+      this.scenarioParams.cardsOnTable.thirdCard = doc.data().tableCards[1]
+      this.scenarioParams.cardsOnTable.fourthCard = doc.data().tableCards[2]
+      this.scenarioParams.cardsOnTable.fifthCard = doc.data().tableCards[3]
+      this.scenarioParams.cardsOnTable.sixthCard = doc.data().tableCards[4]
 
-      this.scenarioParams.opponentOneParams.cardOne = doc.data().players[0].hand[0]
-      this.scenarioParams.opponentOneParams.cardTwo = doc.data().players[0].hand[1]
-      if (doc.data().players.length > 1)
-      {
-        this.scenarioParams.opponentTwoParams.cardOne = doc.data().players[1].hand[0]
-        this.scenarioParams.opponentTwoParams.cardTwo = doc.data().players[1].hand[1]
-      }
+      this.scenarioParams.userParams.cardOne = doc.data().player.hand[0]
+      this.scenarioParams.userParams.cardTwo = doc.data().player.hand[1]
 
-       if (doc.data().players.length > 2)
-      {
-        this.scenarioParams.opponentThreeParams.cardOne = doc.data().players[2].hand[0]
-        this.scenarioParams.opponentThreeParams.cardTwo = doc.data().players[2].hand[1]
-      }
+      this.scenarioParams.opponentOneParams.chipsAvailable = doc.data().players.player2.money.available
+      this.scenarioParams.opponentTwoParams.chipsAvailable = doc.data().players.player3.money.available
+      this.scenarioParams.opponentThreeParams.chipsAvailable = doc.data().players.player4.money.available
+      this.scenarioParams.opponentFourParams.chipsAvailable = doc.data().players.player5.money.available
+      this.scenarioParams.opponentFiveParams.chipsAvailable = doc.data().players.player6.money.available
+      
+      this.scenarioParams.opponentOneParams.name = doc.data().players.player2.name
+      this.scenarioParams.opponentTwoParams.name = doc.data().players.player3.name
+      this.scenarioParams.opponentThreeParams.name = doc.data().players.player4.name
+      this.scenarioParams.opponentFourParams.name = doc.data().players.player5.name
+      this.scenarioParams.opponentFiveParams.name = doc.data().players.player6.name
+      
+    
+      if(doc.data().showCards){ 
 
-       if (doc.data().players.length > 3)
-      {
-        this.scenarioParams.opponentFourParams.cardOne = doc.data().players[3].hand[0]
-        this.scenarioParams.opponentFourParams.cardTwo = doc.data().players[3].hand[1]
-      }
+          this.scenarioParams.opponentOneParams.cardOne = doc.data().players.players2.hand[0]
+          this.scenarioParams.opponentOneParams.cardTwo = doc.data().players.players2.hand[1]
+  
+        if (doc.data().players.length > 1)
+        {
+          this.scenarioParams.opponentTwoParams.cardOne = doc.data().players.players3.hand[0]
+          this.scenarioParams.opponentTwoParams.cardTwo = doc.data().players.players3.hand[1]
+        }
+
+        if (doc.data().players.length > 2)
+       {
+          this.scenarioParams.opponentThreeParams.cardOne = doc.data().players.players4.hand[0]
+          this.scenarioParams.opponentThreeParams.cardTwo = doc.data().players.players4.hand[1]
+        }
+
+        if (doc.data().players.length > 3)
+        {
+          this.scenarioParams.opponentFourParams.cardOne = doc.data().players.players5.hand[0]
+          this.scenarioParams.opponentFourParams.cardTwo = doc.data().players.players5.hand[1]
+        }
 
        if (doc.data().players.length > 4)
-      {
-        this.scenarioParams.opponentFiveParams.cardOne = doc.data().players[4].hand[0]
-        this.scenarioParams.opponentFiveParams.cardTwo = doc.data().players[4].hand[1]
+        {
+          this.scenarioParams.opponentFiveParams.cardOne = doc.data().players.players[4].hand[0]
+          this.scenarioParams.opponentFiveParams.cardTwo = doc.data().players.players[4].hand[1]
+        }
       }
-      this.scenarioParams.showCardsAfter = true;
-      this.scenarioParams.numOfOpponents = doc.data().players.length
+      this.scenarioParams.numOfOpponents = Object.keys(doc.data().players).length
       this.loaded = true;
     })
   },

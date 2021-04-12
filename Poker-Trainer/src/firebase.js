@@ -7,7 +7,7 @@ const firebaseConfig = {
     projectId: "poker-trainer-d2a00",
     storageBucket: "poker-trainer-d2a00.appspot.com",
     messagingSenderId: "process.env.VUE_FIREBASE_MESSAGEID",
-    appId: "VUE_FIREBASE_APPID"
+    appId: "process.env.VUE_FIREBASE_APPID"
 }
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
