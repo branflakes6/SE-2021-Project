@@ -13,13 +13,35 @@
         </router-link>
       </div>
     </div>
+
+    <div id="scenarioThumbnail-container">
+      <scenarioThumbnail
+        title="Going all in"
+        author="Upper Hand Poker"
+        description="A sample scenario by us here at Upper Hand Poker. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
+      />
+      <scenarioThumbnail
+        title="How aggressive should i play?"
+        author="Upper Hand Poker"
+        description="A sample scenario by us here at Upper Hand Poker. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
+      />
+      <scenarioThumbnail
+        title="good time to fold?"
+        author="Upper Hand Poker"
+        description="A sample scenario by us here at Upper Hand Poker. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import scenarioThumbnail from "./scenarioThumbnail";
 export default {
   name: "homePage",
-
+  components: {
+    scenarioThumbnail,
+  },
   data: () => ({
     signedIn: true,
     drawer: false,
@@ -66,5 +88,26 @@ export default {
 }
 #home-banner-foreground h2 {
   margin-bottom: 10%;
+}
+
+#scenarioThumbnail-container {
+  width: 80%;
+  height: 500px;
+  margin: 20px 0 100px 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #2e2e2e;
+}
+
+@media screen and (max-width: 1050px) {
+  #scenarioThumbnail-container {
+    flex-direction: row;
+    padding: 0;
+    height: auto;
+  }
 }
 </style>
