@@ -20,6 +20,7 @@ export default {
     loaded: false,
     showCards: false,
     title:  "",
+    dCards: "",
       scenarioParams: {
       title: "Sample Scenario",
       context: "",
@@ -73,12 +74,14 @@ export default {
     this.sID = this.$route.params.scenarioID
     db.collection('scenarios').doc(this.sID).get().then(doc => {
 
-      this.scenarioParams.numOfOpponents = Object.keys(doc.data().players).length
+      this.scenarioParams.numOfOpponents = doc.data().numPlayers
+      
 
       this.scenarioParams.showCardsAfter = doc.data().showCards
       this.scenarioParams.title = doc.data().title
+      this.dCards = doc.data().dCards
 
-      for(var i = 0; i < doc.data().tableCards.length; i++){
+      for(var i = 0; i < this.dCards; i++){
         this.scenarioParams.cardsOnTable[i] = doc.data().tableCards[i]
       }
 
