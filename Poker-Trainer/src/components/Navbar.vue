@@ -54,7 +54,7 @@ export default {
       },
       {
         title: "Leaderboard",
-        to: "/leaderboard",
+        to: "/fakeLeaderboard",
       },
     ],
   }),

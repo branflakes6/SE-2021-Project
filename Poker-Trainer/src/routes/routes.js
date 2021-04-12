@@ -67,6 +67,15 @@ let router = new Router({
       meta: {},
     },
     {
+      path: "/fakeLeaderboard",
+      name: "fakeLeaderboardPage",
+      component: () =>
+        import(
+          /*webpackChunkName: "leaderboard"*/ "..//components//fakeLeaderboardPage.vue"
+        ),
+      meta: {},
+    },
+    {
       path: "*",
       name: "pageNotFound",
       component: () =>
