@@ -128,8 +128,8 @@ export default {
 
        if (this.scenarioParams.numOfOpponents > 4)
         {
-          this.scenarioParams.opponentFiveParams.cardOne = doc.data().players.player[4].hand[0]
-          this.scenarioParams.opponentFiveParams.cardTwo = doc.data().players.player[4].hand[1]
+          this.scenarioParams.opponentFiveParams.cardOne = doc.data().players.player4.hand[0]
+          this.scenarioParams.opponentFiveParams.cardTwo = doc.data().players.player4.hand[1]
           this.scenarioParams.opponentFiveParams.chipsAvailable = doc.data().players.player6.money.available
           this.scenarioParams.opponentFiveParams.name = doc.data().players.player6.name
 
