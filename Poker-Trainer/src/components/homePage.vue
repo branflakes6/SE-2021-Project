@@ -87,6 +87,7 @@ export default {
   font-size: 3vw;
 }
 #home-banner-foreground h2 {
+  text-transform: capitalize;
   margin-bottom: 10%;
 }
 
