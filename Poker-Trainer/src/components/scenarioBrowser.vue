@@ -9,11 +9,14 @@
     <!-- for now this works, but i want to have a for loop that gets all the scenarios in the database, kinda like what we have in the nav -->
     <div id="scenarioThumbnail-container">
       <scenarioThumbnail
+
+        scenarioID="DNbZQrDKW4aDWZA3Hqi6"
         title="Victory Royale"
         author="Upper Hand Poker"
         description="A beginners sample scenario designed to give you familiarity with the website."
       />
       <scenarioThumbnail
+        scenarioID="WXSyM3c4DHKftSwMUafW"
         title="How aggressive should i play?"
         author="Upper Hand Poker"
         description="A more in depth sample scenario designed to test your skills of the basics."
@@ -568,34 +571,28 @@ export default {
      this.searchTerm = this.masterList_id
    },
     sendScenario() {
-      if(this.turn == 1){
-        this.scenarioParams.dCards = 3
+      if (this.turn == 1) {
+        this.scenarioParams.dCards = 3;
       }
-      if(this.correctAnswer == "Call")
-      {
-        this.scenarioParams.callType = "Correct"
+      if (this.correctAnswer == "Call") {
+        this.scenarioParams.callType = "Correct";
+      } else {
+        this.scenarioParams.callType = "Incorrect";
       }
-      else{
-        this.scenarioParams.callType = "Incorrect"
+      if (this.correctAnswer == "Fold") {
+        this.scenarioParams.foldType = "Correct";
+      } else {
+        this.scenarioParams.foldType = "Incorrect";
       }
-      if(this.correctAnswer == "Fold")
-      {
-        this.scenarioParams.foldType = "Correct"
+      if (this.correctAnswer == "Raise") {
+        this.scenarioParams.raiseType = "Correct";
+      } else {
+        this.scenarioParams.raiseType = "Incorrect";
       }
-      else{
-        this.scenarioParams.foldType = "Incorrect"
-      }
-      if(this.correctAnswer == "Raise")
-      {
-        this.scenarioParams.raiseType = "Correct"
-      }
-      else{
-        this.scenarioParams.raiseType = "Incorrect"
-      }
-      db.collection('scenarios').add({
+      db.collection("scenarios").add({
         call: {
           text: this.scenarioParams.callText,
-          type: this.scenarioParams.callType
+          type: this.scenarioParams.callType,
         },
         dCards: this.scenarioParams.dCards,
         dealer: this.scenarioParams.dealer,
@@ -608,59 +605,74 @@ export default {
           hand: [this.uc1v.concat(this.uc1s), this.uc2v.concat(this.uc2s)],
           money: {
             available: this.scenarioParams.userParams.chipsAvailable,
-            bet: this.scenarioParams.currentBet
-          }
+            bet: this.scenarioParams.currentBet,
+          },
         },
         players: {
-          player2:{
+          player2: {
             attributes: "",
-            hand: [this.o1c1v.concat(this.o1c1s),this.o1c2v.concat(this.o1c2s)],
+            hand: [
+              this.o1c1v.concat(this.o1c1s),
+              this.o1c2v.concat(this.o1c2s),
+            ],
             money: {
               available: this.scenarioParams.opponentOneParams.chipsAvailable,
-              bet: ""
+              bet: "",
             },
-            name: this.scenarioParams.opponentOneParams.name
+            name: this.scenarioParams.opponentOneParams.name,
           },
-          player3:{
+          player3: {
             attributes: "",
-            hand: [this.o2c1v.concat(this.o2c1s),this.o1c2v.concat(this.o2c2s)],
+            hand: [
+              this.o2c1v.concat(this.o2c1s),
+              this.o1c2v.concat(this.o2c2s),
+            ],
             money: {
               available: this.scenarioParams.opponentTwoParams.chipsAvailable,
-              bet: ""
+              bet: "",
             },
-            name: this.scenarioParams.opponentTwoParams.name
+            name: this.scenarioParams.opponentTwoParams.name,
           },
-          player4:{
+          player4: {
             attributes: "",
-            hand: [this.o3c1v.concat(this.o3c1s),this.o3c2v.concat(this.o3c2s)],
+            hand: [
+              this.o3c1v.concat(this.o3c1s),
+              this.o3c2v.concat(this.o3c2s),
+            ],
             money: {
               available: this.scenarioParams.opponentThreeParams.chipsAvailable,
-              bet: ""
+              bet: "",
             },
-            name: this.scenarioParams.opponentThreeParams.name
+            name: this.scenarioParams.opponentThreeParams.name,
           },
-          player5:{
+          player5: {
             attributes: "",
-            hand: [this.o4c1v.concat(this.o4c1s),this.o4c2v.concat(this.o4c2s)],
+            hand: [
+              this.o4c1v.concat(this.o4c1s),
+              this.o4c2v.concat(this.o4c2s),
+            ],
             money: {
               available: this.scenarioParams.opponentFourParams.chipsAvailable,
-              bet: ""
+              bet: "",
             },
-            name: this.scenarioParams.opponentFourParams.name
+            name: this.scenarioParams.opponentFourParams.name,
           },
-          player6:{
+          player6: {
             attributes: "",
-            hand: [this.o5c1v.concat(this.o5c1s),this.o5c2v.concat(this.o5c2s)],
+            hand: [
+              this.o5c1v.concat(this.o5c1s),
+              this.o5c2v.concat(this.o5c2s),
+            ],
             money: {
               available: this.scenarioParams.opponentFiveParams.chipsAvailable,
-              bet: ""
+              bet: "",
             },
-            name: this.scenarioParams.opponentFiveParams.name
+            name: this.scenarioParams.opponentFiveParams.name,
           },
         },
         raise: {
           text: this.scenarioParams.raiseText,
-          type: this.scenarioParams.raiseType
+          type: this.scenarioParams.raiseType,
         },
         showCards: this.scenarioParams.reveal,
         stateOfPlay: this.scenarioParams.context,
@@ -670,11 +682,11 @@ export default {
           this.cc3v.concat(this.cc3s),
           this.cc4v.concat(this.cc4s),
           this.cc5v.concat(this.cc5s),
-          this.cc6v.concat(this.cc6s)
-          ],
-        title: this.scenarioParams.title
-      })
-    }
+          this.cc6v.concat(this.cc6s),
+        ],
+        title: this.scenarioParams.title,
+      });
+    },
   },
   data: () => ({
     masterList: [{
