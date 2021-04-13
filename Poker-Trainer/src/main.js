@@ -4,7 +4,6 @@ import vuetify from "./plugins/vuetify";
 import router from "./routes/routes";
 import VuePlayingCard from "vue-playing-card";
 
-
 Vue.use(VuePlayingCard);
 Vue.config.productionTip = false;
 
@@ -13,6 +12,7 @@ const app = new Vue({
   router,
   data: {
     loading: false,
+    loggedIn: true,
     scenario: 0,
   },
   render: (h) => h(App),

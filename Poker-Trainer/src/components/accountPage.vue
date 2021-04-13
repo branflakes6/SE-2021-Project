@@ -1,42 +1,48 @@
 <template>
   <div id="main-div">
-    <h1>Welcome To The Accout Page</h1>
-    <h3>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum autem ipsum
-      earum tenetur maiores pariatur adipisci velit doloremque nesciunt neque.
-    </h3>
-    <div id="btn-container">
-      <v-btn
-        width="200"
-        outlined
-        class="signup"
-        v-on:click="showSignUpForm = !showSignUpForm"
-      >
-        Create Account
-      </v-btn>
-      <v-btn
-        width="200"
-        outlined
-        class="signup"
-        v-on:click="showSignInForm = !showSignInForm"
-      >
-        Sign In
-      </v-btn>
+    <div id="askLogIn" v-if="!loggedIn">
+      <h1>Welcome To The Accout Page</h1>
+      <h3>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum autem
+        ipsum earum tenetur maiores pariatur adipisci velit doloremque nesciunt
+        neque.
+      </h3>
+      <div id="btn-container">
+        <v-btn
+          width="200"
+          outlined
+          class="signup"
+          v-on:click="showSignUpForm = !showSignUpForm"
+        >
+          Create Account
+        </v-btn>
+        <v-btn
+          width="200"
+          outlined
+          class="signup"
+          v-on:click="showSignInForm = !showSignInForm"
+        >
+          Sign In
+        </v-btn>
 
-      <small>---- or connect with ----</small>
-      <a id="facebook-link">
-        <v-icon color="blue"> mdi-facebook</v-icon> Facebook</a
-      >
-      <a id="google-link"><v-icon color="red"> mdi-google</v-icon> Google</a>
+        <small>---- or connect with ----</small>
+        <a id="facebook-link">
+          <v-icon color="blue"> mdi-facebook</v-icon> Facebook</a
+        >
+        <a id="google-link"><v-icon color="red"> mdi-google</v-icon> Google</a>
 
-      <a id="apple-link"><v-icon color="white"> mdi-apple</v-icon> Apple</a>
+        <a id="apple-link"><v-icon color="white"> mdi-apple</v-icon> Apple</a>
+      </div>
+      <v-dialog v-model="showSignUpForm" max-width="640">
+        <sign-up-form />
+      </v-dialog>
+      <v-dialog v-model="showSignInForm" max-width="640">
+        <sign-in-form />
+      </v-dialog>
     </div>
-    <v-dialog v-model="showSignUpForm" max-width="640">
-      <sign-up-form />
-    </v-dialog>
-    <v-dialog v-model="showSignInForm" max-width="640">
-      <sign-in-form />
-    </v-dialog>
+    <div v-else id="profile">
+      (Show profile details)
+    </div>
   </div>
 </template>
 
@@ -49,6 +55,7 @@ export default {
     signUpForm,
     signInForm,
   },
+  props: ["visiting", "loggedIn"],
   data: () => ({
     showSignUpForm: false,
     showSignInForm: false,
@@ -63,6 +70,15 @@ export default {
   min-height: 100vh;
   background-color: rgb(22, 22, 22);
   color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+#askLogIn {
+  padding: 0%;
+  margin: 0%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
