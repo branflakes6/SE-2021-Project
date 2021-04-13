@@ -41,7 +41,19 @@
       </v-dialog>
     </div>
     <div v-else id="profile">
-      (Show profile details)
+      <h1 id="name">{{ this.profileDetails.name }}</h1>
+      <img id="pic" src="../assets/profile-pic-1.png" alt="" />
+      <h1 id="rating">Rating: {{ this.profileDetails.rating }}</h1>
+      <h1 id="scenarios">
+        Scenarios Played: {{ this.profileDetails.scenariosPlayed }}
+      </h1>
+      <h1 id="contributions">
+        Contributions: {{ this.profileDetails.contributions }}
+      </h1>
+      <div id="about">
+        <h1 id="about-header">About</h1>
+        <p id="about-text">{{ this.profileDetails.about }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -55,7 +67,7 @@ export default {
     signUpForm,
     signInForm,
   },
-  props: ["visiting", "loggedIn"],
+  props: ["visiting", "loggedIn", "profileDetails"],
   data: () => ({
     showSignUpForm: false,
     showSignInForm: false,
@@ -114,5 +126,12 @@ a {
 }
 #apple-link {
   color: white;
+}
+
+#pic {
+  border: solid white;
+  border-radius: 50%;
+  border-width: 2px;
+  width: 30%;
 }
 </style>

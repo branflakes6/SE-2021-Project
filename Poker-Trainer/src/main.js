@@ -13,6 +13,15 @@ const app = new Vue({
   data: {
     loading: false,
     loggedIn: true,
+    profileDetails: {
+      id: "5c4",
+      name: "Brian Farrel",
+      rating: 2000,
+      scenariosPlayed: 5,
+      contributions: 3,
+      profilePicture: "profile-pic-1.png",
+      about: "Tell us about yourself...",
+    },
     scenario: 0,
   },
   render: (h) => h(App),
