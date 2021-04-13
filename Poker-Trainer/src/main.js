@@ -12,7 +12,7 @@ const app = new Vue({
   router,
   data: {
     loading: false,
-    loggedIn: true,
+    loggedIn: false,
     profileDetails: {
       id: "5c4",
       name: "Brian Farrel",

@@ -33,11 +33,74 @@
 
         <a id="apple-link"><v-icon color="white"> mdi-apple</v-icon> Apple</a>
       </div>
+
       <v-dialog v-model="showSignUpForm" max-width="640">
-        <sign-up-form />
+        <v-card dark id="signup-form">
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field label="Email" required></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field label="Username" required></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    label="Password"
+                    :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="showPass ? 'text' : 'password'"
+                    required
+                    @click:append="showPass = !showPass"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="red darken-1" text @click="showSignUpForm = false">
+              Create Account
+            </v-btn>
+          </v-card-actions>
+        </v-card>
       </v-dialog>
+
       <v-dialog v-model="showSignInForm" max-width="640">
-        <sign-in-form />
+        <v-card dark id="signup-form">
+          <v-card-text>
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field
+                    label="Username / Email"
+                    required
+                  ></v-text-field>
+                </v-col>
+
+                <v-col cols="12">
+                  <v-text-field
+                    label="Password"
+                    :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="showPass ? 'text' : 'password'"
+                    required
+                    @click:append="showPass = !showPass"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="red darken-1"
+              text
+              @click="showSignInForm = false((loggedIn = true))"
+            >
+              Sign In
+            </v-btn>
+          </v-card-actions>
+        </v-card>
       </v-dialog>
     </div>
     <div v-else id="profile">
@@ -69,18 +132,14 @@
 </template>
 
 <script>
-import signUpForm from "./signUpForm";
-import signInForm from "./signInForm";
 export default {
   name: "homePage",
-  components: {
-    signUpForm,
-    signInForm,
-  },
+  components: {},
   props: ["visiting", "loggedIn", "profileDetails"],
   data: () => ({
     showSignUpForm: false,
     showSignInForm: false,
+    showPass: false,
   }),
 };
 </script>
