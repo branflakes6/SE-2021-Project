@@ -9,9 +9,9 @@
         </div>
       </a>
       <v-spacer />
-      <button v-on:click="logout" class="logOut-btn" rounded color="black" dark>
+      <li v-if="isLoggedIn"><button v-on:click="logout" class="logOut-btn" rounded color="black" dark>
         Logout
-      </button>
+      </button></li>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
 
@@ -35,7 +35,7 @@
   </nav>
 </template>
 <script>
-import firebase from 'firebase';
+import firebase from '../firebase';
 export default {
   data: () => ({
     isLoggedIn: false,
@@ -64,15 +64,15 @@ export default {
   }),
   created(){
     if(firebase.auth().currentUser){
-      this.isLoggedIn =true;
-      this.currentUser = firebase.auth().currentUser = firebase.auth().currentUser.email
+      this.isLoggedIn = true;
+      this.currentUser = firebase.auth().currentUser.email
     }
 
   },
   methods: {
     logout: function(){
-      firebase.auth.signOut().then(()=> {
-        this.$router.push('/loginPage')
+      firebase.auth().signOut().then(()=> {
+        this.$router.push('/accountPage')
     });
     }
   }
