@@ -25,7 +25,9 @@
         </v-btn>
       </div>
     </div>
-
+    <h1 class="tutorial-header">
+      Browse scenarios to find a topic you want to improve on
+    </h1>
     <div id="scenarioThumbnail-container">
       <scenarioThumbnail
         scenarioID="DNbZQrDKW4aDWZA3Hqi6"
@@ -46,6 +48,23 @@
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
       />
     </div>
+    <h1 class="tutorial-header">
+      Analyze the scenrio by looking at the visual representation, and reading
+      the "State of Play"
+    </h1>
+    <img
+      id="scenario-screenshot"
+      src="../assets/scenario-screenshot.png"
+      alt="screenshot of scenario"
+    />
+    <h1 class="tutorial-header">
+      Give back to the community by creating scenarios for other players
+    </h1>
+    <img
+      id="form-screenshot"
+      src="../assets/form-screenshot.png"
+      alt="screenshot of form"
+    />
     <v-dialog v-model="showSignUpForm" max-width="640">
       <sign-up-form />
     </v-dialog>
@@ -111,11 +130,16 @@ export default {
   text-transform: capitalize;
   margin-bottom: 10%;
 }
-
+.tutorial-header {
+  text-transform: capitalize;
+  margin: 50px 0 20px 0;
+  font-size: 2vw;
+  text-align: center;
+}
 #scenarioThumbnail-container {
   width: 80%;
   height: 500px;
-  margin: 20px 0 100px 0;
+  margin: 20px 0 50px 0;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -124,7 +148,13 @@ export default {
   align-items: center;
   background-color: #2e2e2e;
 }
-
+#scenario-screenshot {
+  width: 75%;
+}
+#form-screenshot {
+  width: 30%;
+  margin: 10px 0 40px 0;
+}
 @media screen and (max-width: 1250px) {
   #scenarioThumbnail-container {
     flex-direction: row;
