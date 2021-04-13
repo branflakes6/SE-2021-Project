@@ -33,19 +33,18 @@
         scenarioID="DNbZQrDKW4aDWZA3Hqi6"
         title="Victory Royale"
         author="Upper Hand Poker"
-        description="A sample scenario by us here at Upper Hand Poker. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
+        description="A beginners sample scenario designed to give you familiarity with the website"
       />
       <scenarioThumbnail
         scenarioID="WXSyM3c4DHKftSwMUafW"
         title="How aggressive should i play?"
         author="Upper Hand Poker"
-        description="A sample scenario by us here at Upper Hand Poker. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
+        description="A more in depth sample scenario designed to test your skills of the basics."
       />
       <scenarioThumbnail
         title="good time to fold?"
         author="Upper Hand Poker"
-        description="A sample scenario by us here at Upper Hand Poker. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
+        description="An advanced scenario designed to really test if you know your stuff or not.."
       />
     </div>
     <h1 class="tutorial-header">
@@ -146,7 +145,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  background-color: #2e2e2e;
+  background-color: rgb(22, 22, 22);
 }
 #scenario-screenshot {
   width: 75%;

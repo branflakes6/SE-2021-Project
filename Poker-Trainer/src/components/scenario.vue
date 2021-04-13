@@ -464,7 +464,7 @@ export default {
   margin: 50px 0 50px 0;
 }
 #table-cards-background {
-  background-color: #1e1e1e;
+  background-color: rgb(22, 22, 22);
   width: 100%;
 }
 #table-cards-foreground {

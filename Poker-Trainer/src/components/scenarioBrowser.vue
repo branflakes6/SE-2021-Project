@@ -9,25 +9,26 @@
     <!-- for now this works, but i want to have a for loop that gets all the scenarios in the database, kinda like what we have in the nav -->
     <div id="scenarioThumbnail-container">
       <scenarioThumbnail
+
         scenarioID="DNbZQrDKW4aDWZA3Hqi6"
         title="Victory Royale"
         author="Upper Hand Poker"
-        description="A sample scenario by us here at Upper Hand Poker. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
+        description="A beginners sample scenario designed to give you familiarity with the website."
       />
       <scenarioThumbnail
         scenarioID="WXSyM3c4DHKftSwMUafW"
         title="How aggressive should i play?"
         author="Upper Hand Poker"
-        description="A sample scenario by us here at Upper Hand Poker. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
+        description="A more in depth sample scenario designed to test your skills of the basics."
       />
       <scenarioThumbnail
         title="good time to fold?"
         author="Upper Hand Poker"
-        description="A sample scenario by us here at Upper Hand Poker. Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae perspiciatis ipsa commodi tenetur ab quia illo ducimus consequuntur fugiat."
+        description="An advanced scenario designed to really test if you know your stuff or not."
       />
     </div>
 
+    
     <!-- create form -->
     <v-dialog dark v-model="showForm" max-width="600px">
       <v-card>
@@ -526,7 +527,34 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <div v-if="loaded">
+      <v-container>
+        <v-row align="center" justify = "center">
+          <v-col>
+            <h1 align="center" justify = "center"> Select a Scenario to play</h1>
+            <div >
+            <v-select 
+            text-align="center"
+            item-text="name"
+            item-value="ID"
+            v-model="masterList_id"
+            :items="masterList"
+            background-color="white"
+            >
+            </v-select>
+            </div>
+            <div align="center" justify = "center">
+              <v-btn :to="`scenarioPage/${this.searchTerm}`">Go</v-btn>
+            </div>           
+          </v-col>
+          <v-btn v-on:click="search" color="rgb(22, 22, 22)"></v-btn>
+         
+        </v-row>
+      </v-container>
+
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -537,7 +565,11 @@ export default {
   components: {
     scenarioThumbnail,
   },
-  methods: {
+
+ methods: {
+   search (){
+     this.searchTerm = this.masterList_id
+   },
     sendScenario() {
       if (this.turn == 1) {
         this.scenarioParams.dCards = 3;
@@ -657,6 +689,18 @@ export default {
     },
   },
   data: () => ({
+    masterList: [{
+      ID: "WXSyM3c4DHKftSwMUafW",
+      name: "How aggressive should i play?"
+    },
+    {
+      ID: "DNbZQrDKW4aDWZA3Hqi6",
+      name: "Victory Royale"
+    }
+    ],
+    searchTerm: "",
+    loaded: false,
+    select: "",
     showForm: false,
     // card values
     values: [
@@ -792,6 +836,15 @@ export default {
       },
     },
   }),
+
+ created() {
+    db.collection('scenarios').doc("masterList").get().then(doc => {
+      console.log(doc.data())
+      this.masterList = doc.data().Scenarios
+      console.log(this.masterList)
+      this.loaded = true
+    })
+  },
 };
 </script>
 
@@ -829,7 +882,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  background-color: #2e2e2e;
+  background-color: rgb(22, 22, 22);
 }
 
 .opponent-details-container {
@@ -837,7 +890,6 @@ export default {
   border-width: 1px;
   padding: 0 10px 0 10px;
 }
-
 @media screen and (max-width: 1250px) {
   #scenarioThumbnail-container {
     flex-direction: row;

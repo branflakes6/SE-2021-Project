@@ -72,6 +72,10 @@ export default {
   },
   created() {
     this.sID = this.$route.params.scenarioID
+    db.collection('scenarios').get().then(doc =>{
+      console.log(doc)
+    })
+    
     db.collection('scenarios').doc(this.sID).get().then(doc => {
 
       this.scenarioParams.numOfOpponents = doc.data().numPlayers
