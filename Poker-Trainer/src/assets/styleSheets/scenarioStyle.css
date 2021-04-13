@@ -1,0 +1,275 @@
+#main-div {
+    padding: 0%;
+    margin: 0%;
+    min-height: 100vh;
+    min-width: 100%;
+    background-color: rgb(22, 22, 22);
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    font-size: 2vw;
+  }
+  #scenario-title {
+    text-transform: capitalize;
+  }
+  #flop {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #table-cards-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0 50px 0;
+  }
+  #table-cards-background {
+    background-color: #1e1e1e;
+    width: 100%;
+  }
+  #table-cards-foreground {
+    /*border: solid white;*/
+    padding: 0 0 5% 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  .group-a {
+    /*border: solid white;*/
+    height: 85%;
+    width: 33%;
+    margin: 0 0 15px 0;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+  }
+  .group-b {
+    /* border: solid white; */
+    min-height: 75%;
+    width: 33%;
+    margin: 0 0 15px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    position: relative;
+    top: 8%;
+    height: 85%;
+  }
+  
+  .group-c {
+    /*border: solid white;*/
+    height: 85%;
+    width: 33%;
+    margin: 0 0 15px 0;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+  }
+  
+  .group-d {
+    /*border: solid white;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .group-e {
+    /* border: solid white; */
+    height: 55%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 110%;
+  }
+  .community-cards-container {
+    /*border: solid white;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 0 0;
+  }
+  .player-container {
+    /* border: solid white; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.1vw;
+  }
+  .player-details {
+    margin: 0.5vw 0 0.5vw 0 !important;
+    padding: 0 2px 0 2px !important;
+    background-color: rgba(22, 32, 32, 0.8) !important ;
+    color: white !important;
+    height: auto !important;
+    width: 7vw !important;
+    font-size: 0.7vw !important;
+    text-transform: capitalize !important;
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+  .player-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .d-c-container {
+    /* border: solid white; */
+    padding: 1%;
+    width: 9vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .dealer-chip-container {
+    /* border: solid white; */
+    border-radius: 50%;
+    width: 2vw;
+    height: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 7% 0 7%;
+  }
+  .dealer-chip {
+    width: 100%;
+    height: auto;
+  }
+  .player-chips-container {
+    border: solid rgba(32, 32, 32, 0.7);
+    border-radius: 40%;
+  
+    width: 5.5vw;
+    height: 5.5vw;
+    /* max-width: 100px;
+    max-height: 100px; */
+    padding: 1% 5px 5px 5px;
+    font-size: 1vw;
+  
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  #pot {
+    border: solid rgba(255, 217, 0, 0.6);
+    width: 6.5vw;
+    height: 6.5vw;
+    margin: 3% 0 0 0;
+  }
+  #opponent-1 {
+    /*border: solid white;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    margin: 0 10px 0 10px;
+    padding: 0 0 10px 0;
+  }
+  #opponent-2 {
+    transform: rotate(90deg);
+    display: flex;
+    justify-content: flex-end;
+  
+    position: relative;
+    top: 30px;
+    left: 10px;
+  }
+  
+  #opponent-3 {
+    transform: rotate(-90deg);
+    display: flex;
+    justify-content: flex-start;
+  
+    position: relative;
+    top: 30px;
+    right: 10px;
+  }
+  
+  #opponent-4 {
+    transform: rotate(45deg);
+    display: flex;
+    justify-content: flex-end;
+  
+    position: relative;
+    bottom: 10px;
+    left: 10px;
+  }
+  #opponent-5 {
+    transform: rotate(-45deg);
+    display: flex;
+    justify-content: flex-start;
+  
+    position: relative;
+    bottom: 10px;
+    right: 10px;
+  }
+  .user-container {
+    /*border: solid white;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    margin: 0 10px 0 10px;
+    padding: 0 0 10px 0;
+    justify-content: space-evenly;
+  }
+  .user-container .player-details {
+    justify-content: center !important;
+  }
+  .user-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .options-container {
+    /* border: solid white; */
+    display: flex;
+    justify-content: space-evenly;
+    width: 40%;
+    margin: 0 0 50px 0;
+  }
+  .option {
+    background-color: rgb(99, 22, 22) !important;
+    border: solid white !important;
+  }
+  
+  .state-of-play-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+    padding: 5px 10px 5px 10px;
+    width: 90% !important ;
+    margin: 0 5vw 5vh 5vw !important;
+    font-size: 1.5vw;
+  }
+  
+  .post-option {
+    background-color: #222222 !important;
+    border: solid white !important;
+    margin: 10px 0 10px 0;
+  }
+  .post-option:hover {
+    background-color: #3d3d3d !important;
+  }
+  .no-active {
+    background-color: #222222 !important;
+  }

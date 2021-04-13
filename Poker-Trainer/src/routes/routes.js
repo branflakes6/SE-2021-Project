@@ -1,5 +1,4 @@
 import Vue from "vue";
-import firebase from 'firebase';
 import Router from "vue-router";
 import homePage from "@/components/homePage";
 
@@ -20,49 +19,59 @@ let router = new Router({
       name: "accountPage",
       component: () =>
         import(
-          /*webpackChunkName: "account"*/ "..\\components\\accountPage.vue"
+          /*webpackChunkName: "account"*/ "..//components//accountPage.vue"
         ),
-      meta: {
-        requiresAuth: true
-      }
+      meta: {},
     },
     {
       path: "/loginPage",
       name: "loginPage",
       component: () =>
-        import(/*webpackChunkName: "account"*/ "..\\components\\loginPage.vue"),
-      meta: {
-        requiresGuest: true
-      },
+        import(/*webpackChunkName: "account"*/ "..//components//loginPage.vue"),
+      meta: {},
     },
     {
       path: "/createAccount",
       name: "createAccount",
       component: () =>
         import(
-          /*webpackChunkName: "account"*/ "..\\components\\createAccount.vue"
+          /*webpackChunkName: "account"*/ "..//components//createAccount.vue"
         ),
-      meta: {
-        requiresGuest: true
-      },
+      meta: {},
     },
     {
-      path: "/scenario",
-      name: "scenarios",
+      path: "/scenarioBrowser",
+      name: "scenarioBrowser",
       component: () =>
         import(
-          /*webpackChunkName: "scenario"*/ "..\\components\\scenarioPage.vue"
+          /*webpackChunkName: "scenario"*/ "..//components//scenarioBrowser.vue"
         ),
-      meta: {
-        requiresAuth: true
-      },
+      meta: {},
+    },
+    {
+      path: "/scenarioPage/:scenarioID",
+      name: "scenarioPage",
+      component: () =>
+        import(
+          /*webpackChunkName: "scenario"*/ "..//components//scenarioPage.vue"
+        ),
+      meta: {},
     },
     {
       path: "/leaderboard",
       name: "leaderboardPage",
       component: () =>
         import(
-          /*webpackChunkName: "leaderboard"*/ "..\\components\\leaderboard.vue"
+          /*webpackChunkName: "leaderboard"*/ "..//components//leaderboard.vue"
+        ),
+      meta: {},
+    },
+    {
+      path: "/fakeLeaderboard",
+      name: "fakeLeaderboardPage",
+      component: () =>
+        import(
+          /*webpackChunkName: "leaderboard"*/ "..//components//fakeLeaderboardPage.vue"
         ),
       meta: {},
     },
@@ -71,40 +80,11 @@ let router = new Router({
       name: "pageNotFound",
       component: () =>
         import(
-          /*webpackChunkName: "pageNotFound"*/ "..\\components\\pageNotFound.vue"
+          /*webpackChunkName: "pageNotFound"*/ "..//components//pageNotFound.vue"
         ),
       meta: {},
     },
   ],
 });
-router.beforeEach((to,from,next)=>{
-    //check for requiredAuth guard
-  if(to.matched.some(record => record.meta.requiresAuth)){
-      //Check if NOT logged in 
-    if(!firebase.auth().currentUser){
-      next({
-        path: '/login',
-        query: {
-          redirect: to.fullPath
-        }
-      });
-    }else{
-         next();
-      }
-    }else if(to.matched.some(record => record.meta.requiresGuest)){
-        //Check if logged in 
-    if(firebase.auth().currentUser){
-      next({
-        path: '/',
-        query: {
-          redirect: to.fullPath
-        }
-    });
-  }else{
-         next();
-      }}
-    else{
-      next();
-    }
-});
+
 export default router;

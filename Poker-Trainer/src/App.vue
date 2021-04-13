@@ -3,7 +3,12 @@
     <Navbar />
     <v-content>
       <PageLoader v-if="$root.loading" />
-      <router-view v-else> </router-view>
+      <router-view
+        v-else
+        :loggedIn="$root.loggedIn"
+        :profileDetails="$root.profileDetails"
+      >
+      </router-view>
     </v-content>
   </v-app>
 </template>
@@ -18,7 +23,12 @@ export default {
     Navbar,
     PageLoader,
   },
+  data: () => ({}),
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#app {
+  background-color: rgb(22, 22, 22) !important;
+}
+</style>

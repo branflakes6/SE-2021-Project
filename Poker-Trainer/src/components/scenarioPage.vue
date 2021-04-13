@@ -1,251 +1,55 @@
 <template>
   <div id="main-div">
-    <h2>{{ scenarioParams.title }}</h2>
-
-    <!-- Render the table and cards -->
-    <div id="table-cards-container">
-      <!-- ie, the table -->
-      <img id="table-cards-background" src="..\assets\red-table.png" alt="" />
-      <!-- ie, the cards and chips -->
-      <div id="table-cards-foreground">
-        <div class="group-a">
-          <!-- opponent 2 cards -->
-          <div id="opponent-2" class="player-container" :key="flip">
-            <template v-if="scenarioParams.numOfOpponents >= 2">
-              <div class="player-cards">
-                <vue-playing-card
-                  :signature="scenarioParams.opponentTwoParams.cardOne"
-                  :width="cardWidth"
-                ></vue-playing-card>
-                <vue-playing-card
-                  :signature="scenarioParams.opponentTwoParams.cardTwo"
-                  :width="cardWidth"
-                ></vue-playing-card>
-              </div>
-            </template>
-          </div>
-
-          <!-- opponent 4 cards -->
-          <div id="opponent-4" class="player-container" :key="flip">
-            <template v-if="scenarioParams.numOfOpponents >= 4">
-              <div class="player-cards">
-                <vue-playing-card
-                  :signature="scenarioParams.opponentFourParams.cardOne"
-                  :width="cardWidth"
-                ></vue-playing-card>
-                <vue-playing-card
-                  :signature="scenarioParams.opponentFourParams.cardTwo"
-                  :width="cardWidth"
-                ></vue-playing-card>
-              </div>
-            </template>
-          </div>
-        </div>
-
-        <div class="group-b">
-          <!-- opponent 1 cards -->
-          <div id="opponent-1" class="player-container" :key="flip">
-            <template v-if="scenarioParams.numOfOpponents >= 1">
-              <div class="player-cards">
-                <vue-playing-card
-                  :signature="scenarioParams.opponentOneParams.cardOne"
-                  :width="cardWidth"
-                ></vue-playing-card>
-                <vue-playing-card
-                  :signature="scenarioParams.opponentOneParams.cardTwo"
-                  :width="cardWidth"
-                ></vue-playing-card>
-              </div>
-            </template>
-          </div>
-
-          <!-- the "community" cards -->
-          <div class="community-cards-container">
-            <vue-playing-card
-              :signature="scenarioParams.cardsOnTable.firstCard"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              :signature="scenarioParams.cardsOnTable.secondCard"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              :signature="scenarioParams.cardsOnTable.thirdCard"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              :signature="scenarioParams.cardsOnTable.fourthCard"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              :signature="scenarioParams.cardsOnTable.fifthCard"
-              :width="cardWidth"
-            ></vue-playing-card>
-            <vue-playing-card
-              :signature="scenarioParams.cardsOnTable.sixthCard"
-              :width="cardWidth"
-            ></vue-playing-card>
-          </div>
-          <!-- users cards and options -->
-          <div class="user-container">
-            <!-- users cards -->
-            <div class="user-cards">
-              <vue-playing-card
-                :signature="scenarioParams.userParams.cardOne"
-                :width="cardWidth"
-              ></vue-playing-card>
-              <vue-playing-card
-                :signature="scenarioParams.userParams.cardTwo"
-                :width="cardWidth"
-              ></vue-playing-card>
-            </div>
-          </div>
-        </div>
-        <div class="group-c">
-          <!-- opponent 3 cards -->
-          <div id="opponent-3" class="player-container" :key="flip">
-            <template v-if="scenarioParams.numOfOpponents >= 3">
-              <div class="player-cards">
-                <vue-playing-card
-                  :signature="scenarioParams.opponentThreeParams.cardOne"
-                  :width="cardWidth"
-                ></vue-playing-card>
-                <vue-playing-card
-                  :signature="scenarioParams.opponentThreeParams.cardTwo"
-                  :width="cardWidth"
-                ></vue-playing-card>
-              </div>
-            </template>
-          </div>
-
-          <!-- opponent 5 cards -->
-          <div id="opponent-5" class="player-container" :key="flip">
-            <template v-if="scenarioParams.numOfOpponents >= 5">
-              <div class="player-cards">
-                <vue-playing-card
-                  :signature="scenarioParams.opponentFiveParams.cardOne"
-                  :width="cardWidth"
-                ></vue-playing-card>
-                <vue-playing-card
-                  :signature="scenarioParams.opponentFiveParams.cardTwo"
-                  :width="cardWidth"
-                ></vue-playing-card>
-              </div>
-            </template>
-          </div>
-        </div>
-      </div>
+    <div v-if="loaded">
+    <scenario v-bind:scenarioParams="scenarioParams"></scenario>
     </div>
-
-    <!-- users option -->
-    <div class="options-container">
-      <div>
-        <v-btn x-large dark class="option" v-on:click="callF">Call</v-btn>
-      </div>
-      <div>
-        <v-btn x-large dark class="option" @click="raise = true">Raise</v-btn>
-      </div>
-      <div>
-        <v-btn x-large dark class="option" @click="fold = true">Fold</v-btn>
-      </div>
-    </div>
-
-    <!-- state of play -->
-    <v-card dark class="state-of-play-container">
-      <h2>State of Play:</h2>
-      <p>{{ scenarioParams.context }}</p>
-    </v-card>
-
-    <!-- dialogue pop-ups -->
-    <v-dialog v-model="call" max-width="260">
-      <v-card max-height="260">
-        <v-container>
-          <h3 align="center">
-            Correct Decision
-          </h3>
-          <h4>
-            Your opponent went all in and you had a Royal Flush, the best
-            possible hand. The only correct decision in this situation is to go
-            all in!
-          </h4>
-        </v-container>
-      </v-card>
-    </v-dialog>
-
-    <v-dialog v-model="raise" max-width="260">
-      <v-card>
-        <v-container>
-          <h3 align="center">
-            Invalid
-          </h3>
-          <h4 class="ma-4">
-            Your opponent went all in, you cannot raise you can only call.
-          </h4>
-        </v-container>
-      </v-card>
-    </v-dialog>
-
-    <v-dialog v-model="fold" max-width="260">
-      <v-card>
-        <v-container>
-          <h3 align="center">
-            Wrong Decision
-          </h3>
-          <h4 class="ma-4">
-            Your opponent went all in and you had a Royal Flush, the best
-            possible hand. The only correct decision in this situation is to go
-            all in!
-          </h4>
-        </v-container>
-      </v-card>
-    </v-dialog>
   </div>
 </template>
 
 <script>
+import scenario from "./scenario";
+import db from "../firebase";
 export default {
-  name: "scenarioPage",
-  componets: {},
-
-  methods: {
-    callF: function() {
-      (this.call = true),
-        (this.scenarioParams.opponentOneParams.cardOne = "ad"),
-        (this.scenarioParams.opponentOneParams.cardTwo = "as"),
-        (this.flip += 1);
-    },
+  components: {
+    scenario,
   },
-  data: () => ({
-    call: false,
-    raise: false,
-    fold: false,
-    flip: 0,
-    cardWidth: 85, //85 on pc, 40 on mobile
-    scenarioParams: {
+  data () {
+    return {
+    sID: null,
+    clicked: false,
+    loaded: false,
+    showCards: false,
+    title:  "",
+    dCards: "",
+      scenarioParams: {
       title: "Sample Scenario",
-      context:
-        "Your opponent went all in! Will you call his bluff? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere reprehenderit ullam consectetur fugiat, pariatur labore debitis iste animi nemo ex.",
+      context: "",
+      dealer: 1,
+      callType: "",
+      foldType: "",
+      raiseType: "",
+      callText: "",
+      raiseText: "",
+      foldText: "",
       numOfOpponents: 5,
-      cardsOnTable: {
-        firstCard: "cover",
-        secondCard: "kh",
-        thirdCard: "8s",
-        fourthCard: "ah",
-        fifthCard: "3d",
-        sixthCard: "qh",
-      },
-
+      cardsOnTable: [],
       userParams: {
-        cardOne: "jh",
-        cardTwo: "th",
+        cardOne: "cover",
+        cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
       opponentOneParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
       opponentTwoParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
       opponentThreeParams: {
         cardOne: "cover",
@@ -254,13 +58,93 @@ export default {
       opponentFourParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
       opponentFiveParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
       },
     },
-  }),
+    }
+  },
+  created() {
+    this.sID = this.$route.params.scenarioID
+    db.collection('scenarios').get().then(doc =>{
+      console.log(doc)
+    })
+    
+    db.collection('scenarios').doc(this.sID).get().then(doc => {
+
+      this.scenarioParams.numOfOpponents = doc.data().numPlayers
+      
+
+      this.scenarioParams.showCardsAfter = doc.data().showCards
+      this.scenarioParams.title = doc.data().title
+      this.dCards = doc.data().dCards
+
+      for(var i = 0; i < this.dCards; i++){
+        this.scenarioParams.cardsOnTable[i] = doc.data().tableCards[i]
+      }
+
+      this.scenarioParams.dealer = doc.data().dealer
+      this.scenarioParams.context = doc.data().stateOfPlay
+     
+      this.scenarioParams.callType = doc.data().call.type
+      this.scenarioParams.callText = doc.data().call.text
+
+      this.scenarioParams.raiseType = doc.data().raise.type
+      this.scenarioParams.raiseText = doc.data().raise.text
+
+      this.scenarioParams.foldType = doc.data().fold.type
+      this.scenarioParams.foldText = doc.data().fold.text
+
+      this.scenarioParams.userParams.cardOne = doc.data().player.hand[0]
+      this.scenarioParams.userParams.cardTwo = doc.data().player.hand[1]
+
+      this.scenarioParams.opponentOneParams.cardOne = doc.data().players.player2.hand[0]
+      this.scenarioParams.opponentOneParams.cardTwo = doc.data().players.player2.hand[1]
+      this.scenarioParams.opponentOneParams.chipsAvailable = doc.data().players.player2.money.available
+      this.scenarioParams.opponentOneParams.name = doc.data().players.player2.name
+  
+        if (this.scenarioParams.numOfOpponents > 1)
+        {
+          this.scenarioParams.opponentTwoParams.cardOne = doc.data().players.player3.hand[0]
+          this.scenarioParams.opponentTwoParams.cardTwo = doc.data().players.player3.hand[1]
+          this.scenarioParams.opponentTwoParams.chipsAvailable = doc.data().players.player3.money.available
+          this.scenarioParams.opponentTwoParams.name = doc.data().players.player3.name
+        }
+
+        if (this.scenarioParams.numOfOpponents > 2)
+       {
+          this.scenarioParams.opponentThreeParams.cardOne = doc.data().players.player4.hand[0]
+          this.scenarioParams.opponentThreeParams.cardTwo = doc.data().players.player4.hand[1]
+          this.scenarioParams.opponentThreeParams.chipsAvailable = doc.data().players.player4.money.available
+          this.scenarioParams.opponentThreeParams.name = doc.data().players.player4.name
+        }
+
+        if (this.scenarioParams.numOfOpponents > 3)
+        {
+          this.scenarioParams.opponentFourParams.cardOne = doc.data().players.player5.hand[0]
+          this.scenarioParams.opponentFourParams.cardTwo = doc.data().players.player5.hand[1]
+          this.scenarioParams.opponentFourParams.chipsAvailable = doc.data().players.player5.money.available
+          this.scenarioParams.opponentFourParams.name = doc.data().players.player5.name
+        }
+
+       if (this.scenarioParams.numOfOpponents > 4)
+        {
+          this.scenarioParams.opponentFiveParams.cardOne = doc.data().players.player4.hand[0]
+          this.scenarioParams.opponentFiveParams.cardTwo = doc.data().players.player4.hand[1]
+          this.scenarioParams.opponentFiveParams.chipsAvailable = doc.data().players.player6.money.available
+          this.scenarioParams.opponentFiveParams.name = doc.data().players.player6.name
+
+        }
+      
+      this.loaded = true;
+    })
+  },
 };
 </script>
 
@@ -269,154 +153,10 @@ export default {
   padding: 0%;
   margin: 0%;
   min-height: 100vh;
-  min-width: 100%;
   background-color: rgb(22, 22, 22);
   color: aliceblue;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  text-align: center;
-  font-size: 2vw;
-}
-#flop {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-#table-cards-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 50px 0 50px 0;
-}
-#table-cards-background {
-  position: static;
-  width: 100%;
-}
-#table-cards-foreground {
-  /*border: solid white;*/
-  padding: 0 0 5vh 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.group-a {
-  /*border: solid white;*/
-  height: 85%;
-  width: 33%;
-  margin: 0 0 15px 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-content: center;
-}
-.group-b {
-  /*border: solid white;*/
-  height: 75%;
-  width: 33%;
-  margin: 0 0 15px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.group-c {
-  /*border: solid white;*/
-  height: 85%;
-  width: 33%;
-  margin: 0 0 15px 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-content: center;
-}
-.community-cards-container {
-  /*border: solid white;*/
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 120px;
-}
-.player-container {
-  /*border: solid white;*/
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 120px;
-}
-.player-cards {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#opponent-2 {
-  /*border: solid white;*/
-  margin: 100px 0 0 0px;
-  transform: rotate(-45deg);
-}
-#opponent-3 {
-  /*border: solid white;*/
-  margin: 100px 0 0 0;
-  transform: rotate(45deg);
-}
-#opponent-4 {
-  /*border: solid white;*/
-  margin: 0 0 100px 0;
-  transform: rotate(45deg);
-}
-#opponent-5 {
-  /*border: solid white;*/
-  margin: 0 0 100px 0;
-  transform: rotate(-45deg);
-}
-.user-container {
-  /*border: solid white;*/
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 120px;
-}
-.user-cards {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.options-container {
-  display: flex;
-  justify-content: space-evenly;
-  width: 40%;
-  margin: 0 0 50px 0;
-}
-.option {
-  background-color: transparent !important;
-  border: solid white !important;
-}
-
-.state-of-play-container {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  align-items: flex-start;
-  padding: 5px 10px 5px 10px;
-  width: 90% !important ;
-  margin: 0 5vw 5vh 5vw !important;
-  font-size: 1.5vw;
-}
-@media screen and (max-width: 650px) {
-  #table-cards-background {
-    height: 40vh;
-    width: 105vw;
-  }
 }
 </style>

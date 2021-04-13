@@ -4,8 +4,8 @@
     <v-app-bar color=" white--text" dark dense fixed app flat>
       <a id="title-logo" href="/" class="title">
         <div>
-          <img id="logo" src="..\assets\logo.png" alt="img not found" />
-          <h1>Upper Hand Poker Trainer</h1>
+          <img id="logo" src="../assets/logo.png" alt="img not found" />
+          <h1 class="title">Upper Hand Poker Trainer</h1>
         </div>
       </a>
       <v-spacer />
@@ -25,7 +25,7 @@
       <v-list>
         <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
           <v-list-item-content>
-            <v-list-item-title class="title" @click.stop="drawer = !drawer">
+            <v-list-item-title class="title">
               {{ item.title }}
             </v-list-item-title>
           </v-list-item-content>
@@ -52,12 +52,12 @@ export default {
         to: "/account",
       },
       {
-        title: "Scenario",
-        to: "/scenario",
+        title: "Scenarios",
+        to: "/scenarioBrowser",
       },
       {
         title: "Leaderboard",
-        to: "/leaderboard",
+        to: "/fakeLeaderboard",
       },
       
     ],
