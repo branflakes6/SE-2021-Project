@@ -1,9 +1,9 @@
+import firebase from 'firebase';
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./routes/routes";
 import VuePlayingCard from "vue-playing-card";
-import firebase from 'firebase';
-import './components/firebaseInit';
+
 
 Vue.use(VuePlayingCard);
 Vue.config.productionTip = false;

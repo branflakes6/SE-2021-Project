@@ -1,7 +1,8 @@
 import Vue from "vue";
+import firebase from 'firebase';
 import Router from "vue-router";
 import homePage from "@/components/homePage";
-import firebase from 'firebase';
+
 Vue.use(Router);
 
 // Routes are implemented using lazy-loading to increase app speed
