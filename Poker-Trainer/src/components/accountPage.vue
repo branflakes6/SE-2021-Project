@@ -179,6 +179,8 @@ export default {
         firebase.auth().signInWithEmailAndPassword(this.signInEmail,this.signInPassword)
             .then(user => {
               alert('You are logged in as '+this.signInEmail);
+              this.showSignInForm = false;
+              this.$root.loggedIn = true;
               this.$router.push('/');
               console.log(user)
               },
@@ -186,8 +188,6 @@ export default {
                   alert(err.message)
             })
         e.preventDefault();
-        this.showSignInForm = false;
-        this.loggedIn = true;
     }
   }
 };
