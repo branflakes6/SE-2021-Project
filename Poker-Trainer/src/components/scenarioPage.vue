@@ -8,7 +8,8 @@
 
 <script>
 import scenario from "./scenario";
-import db from "../firebase";
+import firebase from "../firebase";
+const db = firebase.firestore();
 export default {
   components: {
     scenario,

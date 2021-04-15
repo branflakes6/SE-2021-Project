@@ -1,3 +1,4 @@
+
 <template>
   <nav>
     <v-app-bar color=" white--text" dark dense fixed app flat>
@@ -8,6 +9,9 @@
         </div>
       </a>
       <v-spacer />
+      <li v-if="this.$root.loggedIn"><button v-on:click="logout" class="logOut-btn" rounded color="black" dark>
+        Logout
+      </button></li>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
 
@@ -31,8 +35,10 @@
   </nav>
 </template>
 <script>
+import firebase from '../firebase';
 export default {
   data: () => ({
+    currentUser: false,
     drawer: false,
     group: null,
     items: [
@@ -52,8 +58,23 @@ export default {
         title: "Leaderboard",
         to: "/fakeLeaderboard",
       },
+      
     ],
   }),
+  created(){
+    if(firebase.auth().currentUser){
+      this.currentUser = firebase.auth().currentUser.email
+    }
+
+  },
+  methods: {
+    logout: function(){
+      this.$root.loggedIn= false;
+      firebase.auth().signOut().then(()=> {
+        this.$router.push('/account')
+    });
+    }
+  }
 };
 </script>
 <style scoped>
