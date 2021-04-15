@@ -10,6 +10,7 @@
           outlined
           v-if="!signedIn"
           class="signup"
+          v-on:click="showSignUpForm = !showSignUpForm"
         >
           Sign Up
         </v-btn>

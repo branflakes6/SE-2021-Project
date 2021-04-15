@@ -1,7 +1,7 @@
 <template>
   <div id="main-div">
     <div id="askLogIn" v-if="!loggedIn">
-      <h1>Welcome To The Accout Page</h1>
+      <h1>Welcome To The Account Page</h1>
       <h3>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum autem
         ipsum earum tenetur maiores pariatur adipisci velit doloremque nesciunt
@@ -78,7 +78,7 @@
               <v-row>
                 <v-col cols="12">
                   <v-text-field
-                    v-model="signInUsername"
+                    v-model="signInEmail"
                     :error-messages="errors"
                     label="Email"
                     required
@@ -148,8 +148,14 @@ export default {
   props: ["visiting", "loggedIn", "profileDetails"],
   data: function(){
     return{
-      email: ' ',
-      password: ' ',
+      errors: '',
+      signInEmail: '',
+      signInUsername: '',
+      signInPassword: '',
+      signUpEmail: '',
+      signUpUsername: '',
+      signUpPassword: '',
+      password: '',
       showSignInForm: false,
       showSignUpForm: false,
       showPass: true
@@ -159,7 +165,7 @@ export default {
     register: function(e){
         firebase.auth().createUserWithEmailAndPassword(this.signUpEmail,this.signUpPassword)
             .then(user => {
-              alert('Account Created For ${user.email}');
+              alert('Account created for '+this.signUpEmail);
               this.$router.push('/');
               console.log(user)
               },
@@ -169,11 +175,10 @@ export default {
         e.preventDefault();
     },
       login: function(e){
-        this.showSignInForm = false;
-        this.loggedIn = false;
+        console.log(this.signInEmail)
         firebase.auth().signInWithEmailAndPassword(this.signInEmail,this.signInPassword)
             .then(user => {
-              alert('You are logged in as ${user.email}');
+              alert('You are logged in as '+this.signInEmail);
               this.$router.push('/');
               console.log(user)
               },
@@ -181,6 +186,8 @@ export default {
                   alert(err.message)
             })
         e.preventDefault();
+        this.showSignInForm = false;
+        this.loggedIn = true;
     }
   }
 };
