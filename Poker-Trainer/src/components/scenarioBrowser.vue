@@ -9,7 +9,6 @@
     <!-- for now this works, but i want to have a for loop that gets all the scenarios in the database, kinda like what we have in the nav -->
     <div id="scenarioThumbnail-container">
       <scenarioThumbnail
-
         scenarioID="DNbZQrDKW4aDWZA3Hqi6"
         title="Victory Royale"
         author="Upper Hand Poker"
@@ -28,7 +27,6 @@
       />
     </div>
 
-    
     <!-- create form -->
     <v-dialog dark v-model="showForm" max-width="600px">
       <v-card>
@@ -527,34 +525,31 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <div v-if="loaded">
+    <!-- <div v-if="loaded">
       <v-container>
-        <v-row align="center" justify = "center">
+        <v-row align="center" justify="center">
           <v-col>
-            <h1 align="center" justify = "center"> Select a Scenario to play</h1>
-            <div >
-            <v-select 
-            text-align="center"
-            item-text="name"
-            item-value="ID"
-            v-model="masterList_id"
-            :items="masterList"
-            background-color="white"
-            >
-            </v-select>
+            <h1 align="center" justify="center">Select a Scenario to play</h1>
+            <div>
+              <v-select
+                text-align="center"
+                item-text="name"
+                item-value="ID"
+                v-model="masterList_id"
+                :items="masterList"
+                background-color="white"
+              >
+              </v-select>
             </div>
-            <div align="center" justify = "center">
+            <div align="center" justify="center">
               <v-btn :to="`scenarioPage/${this.searchTerm}`">Go</v-btn>
-            </div>           
+            </div>
           </v-col>
           <v-btn v-on:click="search" color="rgb(22, 22, 22)"></v-btn>
-         
         </v-row>
       </v-container>
-
-    </div>
+    </div> -->
   </div>
-  
 </template>
 
 <script>
@@ -567,10 +562,10 @@ export default {
     scenarioThumbnail,
   },
 
- methods: {
-   search (){
-     this.searchTerm = this.masterList_id
-   },
+  methods: {
+    search() {
+      this.searchTerm = this.masterList_id;
+    },
     sendScenario() {
       if (this.turn == 1) {
         this.scenarioParams.dCards = 3;
@@ -690,14 +685,15 @@ export default {
     },
   },
   data: () => ({
-    masterList: [{
-      ID: "WXSyM3c4DHKftSwMUafW",
-      name: "How aggressive should i play?"
-    },
-    {
-      ID: "DNbZQrDKW4aDWZA3Hqi6",
-      name: "Victory Royale"
-    }
+    masterList: [
+      {
+        ID: "WXSyM3c4DHKftSwMUafW",
+        name: "How aggressive should i play?",
+      },
+      {
+        ID: "DNbZQrDKW4aDWZA3Hqi6",
+        name: "Victory Royale",
+      },
     ],
     searchTerm: "",
     loaded: false,
@@ -838,13 +834,16 @@ export default {
     },
   }),
 
- created() {
-    db.collection('scenarios').doc("masterList").get().then(doc => {
-      console.log(doc.data())
-      this.masterList = doc.data().Scenarios
-      console.log(this.masterList)
-      this.loaded = true
-    })
+  created() {
+    db.collection("scenarios")
+      .doc("masterList")
+      .get()
+      .then((doc) => {
+        console.log(doc.data());
+        this.masterList = doc.data().Scenarios;
+        console.log(this.masterList);
+        this.loaded = true;
+      });
   },
 };
 </script>
@@ -874,16 +873,13 @@ export default {
 }
 #scenarioThumbnail-container {
   width: 80%;
-  height: 500px;
-  margin: 20px 0 100px 0;
   padding: 20px;
   margin: 10px 0 0 0;
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(22, 22, 22);
+  background-color: #2e2e2e;
 }
 
 .opponent-details-container {
