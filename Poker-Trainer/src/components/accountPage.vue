@@ -1,7 +1,7 @@
 <template>
   <div id="main-div">
     <div id="askLogIn" v-if="!loggedIn">
-      <h1>Welcome To The Accout Page</h1>
+      <h1>Welcome To The Account Page</h1>
       <h3>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum autem
         ipsum earum tenetur maiores pariatur adipisci velit doloremque nesciunt
@@ -40,13 +40,17 @@
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field label="Email" required></v-text-field>
+                  <v-text-field v-model="signUpEmail"
+        :error-messages="errors" label="Email" required></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field label="Username" required></v-text-field>
+                  <v-text-field v-model="signUpUsername"
+        :error-messages="errors" label="Username" required></v-text-field>
                 </v-col>
                 <v-col cols="12">
                   <v-text-field
+                    v-model="signUpPassword"
+                   :error-messages="errors"
                     label="Password"
                     :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
                     :type="showPass ? 'text' : 'password'"
@@ -59,7 +63,8 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="red darken-1" text @click="showSignUpForm = false">
+            <v-btn v-on:click="register" class="createAccount-btn" type="submit"
+            color="red darken-1" text @click="showSignUpForm = false">
               Create Account
             </v-btn>
           </v-card-actions>
@@ -67,19 +72,23 @@
       </v-dialog>
 
       <v-dialog v-model="showSignInForm" max-width="640">
-        <v-card dark id="signup-form">
+        <v-card dark id="signin-form">
           <v-card-text>
             <v-container>
               <v-row>
                 <v-col cols="12">
                   <v-text-field
-                    label="Username / Email"
+                    v-model="signInEmail"
+                    :error-messages="errors"
+                    label="Email"
                     required
                   ></v-text-field>
                 </v-col>
 
                 <v-col cols="12">
                   <v-text-field
+                    v-model="signInPassword"
+                    :error-messages="errors"
                     label="Password"
                     :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
                     :type="showPass ? 'text' : 'password'"
@@ -93,9 +102,9 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
+              v-on:click="login" class="login-btn" type="submit"
               color="red darken-1"
               text
-              @click="showSignInForm = false((loggedIn = true))"
             >
               Sign In
             </v-btn>
@@ -132,15 +141,55 @@
 </template>
 
 <script>
+import firebase from '../firebase'
 export default {
-  name: "homePage",
+  name: "accountPage",
   components: {},
   props: ["visiting", "loggedIn", "profileDetails"],
-  data: () => ({
-    showSignUpForm: false,
-    showSignInForm: false,
-    showPass: false,
-  }),
+  data: function(){
+    return{
+      errors: '',
+      signInEmail: '',
+      signInUsername: '',
+      signInPassword: '',
+      signUpEmail: '',
+      signUpUsername: '',
+      signUpPassword: '',
+      password: '',
+      showSignInForm: false,
+      showSignUpForm: false,
+      showPass: true
+    };
+  },
+  methods:{
+    register: function(e){
+        firebase.auth().createUserWithEmailAndPassword(this.signUpEmail,this.signUpPassword)
+            .then(user => {
+              alert('Account created for '+this.signUpEmail);
+              this.$router.push('/');
+              console.log(user)
+              },
+              err => {
+                  alert(err.message)
+            })
+        e.preventDefault();
+    },
+      login: function(e){
+        console.log(this.signInEmail)
+        firebase.auth().signInWithEmailAndPassword(this.signInEmail,this.signInPassword)
+            .then(user => {
+              alert('You are logged in as '+this.signInEmail);
+              this.showSignInForm = false;
+              this.$root.loggedIn = true;
+              this.$router.push('/');
+              console.log(user)
+              },
+              err => {
+                  alert(err.message)
+            })
+        e.preventDefault();
+    }
+  }
 };
 </script>
 

@@ -23,22 +23,7 @@ let router = new Router({
         ),
       meta: {},
     },
-    {
-      path: "/loginPage",
-      name: "loginPage",
-      component: () =>
-        import(/*webpackChunkName: "account"*/ "..//components//loginPage.vue"),
-      meta: {},
-    },
-    {
-      path: "/createAccount",
-      name: "createAccount",
-      component: () =>
-        import(
-          /*webpackChunkName: "account"*/ "..//components//createAccount.vue"
-        ),
-      meta: {},
-    },
+    
     {
       path: "/scenarioBrowser",
       name: "scenarioBrowser",

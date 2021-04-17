@@ -559,7 +559,8 @@
 
 <script>
 import scenarioThumbnail from "./scenarioThumbnail";
-import db from "../firebase";
+import firebase from "../firebase";
+const db = firebase.firestore();
 export default {
   name: "scenarioBrowser",
   components: {
