@@ -28,7 +28,25 @@
     <h1 class="tutorial-header">
       Browse scenarios to find a topic you want to improve on
     </h1>
-    <img src="../assets/browser-screenshot.png" alt="" />
+    <div id="scenarioThumbnail-container">
+      <scenarioThumbnail
+        scenarioID="DNbZQrDKW4aDWZA3Hqi6"
+        title="Victory Royale"
+        author="Upper Hand Poker"
+        description="A beginners sample scenario designed to give you familiarity with the website"
+      />
+      <scenarioThumbnail
+        scenarioID="WXSyM3c4DHKftSwMUafW"
+        title="How aggressive should i play?"
+        author="Upper Hand Poker"
+        description="A more in depth sample scenario designed to test your skills of the basics."
+      />
+      <scenarioThumbnail
+        title="good time to fold?"
+        author="Upper Hand Poker"
+        description="An advanced scenario designed to really test if you know your stuff or not.."
+      />
+    </div>
     <h1 class="tutorial-header">
       Analyze the scenrio by looking at the visual representation, and reading
       the "State of Play"
@@ -53,10 +71,12 @@
 </template>
 
 <script>
+import scenarioThumbnail from "./scenarioThumbnail";
 import signUpForm from "./signUpForm";
 export default {
   name: "homePage",
   components: {
+    scenarioThumbnail,
     signUpForm,
   },
   data: () => ({
