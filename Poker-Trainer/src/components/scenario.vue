@@ -271,7 +271,7 @@
     </v-card>
 
     <!-- call dialogue -->
-    <v-dialog dark v-model="call" max-width="260">
+    <v-dialog persistent dark v-model="call" max-width="260">
       <optionDialogue
         :type="this.scenarioParams.callType"
         :text="this.scenarioParams.callText"
@@ -279,14 +279,14 @@
     </v-dialog>
 
     <!-- raise dialogue -->
-    <v-dialog dark v-model="raise" max-width="260">
+    <v-dialog persistent dark v-model="raise" max-width="260">
       <optionDialogue
         :type="this.scenarioParams.raiseType"
         :text="this.scenarioParams.raiseText"
       />
     </v-dialog>
     <!-- fold dialogue -->
-    <v-dialog dark v-model="fold" max-width="260">
+    <v-dialog persistent dark v-model="fold" max-width="260">
       <optionDialogue
         :type="this.scenarioParams.foldType"
         :text="this.scenarioParams.foldText"
