@@ -527,6 +527,8 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+
     <div v-if="loaded">
       <v-container>
         <v-row align="center" justify = "center">
@@ -548,18 +550,18 @@
             </div>           
           </v-col>
           <v-btn v-on:click="search" color="rgb(22, 22, 22)"></v-btn>
-         
         </v-row>
       </v-container>
-
     </div>
+
+
   </div>
   
 </template>
 
 <script>
 import scenarioThumbnail from "./scenarioThumbnail";
-import firebase from "../firebase";
+import firebase from 'firebase/app'
 const db = firebase.firestore();
 export default {
   name: "scenarioBrowser",
@@ -685,9 +687,14 @@ export default {
           this.cc5v.concat(this.cc5s),
           this.cc6v.concat(this.cc6s),
         ],
-        title: this.scenarioParams.title,
-      });
-    },
+        title: this.scenarioParams.title,  
+      }).then(function(docRef) {
+        db.collection("scenarios").doc("masterList").update({
+        Scenarios: firebase.firestore.FieldValue.arrayUnion({id: docRef.id, name:this.scenarioParams.title})
+      })
+      }.bind(this));  
+   },
+    
   },
   data: () => ({
     masterList: [{
@@ -699,6 +706,8 @@ export default {
       name: "Victory Royale"
     }
     ],
+    masterList_id: "",
+    newID: "",
     searchTerm: "",
     loaded: false,
     select: "",
@@ -840,9 +849,7 @@ export default {
 
  created() {
     db.collection('scenarios').doc("masterList").get().then(doc => {
-      console.log(doc.data())
       this.masterList = doc.data().Scenarios
-      console.log(this.masterList)
       this.loaded = true
     })
   },
