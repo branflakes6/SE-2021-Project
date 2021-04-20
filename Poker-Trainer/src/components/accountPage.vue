@@ -129,7 +129,7 @@
       </v-dialog>
     </div>
     <div v-else>
-      <profile-page />
+      <profile-page v-bind:profileDeets="deets"/>
     </div>
   </div>
 </template>
@@ -137,6 +137,7 @@
 <script>
 import firebase from "../firebase";
 import profilePage from "./profilePage";
+const db = firebase.firestore();
 export default {
   name: "accountPage",
   components: {
@@ -156,6 +157,12 @@ export default {
       showSignInForm: false,
       showSignUpForm: false,
       showPass: false,
+      deets: {
+        bio:"",
+        contribs: "",
+        scePlayed: 0,
+        score: 0,
+      }
     };
   },
   methods: {
@@ -168,6 +175,12 @@ export default {
             alert("Account created for " + this.signUpEmail);
             this.$router.push("/");
             console.log(user);
+            db.collection("users").doc(this.signUpEmail).set({
+              bio: "",
+              contribs: 0,
+              scePlayed: 0,
+              score: 0,
+            })
           },
           (err) => {
             alert(err.message);
@@ -181,12 +194,18 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.signInEmail, this.signInPassword)
         .then(
-          (user) => {
+          () => {
             alert("You are logged in as " + this.signInEmail);
             this.showSignInForm = false;
             this.$root.loggedIn = true;
-            this.$router.push("/");
-            console.log(user);
+         
+
+            db.collection("users").doc(this.signInEmail).get().then(doc =>{
+                this.deets.bio = doc.data().bio
+                this.deets.contribs = doc.data().contribs
+                this.deets.scePlayed = doc.data().scePlayed
+                this.deets.score = doc.data().score
+            })  
           },
           (err) => {
             alert(err.message);

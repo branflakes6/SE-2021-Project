@@ -1,7 +1,7 @@
 <template>
   <div id="profile">
     <div id="name-pic">
-      <h1 id="name">{{ this.profileDetails.name }}</h1>
+      <h1 id="name">{{ this.profileDeets.name }}</h1>
       <img id="pic" src="../assets/profile-pic-1.png" alt="" />
     </div>
 
@@ -9,18 +9,18 @@
       <div class="stat-container">
         <h2>Stats:</h2>
         <p id="rating" class="stat">
-          - Rating: {{ this.profileDetails.rating }}
+          - Rating: {{ this.profileDeets.score }}
         </p>
         <p id="scenarios" class="stat">
-          - Scenarios Played: {{ this.profileDetails.scenariosPlayed }}
+          - Scenarios Played: {{ this.profileDeets.scePlayed }}
         </p>
         <p id="contributions" class="stat">
-          - Contributions: {{ this.profileDetails.contributions }}
+          - Contributions: {{ this.profileDeets.contribs }}
         </p>
       </div>
       <div id="about">
         <h2 id="about-header">About</h2>
-        <p id="about-text">{{ this.profileDetails.about }}</p>
+        <p id="about-text">{{ this.profileDeets.bio }}</p>
       </div>
     </div>
   </div>
@@ -29,6 +29,7 @@
 <script>
 export default {
   name: "profilePage",
+  props: ["profileDeets"]
 };
 </script>
 
