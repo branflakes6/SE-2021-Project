@@ -33,24 +33,32 @@
 
         <a id="apple-link"><v-icon color="white"> mdi-apple</v-icon> Apple</a>
       </div>
-
+      <!-- form for creating an account -->
       <v-dialog v-model="showSignUpForm" max-width="640">
         <v-card dark id="signup-form">
           <v-card-text>
             <v-container>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field v-model="signUpEmail"
-        :error-messages="errors" label="Email" required></v-text-field>
+                  <v-text-field
+                    v-model="signUpEmail"
+                    :error-messages="errors"
+                    label="Email"
+                    required
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field v-model="signUpUsername"
-        :error-messages="errors" label="Username" required></v-text-field>
+                  <v-text-field
+                    v-model="signUpUsername"
+                    :error-messages="errors"
+                    label="Username"
+                    required
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="12">
                   <v-text-field
                     v-model="signUpPassword"
-                   :error-messages="errors"
+                    :error-messages="errors"
                     label="Password"
                     :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
                     :type="showPass ? 'text' : 'password'"
@@ -63,14 +71,20 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn v-on:click="register" class="createAccount-btn" type="submit"
-            color="red darken-1" text @click="showSignUpForm = false">
+            <v-btn
+              v-on:click="register"
+              class="createAccount-btn"
+              type="submit"
+              color="red darken-1"
+              text
+              @click="showSignUpForm = false"
+            >
               Create Account
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
-
+      <!-- form for signing in -->
       <v-dialog v-model="showSignInForm" max-width="640">
         <v-card dark id="signin-form">
           <v-card-text>
@@ -102,7 +116,9 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-              v-on:click="login" class="login-btn" type="submit"
+              v-on:click="login"
+              class="login-btn"
+              type="submit"
               color="red darken-1"
               text
             >
@@ -112,84 +128,73 @@
         </v-card>
       </v-dialog>
     </div>
-    <div v-else id="profile">
-      <div id="name-pic">
-        <h1 id="name">{{ this.profileDetails.name }}</h1>
-        <img id="pic" src="../assets/profile-pic-1.png" alt="" />
-      </div>
-
-      <div class="details-container">
-        <div class="stat-container">
-          <h2>Stats:</h2>
-          <p id="rating" class="stat">
-            - Rating: {{ this.profileDetails.rating }}
-          </p>
-          <p id="scenarios" class="stat">
-            - Scenarios Played: {{ this.profileDetails.scenariosPlayed }}
-          </p>
-          <p id="contributions" class="stat">
-            - Contributions: {{ this.profileDetails.contributions }}
-          </p>
-        </div>
-        <div id="about">
-          <h2 id="about-header">About</h2>
-          <p id="about-text">{{ this.profileDetails.about }}</p>
-        </div>
-      </div>
+    <div v-else>
+      <profile-page />
     </div>
   </div>
 </template>
 
 <script>
-import firebase from '../firebase'
+import firebase from "../firebase";
+import profilePage from "./profilePage";
 export default {
   name: "accountPage",
-  components: {},
+  components: {
+    profilePage,
+  },
   props: ["visiting", "loggedIn", "profileDetails"],
-  data: function(){
-    return{
-      errors: '',
-      signInEmail: '',
-      signInUsername: '',
-      signInPassword: '',
-      signUpEmail: '',
-      signUpUsername: '',
-      signUpPassword: '',
-      password: '',
+  data: function() {
+    return {
+      errors: "",
+      signInEmail: "",
+      signInUsername: "",
+      signInPassword: "",
+      signUpEmail: "",
+      signUpUsername: "",
+      signUpPassword: "",
+      password: "",
       showSignInForm: false,
       showSignUpForm: false,
-      showPass: true
+      showPass: false,
     };
   },
-  methods:{
-    register: function(e){
-        firebase.auth().createUserWithEmailAndPassword(this.signUpEmail,this.signUpPassword)
-            .then(user => {
-              alert('Account created for '+this.signUpEmail);
-              this.$router.push('/');
-              console.log(user)
-              },
-              err => {
-                  alert(err.message)
-            })
-        e.preventDefault();
+  methods: {
+    register: function(e) {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.signUpEmail, this.signUpPassword)
+        .then(
+          (user) => {
+            alert("Account created for " + this.signUpEmail);
+            this.$router.push("/");
+            console.log(user);
+          },
+          (err) => {
+            alert(err.message);
+          }
+        );
+      e.preventDefault();
     },
-      login: function(e){
-        console.log(this.signInEmail)
-        firebase.auth().signInWithEmailAndPassword(this.signInEmail,this.signInPassword)
-            .then(user => {
-              alert('You are logged in as '+this.signInEmail);
-              this.showSignInForm = false;
-              this.$root.loggedIn = true;
-              this.$router.push('/');
-              console.log(user)
-              },
-              err => {
-                  alert(err.message)
-            })
-        e.preventDefault();
-    }
-  }
+    login: function(e) {
+      console.log(this.signInEmail);
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.signInEmail, this.signInPassword)
+        .then(
+          (user) => {
+            alert("You are logged in as " + this.signInEmail);
+            this.showSignInForm = false;
+            this.$root.loggedIn = true;
+            this.$router.push("/");
+            console.log(user);
+          },
+          (err) => {
+            alert(err.message);
+          }
+        );
+      e.preventDefault();
+    },
+  },
 };
 </script>
 
@@ -244,80 +249,5 @@ a {
 }
 #apple-link {
   color: white;
-}
-#profile {
-  display: flex;
-  height: 60vh;
-  width: 75%;
-  justify-content: space-evenly;
-  align-items: center;
-}
-#name {
-  margin: 0 0 10px 0;
-  color: rgb(182, 0, 0);
-}
-
-#pic {
-  border: solid white;
-  border-radius: 50%;
-  border-width: 2px;
-  width: 10vw;
-  height: 10vw;
-  margin: 10px 0 10px;
-}
-.details-container {
-  background-color: #1d1d1d;
-  box-shadow: black;
-  height: 50%;
-  width: 50%;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.stat-container {
-  height: 100%;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 0px 0 0 0;
-}
-.stat {
-  margin: 10px 0 10px 0;
-}
-#about {
-  height: 100%;
-  width: 20vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-#about-text {
-  padding: 10px;
-  text-align: left;
-  background-color: #a7a7a710;
-  height: 30vh;
-}
-@media screen and (max-width: 1400px) {
-  #profile {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh;
-    width: 100vw;
-    margin: 10px 0 0px 0;
-  }
-  #name-pic {
-    min-height: 40%;
-  }
-  #pic {
-    width: 100px;
-    height: auto;
-  }
-  .details-container {
-    width: 90%;
-  }
 }
 </style>

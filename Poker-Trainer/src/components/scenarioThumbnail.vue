@@ -21,7 +21,8 @@ export default {
   padding: 10px;
   background-color: #3e3e3e;
   text-align: center;
-  flex-grow: 1;
+  height: 50vh;
+  min-height: 400px;
 }
 #thbml-title {
   text-transform: capitalize;

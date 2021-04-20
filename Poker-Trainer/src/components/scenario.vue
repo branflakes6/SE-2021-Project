@@ -271,95 +271,39 @@
     </v-card>
 
     <!-- call dialogue -->
-    <v-dialog persistent dark v-model="call" max-width="260">
-      <v-card>
-        <h3 align="center">{{ scenarioParams.callType }} Decision</h3>
-        <h4>{{ scenarioParams.callText }}</h4>
-      </v-card>
-
-      <!-- scenario options after user answered, wont display on invalid decision -->
-      <template v-if="scenarioParams.callType != 'Invalid'">
-        <v-btn to="/" dark class="post-option" v-model="answered">
-          <h1>Next</h1>
-        </v-btn>
-        <v-btn
-          active-class="no-active"
-          @click.stop="reload()"
-          dark
-          class="post-option"
-          v-model="answered"
-        >
-          <h1>Retry</h1>
-        </v-btn>
-        <v-btn to="/" dark class="post-option" v-model="answered">
-          <h1>Home</h1>
-        </v-btn>
-      </template>
+    <v-dialog dark v-model="call" max-width="260">
+      <optionDialogue
+        :type="this.scenarioParams.callType"
+        :text="this.scenarioParams.callText"
+      />
     </v-dialog>
 
     <!-- raise dialogue -->
-    <v-dialog persistent dark v-model="raise" max-width="260">
-      <v-card>
-        <h3 align="center">{{ scenarioParams.raiseType }} Decision</h3>
-        <h4>{{ scenarioParams.raiseText }}</h4>
-      </v-card>
-
-      <!-- scenario options after user answered, wont display on invalid decision -->
-      <template>
-        <v-btn to="/" dark class="post-option" v-model="answered">
-          <h1>Next</h1>
-        </v-btn>
-        <v-btn
-          active-class="no-active"
-          @click.stop="reload()"
-          dark
-          class="post-option"
-          v-model="answered"
-        >
-          <h1>Retry</h1>
-        </v-btn>
-        <v-btn to="/" dark class="post-option" v-model="answered">
-          <h1>Home</h1>
-        </v-btn>
-      </template>
+    <v-dialog dark v-model="raise" max-width="260">
+      <optionDialogue
+        :type="this.scenarioParams.raiseType"
+        :text="this.scenarioParams.raiseText"
+      />
     </v-dialog>
-
     <!-- fold dialogue -->
-    <v-dialog persistent dark v-model="fold" max-width="260">
-      <v-card>
-        <h3 align="center">{{ scenarioParams.foldType }} Decision</h3>
-        <h4>{{ scenarioParams.foldText }}</h4>
-      </v-card>
-
-      <!-- scenario options after user answered, wont display on invalid decision -->
-      <template v-if="scenarioParams.foldType != 'Invalid'">
-        <v-btn to="/" dark class="post-option" v-model="answered">
-          <h1>Next</h1>
-        </v-btn>
-        <v-btn
-          active-class="no-active"
-          @click.stop="reload()"
-          dark
-          class="post-option"
-          v-model="answered"
-        >
-          <h1>Retry</h1>
-        </v-btn>
-        <v-btn to="/" dark class="post-option" v-model="answered">
-          <h1>Home</h1>
-        </v-btn>
-      </template>
+    <v-dialog dark v-model="fold" max-width="260">
+      <optionDialogue
+        :type="this.scenarioParams.foldType"
+        :text="this.scenarioParams.foldText"
+      />
     </v-dialog>
   </div>
 </template>
 
 <script>
 import dealersCards from "./dealersCards";
+import optionDialogue from "./optionDialogue";
 export default {
   name: "scenario",
   props: ["scenarioParams"],
   components: {
     dealersCards,
+    optionDialogue,
   },
   methods: {
     reveal() {
@@ -587,7 +531,7 @@ export default {
   height: auto;
 }
 .player-chips-container {
- /* border: solid rgba(32, 32, 32, 0.7); */
+  /* border: solid rgba(32, 32, 32, 0.7); */
   border-radius: 40%;
 
   width: 5.5vw;

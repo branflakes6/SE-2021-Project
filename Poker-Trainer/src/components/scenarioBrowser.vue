@@ -18,6 +18,7 @@
               />
       </div>
   </v-layout>
+
     <!-- create form -->
     <v-dialog dark v-model="showForm" max-width="600px">
       <v-card>
@@ -58,7 +59,7 @@
               <v-col cols="12">
                 <v-select
                   v-model="turn"
-                  :items="[0, 1, 2, 3, 4]"
+                  :items="[0, 1, 2, 3]"
                   label="Turn number"
                   required
                 ></v-select>
@@ -107,14 +108,6 @@
                   v-if="turn >= 3"
                   required
                 ></v-select>
-
-                <v-select
-                  v-model="cc6v"
-                  :items="values"
-                  label="Sixth Card Value*"
-                  v-if="turn >= 4"
-                  required
-                ></v-select>
               </v-col>
               <v-col cols="12" sm="6">
                 <v-select
@@ -154,14 +147,6 @@
                   :items="suits"
                   label="Fifth Card Suit*"
                   v-if="turn >= 3"
-                  required
-                ></v-select>
-
-                <v-select
-                  v-model="cc6s"
-                  :items="suits"
-                  label="Sixth Card Suit*"
-                  v-if="turn >= 4"
                   required
                 ></v-select>
               </v-col>
@@ -480,24 +465,17 @@
               ></v-text-field>
             </v-row>
             <v-row>
-              <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="6">
+                <v-text-field
+                  v-model="scenarioParams.currentBet"
+                  label="Amount of Current Bet*"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6">
                 <v-text-field
                   v-model="scenarioParams.pot"
                   label="Pot Total*"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field
-                  v-model="scenarioParams.currentBet"
-                  label="Current Bet Amount*"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field
-                  v-model="scenarioParams.dealer"
-                  label="Dealer Chip Position*"
                   required
                 ></v-text-field>
               </v-col>
@@ -517,7 +495,6 @@
       </v-card>
     </v-dialog>
   </div>
-  
 </template>
 
 
@@ -555,6 +532,21 @@ export default {
       } else {
         this.scenarioParams.raiseType = "Incorrect";
       }
+      // get correct dealer value
+      if (this.scenarioParams.dealer == "User") {
+        this.scenarioParams.dealer = 0;
+      } else if (this.scenarioParams.dealer == "Opponent 1") {
+        this.scenarioParams.dealer = 1;
+      } else if (this.scenarioParams.dealer == "Opponent 2") {
+        this.scenarioParams.dealer = 2;
+      } else if (this.scenarioParams.dealer == "Opponent 3") {
+        this.scenarioParams.dealer = 3;
+      } else if (this.scenarioParams.dealer == "Opponent 4") {
+        this.scenarioParams.dealer = 4;
+      } else if (this.scenarioParams.dealer == "Opponent 5") {
+        this.scenarioParams.dealer = 5;
+      }
+
       db.collection("scenarios").add({
         call: {
           text: this.scenarioParams.callText,
@@ -648,7 +640,6 @@ export default {
           this.cc3v.concat(this.cc3s),
           this.cc4v.concat(this.cc4s),
           this.cc5v.concat(this.cc5s),
-          this.cc6v.concat(this.cc6s),
         ],
         title: this.scenarioParams.title,  
       }).then(function(docRef) {
@@ -666,6 +657,18 @@ export default {
       }
     },
   },
+
+  data: () => ({
+    masterList: [
+      {
+        ID: "WXSyM3c4DHKftSwMUafW",
+        name: "How aggressive should i play?",
+      },
+      {
+        ID: "DNbZQrDKW4aDWZA3Hqi6",
+        name: "Victory Royale",
+      },
+
   data () {
     return {
     masterList: [{
@@ -724,13 +727,11 @@ export default {
     cc3v: "",
     cc4v: "",
     cc5v: "",
-    cc6v: "",
     cc1s: "",
     cc2s: "",
     cc3s: "",
     cc4s: "",
     cc5s: "",
-    cc6s: "",
 
     // for values for user
     uc1v: "",
@@ -853,6 +854,7 @@ export default {
   right: 10px;
 }
 #scenarioThumbnail-container {
+
   width: 600px;
   align-content: center;
   justify-content: center;

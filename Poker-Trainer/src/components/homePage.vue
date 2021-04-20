@@ -117,6 +117,7 @@ export default {
 }
 
 #home-banner-foreground {
+  background: none;
   position: absolute;
   display: flex;
   flex-direction: column;
