@@ -657,19 +657,7 @@ export default {
       }
     },
   },
-
-  data: () => ({
-    masterList: [
-      {
-        ID: "WXSyM3c4DHKftSwMUafW",
-        name: "How aggressive should i play?",
-      },
-      {
-        ID: "DNbZQrDKW4aDWZA3Hqi6",
-        name: "Victory Royale",
-      },
-
-  data () {
+ data () {
     return {
     masterList: [{
       ID: "WXSyM3c4DHKftSwMUafW",
@@ -705,7 +693,6 @@ export default {
     ],
     // card suits
     suits: ["Hearts", "Spades", "Diamonds", "Clubs"],
-
     // dealer chip array
     dealerOptions: [
       "User",
@@ -715,11 +702,8 @@ export default {
       "Opponent 4",
       "Opponent 5",
     ],
-
     options: ["Call", "Raise", "Fold"],
-
     correctAnswer: "",
-
     turn: 0,
     // community card values
     cc1v: "",
@@ -727,12 +711,13 @@ export default {
     cc3v: "",
     cc4v: "",
     cc5v: "",
+    cc6v: "",
     cc1s: "",
     cc2s: "",
     cc3s: "",
     cc4s: "",
     cc5s: "",
-
+    cc6s: "",
     // for values for user
     uc1v: "",
     uc2v: "",
@@ -763,7 +748,6 @@ export default {
     o5c2v: "",
     o5c1s: "",
     o5c2s: "",
-
     // default params
     scenarioParams: {
       dCards: " ",
