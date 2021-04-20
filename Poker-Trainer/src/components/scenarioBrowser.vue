@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <template>
   <div id="main-div">
     <div id="title-btn-container">
@@ -7,8 +8,7 @@
       >
     </div>
 
-    
-    <v-container>
+      <v-layout wrap align-center justify-center style="border:1px solid red">
         <div v-for="item in masterList" :key="item" id="scenarioThumbnail-container">
               <scenarioThumbnail
               v-bind:scenarioID="item.id"
@@ -16,31 +16,8 @@
               author="Upper Hand Poker"
               description=""
               />
-        </div>
-    </v-container>
-    <!-- for now this works, but i want to have a for loop that gets all the scenarios in the database, kinda like what we have in the nav -->
-    <div id="scenarioThumbnail-container">
-      <scenarioThumbnail
-
-        scenarioID="DNbZQrDKW4aDWZA3Hqi6"
-        title="Victory Royale"
-        author="Upper Hand Poker"
-        description="A beginners sample scenario designed to give you familiarity with the website."
-      />
-      <scenarioThumbnail
-        scenarioID="WXSyM3c4DHKftSwMUafW"
-        title="How aggressive should i play?"
-        author="Upper Hand Poker"
-        description="A more in depth sample scenario designed to test your skills of the basics."
-      />
-      <scenarioThumbnail
-        title="good time to fold?"
-        author="Upper Hand Poker"
-        description="An advanced scenario designed to really test if you know your stuff or not."
-      />
-    </div>
-
-    
+      </div>
+  </v-layout>
     <!-- create form -->
     <v-dialog dark v-model="showForm" max-width="600px">
       <v-card>
@@ -539,37 +516,12 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-
-
-
-    <div v-if="loaded">
-      <v-container>
-        <v-row align="center" justify = "center">
-          <v-col>
-            <h1 align="center" justify = "center"> Select a Scenario to play</h1>
-            <div >
-            <v-select 
-            text-align="center"
-            item-text="name"
-            item-value="ID"
-            v-model="masterList_id"
-            :items="masterList"
-            background-color="white"
-            >
-            </v-select>
-            </div>
-
-            <div align="center" justify = "center">
-              <v-btn :to="`scenarioPage/${this.searchTerm}`">Go</v-btn>
-            </div>           
-          </v-col>
-          <v-btn v-on:click="search" color="rgb(22, 22, 22)"></v-btn>
-        </v-row>
-      </v-container>
-    </div>
   </div>
   
 </template>
+
+
+
 
 <script>
 import scenarioThumbnail from "./scenarioThumbnail";
@@ -580,7 +532,6 @@ export default {
   components: {
     scenarioThumbnail,
   },
-
  methods: {
    search (){
      this.searchTerm = this.masterList_id
@@ -708,7 +659,15 @@ export default {
    },
     
   },
-  data: () => ({
+  computed: {
+    gridStyle() {
+      return {
+        gridTemplateColumns: `repeat(${this.numberOfColumns}, minmax(100px, 1fr))`
+      }
+    },
+  },
+  data () {
+    return {
     masterList: [{
       ID: "WXSyM3c4DHKftSwMUafW",
       name: "How aggressive should i play?"
@@ -718,6 +677,7 @@ export default {
       name: "Victory Royale"
     }
     ],
+    numCols: 3,
     masterList_id: "",
     newID: "",
     searchTerm: "",
@@ -857,7 +817,8 @@ export default {
         chipsAvailable: 0,
       },
     },
-  }),
+   }
+  },
 
  created() {
     db.collection('scenarios').doc("masterList").get().then(doc => {
@@ -875,7 +836,7 @@ export default {
   background-color: rgb(22, 22, 22);
   color: white;
   min-height: 100vh;
-  align-items: center;
+
 }
 
 #title-btn-container {
@@ -892,16 +853,12 @@ export default {
   right: 10px;
 }
 #scenarioThumbnail-container {
-  width: 80%;
-  height: 500px;
-  margin: 20px 0 100px 0;
+  width: 600px;
+  align-content: center;
+  justify-content: center;
+  margin: 0 auto;
   padding: 20px;
   margin: 10px 0 0 0;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
   background-color: rgb(22, 22, 22);
 }
 
@@ -931,5 +888,43 @@ export default {
   #create-btn {
     position: relative;
   }
+}
+.card-list {
+  display: grid;
+  grid-gap: 1em;
+}
+
+.card-item {
+  background-color: dodgerblue;
+  padding: 2em;
+}
+
+body {
+  background: #20262E;
+  padding: 20px;
+  font-family: Helvetica;
+}
+ul {
+  list-style-type: none;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 6ch auto;
+}
+
+#app {
+  width: 400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.hour {
+  text-align: right;
+  padding: 3px 5px 3px 3px;
+}
+
+.name {
+  text-align: left;
+  padding: 3px 5px 3px 3px;
 }
 </style>
