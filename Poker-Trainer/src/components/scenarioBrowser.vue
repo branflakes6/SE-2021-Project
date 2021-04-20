@@ -6,6 +6,18 @@
         >Create</v-btn
       >
     </div>
+
+    
+    <v-container>
+        <div v-for="item in masterList" :key="item" id="scenarioThumbnail-container">
+              <scenarioThumbnail
+              v-bind:scenarioID="item.id"
+              v-bind:title="item.name"
+              author="Upper Hand Poker"
+              description=""
+              />
+        </div>
+    </v-container>
     <!-- for now this works, but i want to have a for loop that gets all the scenarios in the database, kinda like what we have in the nav -->
     <div id="scenarioThumbnail-container">
       <scenarioThumbnail
@@ -529,6 +541,7 @@
     </v-dialog>
 
 
+
     <div v-if="loaded">
       <v-container>
         <v-row align="center" justify = "center">
@@ -545,6 +558,7 @@
             >
             </v-select>
             </div>
+
             <div align="center" justify = "center">
               <v-btn :to="`scenarioPage/${this.searchTerm}`">Go</v-btn>
             </div>           
@@ -553,8 +567,6 @@
         </v-row>
       </v-container>
     </div>
-
-
   </div>
   
 </template>
