@@ -23,15 +23,26 @@
 </template>
 
 <script>
-//import firebase from "../firebase";
-//const db = firebase.firestore();
+import firebase from "../firebase";
+const db = firebase.firestore();
 export default {
-  name: "fakeLeaderboard",
+  name: "leaderboard",
   data: () => ({
-    
+    users: []
   }),
   created () {
-   
+   db.collection('users').get().then(querySnapshot =>{
+     console.log(querySnapshot)
+     let docs = querySnapshot.docs
+     for (let doc of docs){
+       this.users.push({
+         name: doc.id,
+         rating: doc.data().score,
+         scenariosPlayed: doc.data().scePlayed,
+         contributions: doc.data().contribs
+       })
+     }
+   })
   }
 };
 </script>

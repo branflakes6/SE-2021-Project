@@ -50,21 +50,12 @@ let router = new Router({
         ),
       meta: {},
     },
-    // {
-    //   path: "/leaderboard",
-    //   name: "leaderboardPage",
-    //   component: () =>
-    //     import(
-    //       /*webpackChunkName: "leaderboard"*/ "..//components//leaderboard.vue"
-    //     ),
-    //   meta: {},
-    // },
     {
-      path: "/fakeLeaderboard",
-      name: "fakeLeaderboardPage",
+      path: "/leaderboard",
+      name: "leaderboardPage",
       component: () =>
         import(
-          /*webpackChunkName: "leaderboard"*/ "..//components//fakeLeaderboardPage.vue"
+          /*webpackChunkName: "leaderboard"*/ "..//components//leaderboardPage.vue"
         ),
       meta: {},
     },
