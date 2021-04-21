@@ -55,6 +55,7 @@
                   required
                 ></v-text-field>
               </v-col>
+              
               <v-col cols="12">
                 <v-text-field
                   v-model="scenarioParams.description"
@@ -83,6 +84,7 @@
                   required
                 ></v-select>
               </v-col>
+              
               <!-- community cards -->
               <v-col v-if="turn >= 1" cols="12">
                 <h1 class="headline">Community Cards</h1>
@@ -498,6 +500,14 @@
                   required
                 ></v-text-field>
               </v-col>
+              <v-col cols="12">
+                <v-select
+                  v-model="sCat"
+                  :items="this.categories"
+                  label="Category"
+                  required
+                ></v-select>
+              </v-col>
             </v-row>
           </v-container>
           <small>*indicates required field</small>
@@ -678,7 +688,10 @@ export default {
         title: this.scenarioParams.title,  
       }).then(function(docRef) {
         db.collection("scenarios").doc("masterList").update({
-        Scenarios: firebase.firestore.FieldValue.arrayUnion({id: docRef.id, name:this.scenarioParams.title})
+        Scenarios: firebase.firestore.FieldValue.arrayUnion({id: docRef.id, 
+        name:this.scenarioParams.title, 
+        category:this.sCat,
+        description: this.scenarioParams.description})
       })
       }.bind(this));  
    },
