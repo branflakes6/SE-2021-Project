@@ -280,10 +280,9 @@
 
     <!-- raise dialogue -->
     <v-dialog dark v-model="raise" max-width="260">
-      <optionDialogue
-        :type="this.scenarioParams.raiseType"
-        :text="this.scenarioParams.raiseText"
-      />
+      <div>
+        <h1 align="center">Raise Options</h1>
+      </div>
     </v-dialog>
     <!-- fold dialogue -->
     <v-dialog dark v-model="fold" max-width="260">

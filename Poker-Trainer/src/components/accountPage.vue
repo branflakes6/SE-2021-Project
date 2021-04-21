@@ -167,6 +167,7 @@ export default {
               contribs: 0,
               scePlayed: 0,
               score: 0,
+              userName: this.signUpUsername
             })
           },
           (err) => {

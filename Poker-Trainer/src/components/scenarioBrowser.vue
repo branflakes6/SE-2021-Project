@@ -3,9 +3,9 @@
   <div id="main-div">
     <div id="title-btn-container">
       <h1 id="page-title">Pick a scenario</h1>
-      <v-btn id="create-btn" dark v-on:click.stop="showForm = !showForm"
-        >Create</v-btn
-      >
+      <v-btn id="create-btn" dark v-on:click.stop="showForm = !showForm">
+        Create
+      </v-btn>
     </div>
 
 <div>
@@ -27,8 +27,9 @@
       </v-container>
 </div>
 
-      <v-layout wrap align-center justify-center>
-        <div v-for="item in masterList" :key="item" id="scenarioThumbnail-container">
+
+  <v-layout wrap justify-center>
+      <div v-for="item in masterList" :key="item" id="scenarioThumbnail-container">
               <scenarioThumbnail
               v-bind:scenarioID="item.id"
               v-bind:title="item.name"
@@ -37,6 +38,7 @@
               />
       </div>
   </v-layout>
+
 
     <!-- create form -->
     <v-dialog dark v-model="showForm" max-width="600px">
@@ -545,7 +547,6 @@ export default {
    updateCategory(){
      this.masterList = []
      db.collection('scenarios').doc("masterList").get().then(doc => {
-
      let docs = doc.data()
      console.log(docs)
      console.log(docs.Scenarios)
@@ -866,12 +867,9 @@ export default {
 
 <style scoped>
 #main-div {
-  display: flex;
-  flex-direction: column;
   background-color: rgb(22, 22, 22);
   color: white;
   min-height: 100vh;
-
 }
 
 #title-btn-container {
@@ -888,13 +886,10 @@ export default {
   right: 10px;
 }
 #scenarioThumbnail-container {
-
-  width: 600px;
-  align-content: center;
+  width: 480px;
   justify-content: center;
   margin: 0 auto;
-  padding: 20px;
-  margin: 10px 0 0 0;
+  padding: 25px;
   background-color: rgb(22, 22, 22);
 }
 
