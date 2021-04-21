@@ -23,7 +23,15 @@ let router = new Router({
         ),
       meta: {},
     },
-    
+    {
+      path: "/profile/:userName",
+      name: "profile",
+      component: () =>
+        import(
+          /*webpackChunkName: "account"*/ "..//components//profilePage.vue"
+        ),
+      meta: {},
+    },
     {
       path: "/scenarioBrowser",
       name: "scenarioBrowser",
@@ -42,15 +50,15 @@ let router = new Router({
         ),
       meta: {},
     },
-    {
-      path: "/leaderboard",
-      name: "leaderboardPage",
-      component: () =>
-        import(
-          /*webpackChunkName: "leaderboard"*/ "..//components//leaderboard.vue"
-        ),
-      meta: {},
-    },
+    // {
+    //   path: "/leaderboard",
+    //   name: "leaderboardPage",
+    //   component: () =>
+    //     import(
+    //       /*webpackChunkName: "leaderboard"*/ "..//components//leaderboard.vue"
+    //     ),
+    //   meta: {},
+    // },
     {
       path: "/fakeLeaderboard",
       name: "fakeLeaderboardPage",

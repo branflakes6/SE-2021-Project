@@ -23,84 +23,16 @@
 </template>
 
 <script>
+//import firebase from "../firebase";
+//const db = firebase.firestore();
 export default {
   name: "fakeLeaderboard",
   data: () => ({
-    users: [
-      {
-        name: "Pokerlover47",
-        rating: 1928,
-        scenariosPlayed: 432,
-        contributions: 15,
-      },
-      {
-        name: "VodkaPokerCoke",
-        rating: 1911,
-        scenariosPlayed: 390,
-        contributions: 1,
-      },
-      {
-        name: "pokerlicious",
-        rating: 1875,
-        scenariosPlayed: 582,
-        contributions: 12,
-      },
-      {
-        name: "pokeypokey",
-        rating: 1872,
-        scenariosPlayed: 792,
-        contributions: 8,
-      },
-      {
-        name: "jack",
-        rating: 1852,
-        scenariosPlayed: 304,
-        contributions: 22,
-      },
-      {
-        name: "mamaaaaaaaa99",
-        rating: 1812,
-        scenariosPlayed: 280,
-        contributions: 17,
-      },
-      {
-        name: "justkilled73",
-        rating: 1774,
-        scenariosPlayed: 197,
-        contributions: 19,
-      },
-      {
-        name: "a_man",
-        rating: 1741,
-        scenariosPlayed: 397,
-        contributions: 6,
-      },
-      {
-        name: "putA_gunAgain5t_hi5_h3d",
-        rating: 1688,
-        scenariosPlayed: 269,
-        contributions: 19,
-      },
-      {
-        name: "pu113ed_muh",
-        rating: 1659,
-        scenariosPlayed: 198,
-        contributions: 17,
-      },
-      {
-        name: "3ger_nao",
-        rating: 1603,
-        scenariosPlayed: 308,
-        contributions: 11,
-      },
-      {
-        name: "he5_d3ad",
-        rating: 1572,
-        scenariosPlayed: 459,
-        contributions: 6,
-      },
-    ],
+    
   }),
+  created () {
+   
+  }
 };
 </script>
 <style scoped>

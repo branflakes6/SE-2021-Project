@@ -128,20 +128,15 @@
         </v-card>
       </v-dialog>
     </div>
-    <div v-else>
-      <profile-page v-bind:profileDeets="deets"/>
-    </div>
   </div>
 </template>
 
 <script>
 import firebase from "../firebase";
-import profilePage from "./profilePage";
 const db = firebase.firestore();
 export default {
   name: "accountPage",
   components: {
-    profilePage,
   },
   props: ["visiting", "loggedIn", "profileDetails"],
   data: function() {
@@ -157,12 +152,6 @@ export default {
       showSignInForm: false,
       showSignUpForm: false,
       showPass: false,
-      deets: {
-        bio:"",
-        contribs: "",
-        scePlayed: 0,
-        score: 0,
-      }
     };
   },
   methods: {
@@ -197,15 +186,8 @@ export default {
           () => {
             alert("You are logged in as " + this.signInEmail);
             this.showSignInForm = false;
-            this.$root.loggedIn = true;
-         
-
-            db.collection("users").doc(this.signInEmail).get().then(doc =>{
-                this.deets.bio = doc.data().bio
-                this.deets.contribs = doc.data().contribs
-                this.deets.scePlayed = doc.data().scePlayed
-                this.deets.score = doc.data().score
-            })  
+            this.$root.loggedIn = true; 
+             this.$router.push(`profile/${this.signInEmail}`);
           },
           (err) => {
             alert(err.message);
