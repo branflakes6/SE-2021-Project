@@ -8,7 +8,7 @@
       >
     </div>
 
-      <v-layout wrap align-center justify-center style="border:1px solid red">
+      <v-layout wrap align-center justify-center>
         <div v-for="item in masterList" :key="item" id="scenarioThumbnail-container">
               <scenarioThumbnail
               v-bind:scenarioID="item.id"
