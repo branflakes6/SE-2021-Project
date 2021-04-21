@@ -8,13 +8,32 @@
       >
     </div>
 
+<div>
+  <v-container>
+        <v-row align="center" justify = "center">
+            <h1 align="center" justify = "center"> Choose a category</h1>
+            <div >
+            <v-select 
+            text-align="center"
+            item-text="name"
+            item-value="ID"
+            v-model="selectedCat"
+            :items="categories"
+            >
+            </v-select>
+            </div>       
+          <v-btn v-on:click="updateCategory">Update</v-btn>
+        </v-row>
+      </v-container>
+</div>
+
       <v-layout wrap align-center justify-center>
         <div v-for="item in masterList" :key="item" id="scenarioThumbnail-container">
               <scenarioThumbnail
               v-bind:scenarioID="item.id"
               v-bind:title="item.name"
-              author="Upper Hand Poker"
-              description=""
+              v-bind:author="item.author"
+              v-bind:description="item.description"
               />
       </div>
   </v-layout>
@@ -513,6 +532,21 @@ export default {
    search (){
      this.searchTerm = this.masterList_id
    },
+   updateCategory(){
+     this.masterList = []
+     db.collection('scenarios').doc("masterList").get().then(doc => {
+
+     let docs = doc.data()
+     console.log(docs)
+     console.log(docs.Scenarios)
+    for(let index of docs.Scenarios){
+      console.log(index)
+      if (index.category == this.selectedCat || this.selectedCat == "All"){
+        this.masterList.push(index)
+      }
+    }
+    })
+   },
     sendScenario() {
       if (this.turn == 1) {
         this.scenarioParams.dCards = 3;
@@ -668,6 +702,8 @@ export default {
       name: "Victory Royale"
     }
     ],
+    categories: ["All","Open","ISO","3Bet","4Bet","5Bet"],
+    selectedCat:"All",
     numCols: 3,
     masterList_id: "",
     newID: "",
@@ -811,6 +847,7 @@ export default {
       this.loaded = true
     })
   },
+
 };
 </script>
 

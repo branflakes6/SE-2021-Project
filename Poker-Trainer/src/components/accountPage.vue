@@ -3,9 +3,7 @@
     <div id="askLogIn" v-if="!loggedIn">
       <h1>Welcome To The Account Page</h1>
       <h3>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum autem
-        ipsum earum tenetur maiores pariatur adipisci velit doloremque nesciunt
-        neque.
+        Create an account or Sign In if you already have one!
       </h3>
       <div id="btn-container">
         <v-btn

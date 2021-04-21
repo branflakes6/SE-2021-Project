@@ -42,6 +42,7 @@
         description="A more in depth sample scenario designed to test your skills of the basics."
       />
       <scenarioThumbnail
+        scenarioID="qQ6pkBbkHyIDGuTC8jtN"
         title="good time to fold?"
         author="Upper Hand Poker"
         description="An advanced scenario designed to really test if you know your stuff or not.."

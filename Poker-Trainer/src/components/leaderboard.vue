@@ -44,7 +44,8 @@ export default {
      let docs = querySnapshot.docs
      for (let doc of docs){
        this.users.push({
-         name: doc.id,
+
+         name: doc.data().userName,
          rating: doc.data().score,
          scenariosPlayed: doc.data().scePlayed,
          contributions: doc.data().contribs
