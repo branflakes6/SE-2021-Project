@@ -10,7 +10,7 @@
       </div>
       <div class="stat ">Contributions</div>
     </v-card>
-    <div v-for="(user, index) in users" :key="user">
+    <div v-for="(user, index) in even(users)" :key="user">
       <a class="board-entry">
         <div class="rank">#{{ index + 1 }}</div>
         <div class="name">{{ user.name }}</div>
@@ -24,12 +24,20 @@
 
 <script>
 import firebase from "../firebase";
+
 const db = firebase.firestore();
 export default {
   name: "leaderboard",
   data: () => ({
     users: []
   }),
+   methods: {
+    even: function(arr) {
+      return arr.slice().sort(function(a, b) {
+        return b.rating - a.rating;
+      });
+    }
+  },
   created () {
    db.collection('users').get().then(querySnapshot =>{
      console.log(querySnapshot)
@@ -44,6 +52,7 @@ export default {
      }
    })
   }
+ 
 };
 </script>
 <style scoped>
