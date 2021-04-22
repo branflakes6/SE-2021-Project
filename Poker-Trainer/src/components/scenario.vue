@@ -598,7 +598,7 @@ export default {
   padding: 0 0 10px 0;
 }
 #opponent-2 {
-  transform: rotate(90deg);
+  /* transform: rotate(90deg); */
   display: flex;
   justify-content: flex-end;
 
@@ -608,7 +608,7 @@ export default {
 }
 
 #opponent-3 {
-  transform: rotate(-90deg);
+  /* transform: rotate(-90deg); */
   display: flex;
   justify-content: flex-start;
 
@@ -618,7 +618,7 @@ export default {
 }
 
 #opponent-4 {
-  transform: rotate(45deg);
+  /* transform: rotate(45deg); */
   display: flex;
   justify-content: flex-end;
 
@@ -627,7 +627,7 @@ export default {
   left: 10px;
 }
 #opponent-5 {
-  transform: rotate(-45deg);
+  /* transform: rotate(-45deg); */
   display: flex;
   justify-content: flex-start;
 
