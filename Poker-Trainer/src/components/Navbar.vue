@@ -2,14 +2,14 @@
 <template>
   <nav>
     <v-app-bar color=" white--text" dark dense fixed app flat>
-      <a id="title-logo" href="/" class="title">
+      <router-link id="title-logo" to="/" class="title">
         <div>
           <img id="logo" src="../assets/logo.png" alt="img not found" />
           <h1 class="title">Upper Hand Poker Trainer</h1>
         </div>
-      </a>
+      </router-link>
       <v-spacer />
-      <li v-if="this.$root.loggedIn"><button v-on:click="logout" class="logOut-btn" rounded color="black" dark>
+      <li v-if="loggedIn"><button v-on:click="logout" class="logOut-btn" rounded color="black" dark>
         Logout
       </button></li>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
@@ -49,6 +49,7 @@
 <script>
 import firebase from '../firebase';
 export default {
+  props: ["loggedIn"],
   data: () => ({
     currentUser: false,
     drawer: false,
