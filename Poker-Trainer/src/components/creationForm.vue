@@ -736,32 +736,11 @@ masterList: [],
     select: "",
     showForm: false,
     // card values
-    values: [
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "Jack",
-      "Queen",
-      "King",
-      "Ace",
-    ],
+    values: ["2","3","4","5","6","7", "8","9","10","Jack","Queen","King","Ace"],
     // card suits
     suits: ["Hearts", "Spades", "Diamonds", "Clubs"],
     // dealer chip array
-    dealerOptions: [
-      "User",
-      "Opponent 1",
-      "Opponent 2",
-      "Opponent 3",
-      "Opponent 4",
-      "Opponent 5",
-    ],
+    dealerOptions: ["User","Opponent 1","Opponent 2","Opponent 3","Opponent 4","Opponent 5"],
     options: ["Call", "Raise", "Fold"],
     correctAnswer: "",
     turn: 0,
@@ -943,22 +922,6 @@ ul {
 .grid {
   display: grid;
   grid-template-columns: 6ch auto;
-}
-
-#app {
-  width: 400px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.hour {
-  text-align: right;
-  padding: 3px 5px 3px 3px;
-}
-
-.name {
-  text-align: left;
-  padding: 3px 5px 3px 3px;
 }
 </style>
 
