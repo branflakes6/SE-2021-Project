@@ -1,6 +1,6 @@
 <template>
   <div id="main-div">
-    <div id="askLogIn" v-if="!loggedIn">
+    <div id="askLogIn" >
       <h1>Welcome To The Account Page</h1>
       <h3>
         Create an account or Sign In if you already have one!

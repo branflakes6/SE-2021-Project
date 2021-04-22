@@ -9,9 +9,14 @@
         </div>
       </router-link>
       <v-spacer />
-      <li v-if="loggedIn"><button v-on:click="logout" class="logOut-btn" rounded color="black" dark>
-        Logout
-      </button></li>
+          <li v-if="loggedIn">
+            <button v-on:click="toProfile" class="minis" rounded color="black" dark>
+           {{email}}
+          </button>
+            <button v-on:click="logout" rounded color="black" dark>
+           Logout
+          </button>    
+        </li>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
 
@@ -49,7 +54,7 @@
 <script>
 import firebase from '../firebase';
 export default {
-  props: ["loggedIn"],
+  props: ["loggedIn", "email"],
   data: () => ({
     currentUser: false,
     drawer: false,
@@ -74,7 +79,8 @@ export default {
       
     ],
   }),
-  created(){
+  
+  created() {
     if(firebase.auth().currentUser){
       this.currentUser = firebase.auth().currentUser.email
     }
@@ -86,13 +92,19 @@ export default {
       firebase.auth().signOut().then(()=> {
         this.$router.push('/account')
     });
-    }
+    },
+    toProfile() {
+    this.$router.push(`profile/${this.email}`);
+  },
   }
 };
 </script>
 <style scoped>
 .v-app-bar {
   background-color: rgb(22, 22, 22) !important;
+}
+.minis {
+  padding: 20px 20px 20px 0px
 }
 
 #title-logo {
@@ -109,4 +121,5 @@ export default {
   height: 45px;
   margin: 0 10px 0 -10px;
 }
+
 </style>
