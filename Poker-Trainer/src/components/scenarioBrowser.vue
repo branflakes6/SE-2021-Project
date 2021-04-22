@@ -39,9 +39,6 @@
   </div>
 </template>
 
-
-
-
 <script>
 import firebase from 'firebase/app'
 const db = firebase.firestore();
@@ -111,19 +108,6 @@ export default {
   min-height: 100vh;
 }
 
-#title-btn-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 0 20px 0 20px;
-}
-#create-btn {
-  background-color: rgb(148, 42, 42);
-  position: absolute;
-  right: 10px;
-}
 #scenarioThumbnail-container {
   width: 480px;
   justify-content: center;
@@ -131,70 +115,11 @@ export default {
   padding: 25px;
   background-color: rgb(22, 22, 22);
 }
-
-.opponent-details-container {
-  border: solid white;
-  border-width: 1px;
-  padding: 0 10px 0 10px;
-}
 @media screen and (max-width: 1250px) {
   #scenarioThumbnail-container {
     flex-direction: row;
     padding: 0;
     height: auto;
   }
-}
-@media screen and (max-width: 450px) {
-  #title-btn-container {
-    justify-content: flex-start;
-  }
-}
-@media screen and (max-width: 360px) {
-  #title-btn-container {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  #create-btn {
-    position: relative;
-  }
-}
-.card-list {
-  display: grid;
-  grid-gap: 1em;
-}
-
-.card-item {
-  background-color: dodgerblue;
-  padding: 2em;
-}
-
-body {
-  background: #20262E;
-  padding: 20px;
-  font-family: Helvetica;
-}
-ul {
-  list-style-type: none;
-}
-.grid {
-  display: grid;
-  grid-template-columns: 6ch auto;
-}
-
-#app {
-  width: 400px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.hour {
-  text-align: right;
-  padding: 3px 5px 3px 3px;
-}
-
-.name {
-  text-align: left;
-  padding: 3px 5px 3px 3px;
 }
 </style>
