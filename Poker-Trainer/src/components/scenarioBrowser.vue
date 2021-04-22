@@ -505,7 +505,39 @@
                 >
                 </v-text-field>
               </v-row> 
-            
+              <v-row>
+                <h3>
+                  Select the correct raise option
+                </h3>
+              </v-row>
+              <v-col cols="12" sm="6">
+                <v-radio-group v-model="correctRaise">
+                  <v-radio
+                  value="0"
+                  label="None"
+                  color="red"
+                  hide-details
+                ></v-radio> 
+                <v-radio
+                  value="1"
+                  label="First"
+                  color="red"
+                  hide-details
+                ></v-radio>
+                <v-radio
+                  value="2"
+                  label="Second"
+                  color="red"
+                  hide-details
+                ></v-radio>
+                <v-radio
+                  value="3"
+                  label="Third"
+                  color="red"
+                  hide-details
+                ></v-radio>
+                </v-radio-group>
+              </v-col>
             <v-row>
               <v-text-field
                 v-model="scenarioParams.raiseText"
@@ -612,6 +644,9 @@ export default {
       } else {
         this.scenarioParams.raiseType = "Incorrect";
       }
+
+      console.log(this.correctRaise)
+ 
       // get correct dealer value
       if (this.scenarioParams.dealer == "User") {
         this.scenarioParams.dealer = 0;
@@ -633,6 +668,7 @@ export default {
           raise1: this.raise1,
           raise2: this.raise2,
           raise3: this.raise3,
+          correctRaise: this.correctRaise,
         },
         call: {
           text: this.scenarioParams.callText,
@@ -736,8 +772,7 @@ export default {
         description: this.scenarioParams.description})
       })
       }.bind(this));  
-      window.location.reload();
-      window.scrollTo(0, 0);
+     
    },
     
   },
@@ -762,6 +797,7 @@ export default {
     raise1: 0,
     raise2: 0,
     raise3: 0,
+    correctRaise: 0,
     categories: ["All","Open","ISO","3Bet","4Bet","5Bet"],
     selectedCat:"All",
     rasieAmounts: [0,0,0],
