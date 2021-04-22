@@ -87,6 +87,7 @@
                 ></v-select>
               </v-col>
               
+              
               <!-- community cards -->
               <v-col v-if="turn >= 1" cols="12">
                 <h1 class="headline">Community Cards</h1>
@@ -471,6 +472,40 @@
                 required
               ></v-text-field>
             </v-row>
+             <v-row cols="12">
+                <v-select
+                  v-model="raises"
+                  :items="[1, 2, 3]"
+                  label="Number of raise options"
+                  required
+                ></v-select>
+              </v-row>
+             
+              <v-row v-if="raises >= 1">
+                <v-text-field
+                v-model="raise1"
+                label="First raise amount"
+                required
+                >
+                </v-text-field>
+              </v-row> 
+              <v-row v-if="raises >= 2" >
+                <v-text-field
+                v-model="raise2"
+                label="Second raise amount"
+                required
+                >
+                </v-text-field>
+              </v-row> 
+              <v-row v-if="raises >= 3">
+                <v-text-field
+                v-model="raise3"
+                label="Third raise amount"
+                required
+                >
+                </v-text-field>
+              </v-row> 
+            
             <v-row>
               <v-text-field
                 v-model="scenarioParams.raiseText"
@@ -593,6 +628,12 @@ export default {
       }
 
       db.collection("scenarios").add({
+        raiseOptions: {
+          numRaises: this.raises,
+          raise1: this.raise1,
+          raise2: this.raise2,
+          raise3: this.raise3,
+        },
         call: {
           text: this.scenarioParams.callText,
           type: this.scenarioParams.callType,
@@ -695,6 +736,8 @@ export default {
         description: this.scenarioParams.description})
       })
       }.bind(this));  
+      window.location.reload();
+      window.scrollTo(0, 0);
    },
     
   },
@@ -716,8 +759,13 @@ export default {
       name: "Victory Royale"
     }
     ],
+    raise1: 0,
+    raise2: 0,
+    raise3: 0,
     categories: ["All","Open","ISO","3Bet","4Bet","5Bet"],
     selectedCat:"All",
+    rasieAmounts: [0,0,0],
+    raises: 0,
     numCols: 3,
     masterList_id: "",
     newID: "",
