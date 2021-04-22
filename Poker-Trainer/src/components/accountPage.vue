@@ -178,6 +178,7 @@ export default {
     },
     login: function(e) {
       console.log(this.signInEmail);
+      firebase.auht().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
       firebase
         .auth()
         .signInWithEmailAndPassword(this.signInEmail, this.signInPassword)
