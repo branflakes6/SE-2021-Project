@@ -1,7 +1,10 @@
 <template>
-  <v-card class="align-center" id="thumbnail" dark width="400px" elevation="8">
-    <h3 id="thbml-title" class="title">"{{ title }}"</h3>
-    <h4 id="thbml-author">By {{ author }}</h4>
+  <v-card class="align-center justify-center" id="thumbnail" dark elevation="8">
+    <div id="title-auth-container">
+      <h3 id="thbml-title" class="title">"{{ title }}"</h3>
+      <h4 id="thbml-author">By {{ author }}</h4>
+    </div>
+    <h4 id="category">Open</h4>
     <div id="spacer"></div>
     <p id="thbml-description">{{ description }}</p>
     <div id="spacer"></div>
@@ -20,9 +23,21 @@ export default {
 #thumbnail {
   padding: 10px;
   background-color: #3e3e3e;
-  text-align: center;
   height: 50vh;
   min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 20px 0;
+  width: 80%;
+}
+#title-auth-container {
+  background: #2d2d2d;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
 }
 #thbml-title {
   text-transform: capitalize;
@@ -32,11 +47,18 @@ export default {
   color: rgb(235, 61, 61);
   margin: 10px 0 10px 0;
 }
+#category {
+  border: solid white;
+  padding: 2px;
+  border-radius: 15%;
+  text-align: center;
+}
 #spacer {
   height: 10%;
 }
 #thbml-description {
   background-color: #2d2d2d;
+  text-align: center;
   height: 150px;
   width: 100%;
   overflow-y: auto;
