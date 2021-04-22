@@ -286,16 +286,21 @@
     <v-dialog dark v-model="raise" max-width="260">
       <div align="center">
         <v-div v-if="ans == false">
-          <h1 align="center">Raise Options</h1>
-          <v-btn @click="raisedClick(1)">
-            <h2>{{ this.scenarioParams.raiseOptions.raise1 }}</h2>
-          </v-btn>
-          <v-btn @click="raisedClick(2)">
-            <h2>{{ this.scenarioParams.raiseOptions.raise2 }}</h2>
-          </v-btn>
-          <v-btn @click="raisedClick(3)">
-            <h2>{{ this.scenarioParams.raiseOptions.raise3 }}</h2>
-          </v-btn>
+          <div id="raise-opt-container">
+            <div id="raise-text">
+              <h1>Raise Options</h1>
+              <p>Choose the amount you would like to raise by</p>
+            </div>
+            <v-btn @click="raisedClick(1)" class="raise-option">
+              <h2>{{ this.scenarioParams.raiseOptions.raise1 }}</h2>
+            </v-btn>
+            <v-btn @click="raisedClick(2)" class="raise-option">
+              <h2>{{ this.scenarioParams.raiseOptions.raise2 }}</h2>
+            </v-btn>
+            <v-btn @click="raisedClick(3)" class="raise-option">
+              <h2>{{ this.scenarioParams.raiseOptions.raise3 }}</h2>
+            </v-btn>
+          </div>
         </v-div>
 
         <v-div v-if="ans == true">
@@ -307,7 +312,7 @@
           </v-div>
           <v-div v-if="correct == false">
             <option-dialogue
-              type="incorrect"
+              type="Incorrect"
               :text="this.scenarioParams.raiseText"
             />
           </v-div>
@@ -671,6 +676,25 @@ export default {
   border: solid white !important;
 }
 
+#raise-opt-container {
+  background: #1e1e1e;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+#raise-text {
+  margin: 0 0 10px 0;
+}
+
+.raise-option {
+  background-color: rgb(99, 22, 22) !important;
+  border: solid white !important;
+  margin: 10px 0 10px 0;
+  width: 50px;
+}
+
 .state-of-play-container {
   display: flex;
   flex-direction: column;
@@ -689,8 +713,5 @@ export default {
 }
 .post-option:hover {
   background-color: #3d3d3d !important;
-}
-.no-active {
-  background-color: #222222 !important;
 }
 </style>
