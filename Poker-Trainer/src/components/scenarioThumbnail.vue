@@ -73,4 +73,8 @@ export default {
     width: 90%;
   }
 }
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
 </style>
