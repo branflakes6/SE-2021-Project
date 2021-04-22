@@ -54,42 +54,88 @@
         />
       </div>
     </div>
-    <h1 class="tutorial-header">
-      Analyze the scenrio by looking at the visual representation, and reading
-      the "State of Play"
-    </h1>
-    <img
-      id="scenario-screenshot"
-      src="../assets/scenario-screenshot.png"
-      alt="screenshot of scenario"
-    />
-    <h1 class="tutorial-header">
-      Give back to the community by creating scenarios for other players
-    </h1>
-    <img
-      id="form-screenshot"
-      src="../assets/form-screenshot.png"
-      alt="screenshot of form"
-    />
-    <v-dialog v-model="showSignUpForm" max-width="640">
-      <sign-up-form />
-    </v-dialog>
+    <v-stepper v-model="e1" :dark="true" non-linear>
+    <v-stepper-header>
+      <v-stepper-step
+        editable
+        step="1"
+      >
+        The Board
+      </v-stepper-step>
+      <v-divider></v-divider>
+      <v-stepper-step
+        editable
+        step="2"
+      >
+        Analyse your opponents
+      </v-stepper-step>
+
+      <v-divider></v-divider>
+
+      <v-stepper-step editable step="3">
+        Create your own Scenarios
+      </v-stepper-step>
+    </v-stepper-header>
+
+    <v-stepper-items >
+      <v-stepper-content step="1">
+        <v-card class="mb-12" color="grey lighten-1">
+        <v-img id="scenario-screenshot" src="../assets/scenario-screenshot.png" max-width="1600" class="mx-auto"></v-img>
+        </v-card>
+        <v-btn
+          color="primary"
+          @click="e1 = 2"
+        >
+          Continue
+        </v-btn>
+      </v-stepper-content>
+
+      <v-stepper-content step="2">
+        <v-card
+          class="mb-12"
+          color="grey lighten-1"
+          height="600px"
+        >
+        </v-card>
+        <v-btn
+          color="primary"
+          @click="e1 = 3"
+        >
+          Continue
+        </v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="3">
+        <v-card
+          class="mb-12"
+          color="grey lighten-1"
+          height="700px"
+        >
+        <v-img id="scenario-screenshot" src="../assets/form-screenshot.png" max-height="1200" class="mx-auto"></v-img>
+        </v-card>
+        <v-btn
+          color="primary"
+          @click="e1 = 1"
+        >
+          Continue
+        </v-btn>
+      </v-stepper-content>
+    </v-stepper-items>
+  </v-stepper>
   </div>
 </template>
 
 <script>
 import scenarioThumbnail from "./scenarioThumbnail";
-import signUpForm from "./signUpForm";
 export default {
   name: "homePage",
   components: {
     scenarioThumbnail,
-    signUpForm,
   },
   data: () => ({
     signedIn: true,
     drawer: false,
     showSignUpForm: false,
+    e1:1,
   }),
 };
 </script>
