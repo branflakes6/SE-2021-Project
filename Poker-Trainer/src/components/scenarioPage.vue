@@ -53,28 +53,40 @@ export default {
         cardTwo: "cover",
         chipsBet: 5,
         chipsAvailable: 30,
+        attributes:"",
+        prevMove:"",
       },
       opponentTwoParams: {
         cardOne: "cover",
         cardTwo: "cover",
         chipsBet: 5,
         chipsAvailable: 30,
+        attributes:"",
+        prevMove:"",
       },
       opponentThreeParams: {
         cardOne: "cover",
         cardTwo: "cover",
+        chipsBet: 5,
+        chipsAvailable: 30,
+        attributes:"",
+        prevMove:"",
       },
       opponentFourParams: {
         cardOne: "cover",
         cardTwo: "cover",
         chipsBet: 5,
         chipsAvailable: 30,
+        attributes:"",
+        prevMove:"",
       },
       opponentFiveParams: {
         cardOne: "cover",
         cardTwo: "cover",
         chipsBet: 5,
         chipsAvailable: 30,
+        attributes:"",
+        prevMove:"",
       },
     },
     }
@@ -117,6 +129,8 @@ export default {
       this.scenarioParams.opponentOneParams.cardTwo = doc.data().players.player2.hand[1]
       this.scenarioParams.opponentOneParams.chipsAvailable = doc.data().players.player2.money.available
       this.scenarioParams.opponentOneParams.name = doc.data().players.player2.name
+      this.scenarioParams.opponentOneParams.attributes = doc.data().players.player2.attributes
+      this.scenarioParams.opponentOneParams.prevMove = doc.data().players.player2.prevMove
   
         if (this.scenarioParams.numOfOpponents > 1)
         {
@@ -124,6 +138,8 @@ export default {
           this.scenarioParams.opponentTwoParams.cardTwo = doc.data().players.player3.hand[1]
           this.scenarioParams.opponentTwoParams.chipsAvailable = doc.data().players.player3.money.available
           this.scenarioParams.opponentTwoParams.name = doc.data().players.player3.name
+          this.scenarioParams.opponentTwoParams.attributes = doc.data().players.player3.attributes
+          this.scenarioParams.opponentTwoParams.prevMove = doc.data().players.player3.prevMove
         }
 
         if (this.scenarioParams.numOfOpponents > 2)
@@ -132,6 +148,8 @@ export default {
           this.scenarioParams.opponentThreeParams.cardTwo = doc.data().players.player4.hand[1]
           this.scenarioParams.opponentThreeParams.chipsAvailable = doc.data().players.player4.money.available
           this.scenarioParams.opponentThreeParams.name = doc.data().players.player4.name
+          this.scenarioParams.opponentThreeParams.attributes = doc.data().players.player4.attributes
+          this.scenarioParams.opponentThreeParams.prevMove = doc.data().players.player4.prevMove
         }
 
         if (this.scenarioParams.numOfOpponents > 3)
@@ -140,14 +158,18 @@ export default {
           this.scenarioParams.opponentFourParams.cardTwo = doc.data().players.player5.hand[1]
           this.scenarioParams.opponentFourParams.chipsAvailable = doc.data().players.player5.money.available
           this.scenarioParams.opponentFourParams.name = doc.data().players.player5.name
+          this.scenarioParams.opponentFourParams.attributes = doc.data().players.player5.attributes
+          this.scenarioParams.opponentFourParams.prevMove = doc.data().players.player5.prevMove
         }
 
        if (this.scenarioParams.numOfOpponents > 4)
         {
-          this.scenarioParams.opponentFiveParams.cardOne = doc.data().players.player4.hand[0]
-          this.scenarioParams.opponentFiveParams.cardTwo = doc.data().players.player4.hand[1]
+          this.scenarioParams.opponentFiveParams.cardOne = doc.data().players.player6.hand[0]
+          this.scenarioParams.opponentFiveParams.cardTwo = doc.data().players.player6.hand[1]
           this.scenarioParams.opponentFiveParams.chipsAvailable = doc.data().players.player6.money.available
           this.scenarioParams.opponentFiveParams.name = doc.data().players.player6.name
+          this.scenarioParams.opponentFiveParams.attributes = doc.data().players.player6.attributes
+          this.scenarioParams.opponentFiveParams.prevMove = doc.data().players.player6.prevMove
 
         }
       

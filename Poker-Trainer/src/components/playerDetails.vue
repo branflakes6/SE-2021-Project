@@ -1,7 +1,12 @@
 <template>
   <v-card>
     <div id="details-container">
-      <h1>{{ playerDetails.name }}</h1>
+      <h1>{{playerDetails.name}}</h1>
+      <h2> Attributes: </h2>
+      <h2 >{{playerDetails.attributes}}</h2>
+      <spacer></spacer>
+      <h1 >Previous Turns</h1>
+      <h4>{{playerDetails.prevMove}}</h4>
     </div>
   </v-card>
 </template>
@@ -22,5 +27,5 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
-</style>

@@ -205,6 +205,16 @@
                     label="Opponent One Name*"
                     required
                   ></v-text-field>
+                  <v-text-field
+                    v-model="scenarioParams.opponentOneParams.attributes"
+                    label="Opponent One Attributes"
+                    required
+                    ></v-text-field>
+                    <v-text-field
+                    v-model="scenarioParams.opponentOneParams.prevMove"
+                    label="Opponent Previous Moves"
+                    required
+                    ></v-text-field>
                   <v-select
                     v-model="o1c1v"
                     :items="values"
@@ -249,6 +259,16 @@
                     label="Opponent Two Name*"
                     required
                   ></v-text-field>
+                  <v-text-field
+                    v-model="scenarioParams.opponentTwoParams.attributes"
+                    label="Opponent Two Attributes"
+                    required
+                    ></v-text-field>
+                    <v-text-field
+                    v-model="scenarioParams.opponentTwoParams.prevMove"
+                    label="Opponent Two Previous Moves"
+                    required
+                    ></v-text-field>
                   <v-select
                     v-model="o2c1v"
                     :items="values"
@@ -293,6 +313,16 @@
                     label="Opponent Three Name*"
                     required
                   ></v-text-field>
+                  <v-text-field
+                    v-model="scenarioParams.opponentThreeParams.attributes"
+                    label="Opponent Three Attributes"
+                    required
+                    ></v-text-field>
+                    <v-text-field
+                    v-model="scenarioParams.opponentThreeParams.prevMove"
+                    label="Opponent Three Previous Moves"
+                    required
+                    ></v-text-field>
                   <v-select
                     v-model="o3c1v"
                     :items="values"
@@ -337,6 +367,16 @@
                     label="Opponent Four Name*"
                     required
                   ></v-text-field>
+                  <v-text-field
+                    v-model="scenarioParams.opponentFourParams.attributes"
+                    label="Opponent Four Attributes"
+                    required
+                    ></v-text-field>
+                    <v-text-field
+                    v-model="scenarioParams.opponentFourParams.prevMove"
+                    label="Opponent Four Previous Moves"
+                    required
+                    ></v-text-field>
                   <v-select
                     v-model="o4c1v"
                     :items="values"
@@ -381,6 +421,16 @@
                     label="Opponent Five Name*"
                     required
                   ></v-text-field>
+                  <v-text-field
+                    v-model="scenarioParams.opponentFiveParams.attributes"
+                    label="Opponent Five Attributes"
+                    required
+                    ></v-text-field>
+                    <v-text-field
+                    v-model="scenarioParams.opponentFiveParams.prevMove"
+                    label="Opponent Five Previous Moves"
+                    required
+                    ></v-text-field>
                   <v-select
                     v-model="o5c1v"
                     :items="values"
@@ -643,7 +693,8 @@ export default {
           },
           players: {
             player2: {
-              attributes: "",
+              attributes: this.scenarioParams.opponentOneParams.attributes,
+              prevMove: this.scenarioParams.opponentOneParams.prevMove,
               hand: [
                 this.o1c1v.concat(this.o1c1s),
                 this.o1c2v.concat(this.o1c2s),
@@ -655,7 +706,8 @@ export default {
               name: this.scenarioParams.opponentOneParams.name,
             },
             player3: {
-              attributes: "",
+              attributes: this.scenarioParams.opponentTwoParams.attributes,
+              prevMove: this.scenarioParams.opponentTwoParams.prevMove,
               hand: [
                 this.o2c1v.concat(this.o2c1s),
                 this.o1c2v.concat(this.o2c2s),
@@ -667,7 +719,8 @@ export default {
               name: this.scenarioParams.opponentTwoParams.name,
             },
             player4: {
-              attributes: "",
+              attributes: this.scenarioParams.opponentThreeParams.attributes,
+              prevMove: this.scenarioParams.opponentThreeParams.prevMove,
               hand: [
                 this.o3c1v.concat(this.o3c1s),
                 this.o3c2v.concat(this.o3c2s),
@@ -680,7 +733,8 @@ export default {
               name: this.scenarioParams.opponentThreeParams.name,
             },
             player5: {
-              attributes: "",
+              attributes: this.scenarioParams.opponentFourParams.attributes,
+              prevMove: this.scenarioParams.opponentFourParams.prevMove,
               hand: [
                 this.o4c1v.concat(this.o4c1s),
                 this.o4c2v.concat(this.o4c2s),
@@ -693,7 +747,8 @@ export default {
               name: this.scenarioParams.opponentFourParams.name,
             },
             player6: {
-              attributes: "",
+              attributes: this.scenarioParams.opponentFiveParams.attributes,
+              prevMove: this.scenarioParams.opponentFiveParams.prevMove,
               hand: [
                 this.o5c1v.concat(this.o5c1s),
                 this.o5c2v.concat(this.o5c2s),
@@ -735,8 +790,7 @@ export default {
               });
           }.bind(this)
         );
-      window.location.reload();
-      window.scrollTo(0, 0);
+   
     },
   },
   data() {
@@ -768,9 +822,9 @@ export default {
         "8",
         "9",
         "10",
-        "Jack",
-        "Queen",
-        "King",
+        "J",
+        "Q",
+        "K",
         "Ace",
       ],
       // card suits
@@ -852,36 +906,48 @@ export default {
           cardOne: "",
           cardTwo: "",
           chipsAvailable: 0,
+          attributes: "",
+          prevMove: ""
         },
         opponentOneParams: {
           name: "",
           cardOne: "",
           cardTwo: "",
           chipsAvailable: 0,
+          attributes: "",
+          prevMove: ""
         },
         opponentTwoParams: {
           name: "",
           cardOne: "",
           cardTwo: "",
           chipsAvailable: 0,
+          attributes: "",
+          prevMove: ""
         },
         opponentThreeParams: {
           name: "",
           cardOne: "",
           cardTwo: "",
           chipsAvailable: 0,
+          attributes: "",
+          prevMove: ""
         },
         opponentFourParams: {
           name: "",
           cardOne: "",
           cardTwo: "",
           chipsAvailable: 0,
+          attributes: "",
+          prevMove: ""
         },
         opponentFiveParams: {
           name: "",
           cardOne: "",
           cardTwo: "",
           chipsAvailable: 0,
+          attributes: "",
+          prevMove: ""
         },
       },
     };
