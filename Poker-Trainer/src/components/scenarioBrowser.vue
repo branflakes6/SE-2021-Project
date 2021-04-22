@@ -2,102 +2,112 @@
 <template>
   <div id="main-div">
     <div>
-      <creationForm/>
-   </div>
+      <creationForm />
+    </div>
 
-<div>
-  <v-container>
-        <v-row align="center" justify = "center">
-            <h1 align="center" justify = "center"> Choose a category</h1>
-            <div >
-            <v-select 
-            text-align="center"
-            item-text="name"
-            item-value="ID"
-            v-model="selectedCat"
-            :items="categories"
+    <div>
+      <v-container>
+        <v-row align="center" justify="center">
+          <div>
+            <v-select
+              text-align="center"
+              item-text="name"
+              item-value="ID"
+              v-model="selectedCat"
+              :items="categories"
+              dark
             >
             </v-select>
-            </div>       
-          <v-btn v-on:click="updateCategory">Update</v-btn>
+          </div>
+          <v-btn id="update-btn" v-on:click="updateCategory" dark>Search</v-btn>
         </v-row>
       </v-container>
-</div>
+    </div>
 
-  <v-layout wrap justify-center>
-      <div v-for="item in masterList" :key="item" id="scenarioThumbnail-container">
-              <scenarioThumbnail
-              v-bind:scenarioID="item.id"
-              v-bind:title="item.name"
-              v-bind:author="item.author"
-              v-bind:description="item.description"
-              />
+    <v-layout wrap>
+      <div
+        v-for="item in masterList"
+        :key="item"
+        id="scenarioThumbnail-container"
+      >
+        <scenarioThumbnail
+          v-bind:scenarioID="item.id"
+          v-bind:title="item.name"
+          v-bind:author="item.author"
+          v-bind:description="item.description"
+        />
       </div>
-  </v-layout>
-
-  
+    </v-layout>
   </div>
 </template>
 
 <script>
-import firebase from 'firebase/app'
+import firebase from "firebase/app";
 const db = firebase.firestore();
 import scenarioThumbnail from "./scenarioThumbnail";
-import creationForm from './creationForm.vue';
+import creationForm from "./creationForm.vue";
 export default {
   name: "scenarioBrowser",
   components: {
     scenarioThumbnail,
     creationForm,
   },
- methods: {
-   search (){
-     this.searchTerm = this.masterList_id
-   },
-   updateCategory(){
-     this.masterList = []
-     db.collection('scenarios').doc("masterList").get().then(doc => {
-     let docs = doc.data()
-     console.log(docs)
-     console.log(docs.Scenarios)
-    for(let index of docs.Scenarios){
-      console.log(index)
-      if (index.category == this.selectedCat || this.selectedCat == "All"){
-        this.masterList.push(index)
-      }
-    }
-    })
-   },
- },
+  methods: {
+    search() {
+      this.searchTerm = this.masterList_id;
+    },
+    updateCategory() {
+      this.masterList = [];
+      db.collection("scenarios")
+        .doc("masterList")
+        .get()
+        .then((doc) => {
+          let docs = doc.data();
+          console.log(docs);
+          console.log(docs.Scenarios);
+          for (let index of docs.Scenarios) {
+            console.log(index);
+            if (
+              index.category == this.selectedCat ||
+              this.selectedCat == "All"
+            ) {
+              this.masterList.push(index);
+            }
+          }
+        });
+    },
+  },
   computed: {
     gridStyle() {
       return {
-        gridTemplateColumns: `repeat(${this.numberOfColumns}, minmax(100px, 1fr))`
-      }
+        gridTemplateColumns: `repeat(${this.numberOfColumns}, minmax(100px, 1fr))`,
+      };
     },
   },
- data () {
+  data() {
     return {
-    masterList: [],
-    categories: ["All","Open","ISO","3Bet","4Bet","5Bet"],
-    selectedCat:"All",
-    masterList_id: "",
-    newID: "",
-    searchTerm: "",
-    loaded: false,
-    select: "",
-    showForm: false,
-    // card values
-   }
+      masterList: [],
+      categories: ["All", "Open", "ISO", "3Bet", "4Bet", "5Bet"],
+      selectedCat: "All",
+      masterList_id: "",
+      newID: "",
+      searchTerm: "",
+      loaded: false,
+      select: "",
+      showForm: false,
+      // card values
+    };
   },
 
- created() {
-    db.collection('scenarios').doc("masterList").get().then(doc => {
-      this.masterList = doc.data().Scenarios
-      this.loaded = true
-    })
+  created() {
+    db.collection("scenarios")
+      .doc("masterList")
+      .get()
+      .then((doc) => {
+        this.masterList = doc.data().Scenarios;
+        this.loaded = true;
+      });
   },
-
 };
 </script>
 
@@ -107,13 +117,20 @@ export default {
   color: white;
   min-height: 100vh;
 }
+#page-header {
+  margin-right: 10px;
+}
+#update-btn {
+  background-color: rgb(148, 42, 42);
+  margin-left: 10px;
+}
 
 #scenarioThumbnail-container {
   width: 480px;
+  display: flex;
   justify-content: center;
+  align-items: center;
   margin: 0 auto;
-  padding: 25px;
-  background-color: rgb(22, 22, 22);
 }
 @media screen and (max-width: 1250px) {
   #scenarioThumbnail-container {

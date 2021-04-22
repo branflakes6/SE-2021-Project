@@ -13,7 +13,7 @@
             <template v-if="scenarioParams.numOfOpponents >= 2">
               <div class="d-c-container">
                 <div class="player-chips-container">
-                  Chips: {{ scenarioParams.opponentTwoParams.chipsAvailable }}
+                  Chips: ${{ scenarioParams.opponentTwoParams.chipsAvailable }}
                 </div>
                 <div
                   v-if="scenarioParams.dealer == 2"
@@ -36,7 +36,10 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-btn class="player-details">
+              <v-btn
+                class="player-details"
+                v-on:click="showOpponent2Details = true"
+              >
                 {{ scenarioParams.opponentTwoParams.name }}
                 <v-icon dark>mdi-information-outline</v-icon>
               </v-btn>
@@ -58,7 +61,7 @@
                   />
                 </div>
                 <div class="player-chips-container">
-                  Chips: {{ scenarioParams.opponentFourParams.chipsAvailable }}
+                  Chips: ${{ scenarioParams.opponentFourParams.chipsAvailable }}
                 </div>
               </div>
               <div class="player-cards">
@@ -71,7 +74,10 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-btn class="player-details">
+              <v-btn
+                class="player-details"
+                v-on:click="showOpponent4Details = true"
+              >
                 {{ scenarioParams.opponentFourParams.name }}
                 <v-icon dark>mdi-information-outline</v-icon>
               </v-btn>
@@ -87,7 +93,7 @@
               </dealersCards>
             </div>
             <div id="pot" class="player-chips-container">
-              Pot: {{ scenarioParams.pot }}
+              Pot: ${{ scenarioParams.pot }}
             </div>
           </div>
 
@@ -107,7 +113,9 @@
                     />
                   </div>
                   <div class="player-chips-container">
-                    Chips: {{ scenarioParams.opponentOneParams.chipsAvailable }}
+                    Chips: ${{
+                      scenarioParams.opponentOneParams.chipsAvailable
+                    }}
                   </div>
                 </div>
                 <div class="player-cards">
@@ -120,7 +128,10 @@
                     :width="cardWidth"
                   ></vue-playing-card>
                 </div>
-                <v-btn class="player-details">
+                <v-btn
+                  class="player-details"
+                  v-on:click="showOpponent1Details = true"
+                >
                   {{ scenarioParams.opponentOneParams.name }}
                   <v-icon dark>mdi-information-outline</v-icon>
                 </v-btn>
@@ -141,7 +152,7 @@
                   />
                 </div>
                 <div class="player-chips-container">
-                  Chips: {{ scenarioParams.userParams.chipsAvailable }}
+                  Chips: ${{ scenarioParams.userParams.chipsAvailable }}
                 </div>
               </div>
               <div class="user-cards">
@@ -166,7 +177,9 @@
             <template v-if="scenarioParams.numOfOpponents >= 3">
               <div class="d-c-container">
                 <div class="player-chips-container">
-                  Chips: {{ scenarioParams.opponentThreeParams.chipsAvailable }}
+                  Chips: ${{
+                    scenarioParams.opponentThreeParams.chipsAvailable
+                  }}
                 </div>
                 <div
                   v-if="scenarioParams.dealer == 3"
@@ -189,7 +202,10 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-btn class="player-details">
+              <v-btn
+                class="player-details"
+                v-on:click="showOpponent3Details = true"
+              >
                 {{ scenarioParams.opponentThreeParams.name }}
                 <v-icon dark>mdi-information-outline</v-icon>
               </v-btn>
@@ -211,7 +227,7 @@
                   />
                 </div>
                 <div class="player-chips-container">
-                  Chips: {{ scenarioParams.opponentFiveParams.chipsAvailable }}
+                  Chips: ${{ scenarioParams.opponentFiveParams.chipsAvailable }}
                 </div>
               </div>
               <div class="player-cards">
@@ -224,7 +240,10 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-btn class="player-details">
+              <v-btn
+                class="player-details"
+                v-on:click="showOpponent5Details = true"
+              >
                 {{ scenarioParams.opponentFiveParams.name }}
                 <v-icon dark>mdi-information-outline</v-icon>
               </v-btn>
@@ -271,7 +290,7 @@
     </v-card>
 
     <!-- call dialogue -->
-    <v-dialog dark v-model="call" max-width="260">
+    <v-dialog persistent dark v-model="call" max-width="260">
       <optionDialogue
         :type="this.scenarioParams.callType"
         :text="this.scenarioParams.callText"
@@ -281,42 +300,71 @@
     <!-- raise dialogue -->
     <v-dialog dark v-model="raise" max-width="260">
       <div align="center">
-        <v-div v-if="ans==false">
-        <h1 align="center">Raise Options</h1>
-        <v-btn @click="raisedClick(1)">
-          <h2>{{this.scenarioParams.raiseOptions.raise1}}</h2>
-        </v-btn>
-        <v-btn @click="raisedClick(2)">
-          <h2>{{this.scenarioParams.raiseOptions.raise2}}</h2>
-        </v-btn>
-        <v-btn @click="raisedClick(3)">
-          <h2>{{this.scenarioParams.raiseOptions.raise3}}</h2>
-        </v-btn>
-      </v-div>
+        <v-div v-if="ans == false">
+          <div id="raise-opt-container">
+            <div id="raise-text">
+              <h1>Raise Options</h1>
+              <p>Choose the amount you would like to raise by</p>
+            </div>
+            <v-btn @click="raisedClick(1)" class="raise-option">
+              <h2>{{ this.scenarioParams.raiseOptions.raise1 }}</h2>
+            </v-btn>
+            <v-btn @click="raisedClick(2)" class="raise-option">
+              <h2>{{ this.scenarioParams.raiseOptions.raise2 }}</h2>
+            </v-btn>
+            <v-btn @click="raisedClick(3)" class="raise-option">
+              <h2>{{ this.scenarioParams.raiseOptions.raise3 }}</h2>
+            </v-btn>
+          </div>
+        </v-div>
 
-        <v-div v-if="ans==true">
-         <v-div v-if="correct==true">
-          <option-dialogue
-           type="Correct"
-           :text="this.scenarioParams.raiseText"
-           />
-           </v-div>
-          <v-div v-if="correct==false">
-          <option-dialogue
-           type="incorrect"
-           :text="this.scenarioParams.raiseText"
-           />
+        <v-div v-if="ans == true">
+          <v-div v-if="correct == true">
+            <option-dialogue
+              type="Correct"
+              :text="this.scenarioParams.raiseText"
+            />
           </v-div>
-          
+          <v-div v-if="correct == false">
+            <option-dialogue
+              type="Incorrect"
+              :text="this.scenarioParams.raiseText"
+            />
+          </v-div>
         </v-div>
       </div>
     </v-dialog>
     <!-- fold dialogue -->
-    <v-dialog dark v-model="fold" max-width="260">
+    <v-dialog persistent dark v-model="fold" max-width="260">
       <optionDialogue
         :type="this.scenarioParams.foldType"
         :text="this.scenarioParams.foldText"
       />
+    </v-dialog>
+
+    <!-- player detail dialogues -->
+
+    <!-- opponet one details -->
+    <v-dialog dark v-model="showOpponent1Details" width="400">
+      <player-details :playerDetails="this.scenarioParams.opponentOneParams" />
+    </v-dialog>
+    <!-- opponet two details -->
+    <v-dialog dark v-model="showOpponent2Details" width="400">
+      <player-details :playerDetails="this.scenarioParams.opponentTwoParams" />
+    </v-dialog>
+    <!-- opponet three details -->
+    <v-dialog dark v-model="showOpponent3Details" width="400">
+      <player-details
+        :playerDetails="this.scenarioParams.opponentThreeParams"
+      />
+    </v-dialog>
+    <!-- opponet four details -->
+    <v-dialog dark v-model="showOpponent4Details" width="400">
+      <player-details :playerDetails="this.scenarioParams.opponentFourParams" />
+    </v-dialog>
+    <!-- opponet five details -->
+    <v-dialog dark v-model="showOpponent5Details" width="400">
+      <player-details :playerDetails="this.scenarioParams.opponentFiveParams" />
     </v-dialog>
   </div>
 </template>
@@ -324,7 +372,8 @@
 <script>
 import dealersCards from "./dealersCards";
 import optionDialogue from "./optionDialogue";
-import OptionDialogue from './optionDialogue.vue';
+import OptionDialogue from "./optionDialogue.vue";
+import PlayerDetails from "./playerDetails.vue";
 export default {
   name: "scenario",
   props: ["scenarioParams"],
@@ -332,17 +381,16 @@ export default {
     dealersCards,
     optionDialogue,
     OptionDialogue,
+    PlayerDetails,
   },
   methods: {
     raisedClick(index) {
-      if(this.scenarioParams.raiseOptions.correctRaise == index)
-      {
-        this.correct = true
+      if (this.scenarioParams.raiseOptions.correctRaise == index) {
+        this.correct = true;
+      } else {
+        this.correct = false;
       }
-      else{
-        this.correct = false
-      }
-      this.ans = true
+      this.ans = true;
     },
     reveal() {
       if (this.scenarioParams.showCardsAfter) {
@@ -394,6 +442,11 @@ export default {
   data: () => ({
     ans: false,
     correct: false,
+    showOpponent1Details: false,
+    showOpponent2Details: false,
+    showOpponent3Details: false,
+    showOpponent4Details: false,
+    showOpponent5Details: false,
     call: false,
     raise: false,
     fold: false,
@@ -590,6 +643,7 @@ export default {
   width: 6.5vw;
   height: 6.5vw;
   margin: 3% 0 0 0;
+  align-items: center;
 }
 #opponent-1 {
   /*border: solid white;*/
@@ -601,7 +655,7 @@ export default {
   padding: 0 0 10px 0;
 }
 #opponent-2 {
-  transform: rotate(90deg);
+  /* transform: rotate(90deg); */
   display: flex;
   justify-content: flex-end;
 
@@ -611,7 +665,7 @@ export default {
 }
 
 #opponent-3 {
-  transform: rotate(-90deg);
+  /* transform: rotate(-90deg); */
   display: flex;
   justify-content: flex-start;
 
@@ -621,7 +675,7 @@ export default {
 }
 
 #opponent-4 {
-  transform: rotate(45deg);
+  /* transform: rotate(45deg); */
   display: flex;
   justify-content: flex-end;
 
@@ -630,7 +684,7 @@ export default {
   left: 10px;
 }
 #opponent-5 {
-  transform: rotate(-45deg);
+  /* transform: rotate(-45deg); */
   display: flex;
   justify-content: flex-start;
 
@@ -669,6 +723,25 @@ export default {
   border: solid white !important;
 }
 
+#raise-opt-container {
+  background: #1e1e1e;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+#raise-text {
+  margin: 0 0 10px 0;
+}
+
+.raise-option {
+  background-color: rgb(99, 22, 22) !important;
+  border: solid white !important;
+  margin: 10px 0 10px 0;
+  width: 50px;
+}
+
 .state-of-play-container {
   display: flex;
   flex-direction: column;
@@ -687,8 +760,5 @@ export default {
 }
 .post-option:hover {
   background-color: #3d3d3d !important;
-}
-.no-active {
-  background-color: #222222 !important;
 }
 </style>

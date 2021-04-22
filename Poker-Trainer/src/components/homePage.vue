@@ -2,7 +2,7 @@
   <div id="main-div">
     <div id="home-banner">
       <img id="home-banner-background" src="../assets/home-banner.png" alt="" />
-      
+
       <div id="home-banner-foreground">
         <h2>Want to be the best at the table?</h2>
         <v-btn
@@ -28,25 +28,31 @@
     <h1 class="tutorial-header">
       Browse scenarios to find a topic you want to improve on
     </h1>
-    <div id="scenarioThumbnail-container">
-      <scenarioThumbnail
-        scenarioID="DNbZQrDKW4aDWZA3Hqi6"
-        title="Victory Royale"
-        author="Upper Hand Poker"
-        description="A beginners sample scenario designed to give you familiarity with the website"
-      />
-      <scenarioThumbnail
-        scenarioID="WXSyM3c4DHKftSwMUafW"
-        title="How aggressive should i play?"
-        author="Upper Hand Poker"
-        description="A more in depth sample scenario designed to test your skills of the basics."
-      />
-      <scenarioThumbnail
-        scenarioID="qQ6pkBbkHyIDGuTC8jtN"
-        title="good time to fold?"
-        author="Upper Hand Poker"
-        description="An advanced scenario designed to really test if you know your stuff or not.."
-      />
+    <div id="bigger-container-lol">
+      <div id="scenarioThumbnail-container">
+        <scenarioThumbnail
+          scenarioID="DNbZQrDKW4aDWZA3Hqi6"
+          title="Victory Royale"
+          author="Upper Hand Poker"
+          description="A beginners sample scenario designed to give you familiarity with the website"
+        />
+      </div>
+      <div id="scenarioThumbnail-container">
+        <scenarioThumbnail
+          scenarioID="WXSyM3c4DHKftSwMUafW"
+          title="How aggressive should i play?"
+          author="Upper Hand Poker"
+          description="A more in depth sample scenario designed to test your skills of the basics."
+        />
+      </div>
+      <div id="scenarioThumbnail-container">
+        <scenarioThumbnail
+          scenarioID="qQ6pkBbkHyIDGuTC8jtN"
+          title="good time to fold?"
+          author="Upper Hand Poker"
+          description="An advanced scenario designed to really test if you know your stuff or not.."
+        />
+      </div>
     </div>
     <h1 class="tutorial-header">
       Analyze the scenrio by looking at the visual representation, and reading
@@ -137,17 +143,15 @@ export default {
   font-size: 2vw;
   text-align: center;
 }
-#scenarioThumbnail-container {
-  width: 80%;
-  height: 500px;
-  margin: 20px 0 50px 0;
-  padding: 20px;
+#bigger-container-lol {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
+}
+#scenarioThumbnail-container {
+  width: 480px;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  background-color: rgb(22, 22, 22);
+  margin: 0 auto;
 }
 #scenario-screenshot {
   width: 75%;
@@ -157,10 +161,8 @@ export default {
   margin: 10px 0 40px 0;
 }
 @media screen and (max-width: 1250px) {
-  #scenarioThumbnail-container {
-    flex-direction: row;
-    padding: 0;
-    height: auto;
+  #bigger-container-lol {
+    flex-direction: column;
   }
 }
 </style>

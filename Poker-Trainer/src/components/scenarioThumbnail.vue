@@ -1,11 +1,14 @@
 <template>
-  <v-card class="align-center" id="thumbnail" dark width="400px">
-    <h3 id="thbml-title" class="title">"{{ title }}"</h3>
-    <h4 id="thbml-author">By {{ author }}</h4>
-    <div id="spacer"></div>
+  <v-card id="thumbnail" dark elevation="8">
+    <div id="title-auth-container">
+      <h3 id="thbml-title" class="title">"{{ title }}"</h3>
+      <h4 id="thbml-author">By {{ author }}</h4>
+    </div>
     <p id="thbml-description">{{ description }}</p>
     <div id="spacer"></div>
-    <v-btn :to="`scenarioPage/${scenarioID}`" width="200">Play</v-btn>
+    <v-btn :to="`scenarioPage/${scenarioID}`" x-large dark class="custom-btn">
+      Play
+    </v-btn>
   </v-card>
 </template>
 
@@ -19,10 +22,23 @@ export default {
 <style scoped>
 #thumbnail {
   padding: 10px;
-  background-color: #3e3e3e;
-  text-align: center;
-  height: 50vh;
+  background-color: #1e1e1e;
+  height: 45vh;
   min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px 0 20px 0;
+  width: 70%;
+}
+#title-auth-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
 }
 #thbml-title {
   text-transform: capitalize;
@@ -32,15 +48,27 @@ export default {
   color: rgb(235, 61, 61);
   margin: 10px 0 10px 0;
 }
-#spacer {
-  height: 10%;
+#category {
+  border: solid white;
+  padding: 2px;
+  border-radius: 15%;
+  text-align: center;
+}
+#image {
+  height: 25%;
+  margin: 20px;
 }
 #thbml-description {
-  background-color: #2d2d2d;
-  height: 150px;
+  background-color: #191919;
+  text-align: center;
+  height: 50%;
   width: 100%;
   overflow-y: auto;
   color: white;
+}
+.custom-btn {
+  background-color: rgb(99, 22, 22) !important;
+  border: solid white !important;
 }
 @media screen and (max-width: 1250px) {
   #thumbnail {
@@ -50,5 +78,9 @@ export default {
   #thbml-description {
     width: 90%;
   }
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
 }
 </style>
