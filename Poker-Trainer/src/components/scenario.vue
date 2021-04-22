@@ -13,7 +13,7 @@
             <template v-if="scenarioParams.numOfOpponents >= 2">
               <div class="d-c-container">
                 <div class="player-chips-container">
-                  Chips: {{ scenarioParams.opponentTwoParams.chipsAvailable }}
+                  Chips: ${{ scenarioParams.opponentTwoParams.chipsAvailable }}
                 </div>
                 <div
                   v-if="scenarioParams.dealer == 2"
@@ -58,7 +58,7 @@
                   />
                 </div>
                 <div class="player-chips-container">
-                  Chips: {{ scenarioParams.opponentFourParams.chipsAvailable }}
+                  Chips: ${{ scenarioParams.opponentFourParams.chipsAvailable }}
                 </div>
               </div>
               <div class="player-cards">
@@ -87,7 +87,7 @@
               </dealersCards>
             </div>
             <div id="pot" class="player-chips-container">
-              Pot: {{ scenarioParams.pot }}
+              Pot: ${{ scenarioParams.pot }}
             </div>
           </div>
 
@@ -107,7 +107,9 @@
                     />
                   </div>
                   <div class="player-chips-container">
-                    Chips: {{ scenarioParams.opponentOneParams.chipsAvailable }}
+                    Chips: ${{
+                      scenarioParams.opponentOneParams.chipsAvailable
+                    }}
                   </div>
                 </div>
                 <div class="player-cards">
@@ -141,7 +143,7 @@
                   />
                 </div>
                 <div class="player-chips-container">
-                  Chips: {{ scenarioParams.userParams.chipsAvailable }}
+                  Chips: ${{ scenarioParams.userParams.chipsAvailable }}
                 </div>
               </div>
               <div class="user-cards">
@@ -166,7 +168,9 @@
             <template v-if="scenarioParams.numOfOpponents >= 3">
               <div class="d-c-container">
                 <div class="player-chips-container">
-                  Chips: {{ scenarioParams.opponentThreeParams.chipsAvailable }}
+                  Chips: ${{
+                    scenarioParams.opponentThreeParams.chipsAvailable
+                  }}
                 </div>
                 <div
                   v-if="scenarioParams.dealer == 3"
@@ -211,7 +215,7 @@
                   />
                 </div>
                 <div class="player-chips-container">
-                  Chips: {{ scenarioParams.opponentFiveParams.chipsAvailable }}
+                  Chips: ${{ scenarioParams.opponentFiveParams.chipsAvailable }}
                 </div>
               </div>
               <div class="player-cards">
