@@ -283,7 +283,7 @@
       <div align="center">
         <v-div v-if="ans==false">
         <h1 align="center">Raise Options</h1>
-        <v-btn @click="raisedClick(0)">
+        <v-btn @click="raisedClick(1)">
           <h2>{{this.scenarioParams.raiseOptions.raise1}}</h2>
         </v-btn>
         <v-btn @click="raisedClick(2)">
