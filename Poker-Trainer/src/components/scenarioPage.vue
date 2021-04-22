@@ -22,6 +22,7 @@ export default {
     showCards: false,
     title:  "",
     dCards: "",
+    
       scenarioParams: {
       title: "Sample Scenario",
       context: "",
@@ -34,6 +35,13 @@ export default {
       foldText: "",
       numOfOpponents: 5,
       cardsOnTable: [],
+      raiseOptions: {
+          numRaises: 0,
+          raise1: 0,
+          raise2: 0,
+          raise3: 0,
+          correctRaise: 0,
+        },
       userParams: {
         cardOne: "cover",
         cardTwo: "cover",
@@ -76,8 +84,6 @@ export default {
     db.collection('scenarios').doc(this.sID).get().then(doc => {
 
       this.scenarioParams.numOfOpponents = doc.data().numPlayers
-      
-
       this.scenarioParams.showCardsAfter = doc.data().showCards
       this.scenarioParams.title = doc.data().title
       this.dCards = doc.data().dCards
@@ -94,6 +100,12 @@ export default {
 
       this.scenarioParams.raiseType = doc.data().raise.type
       this.scenarioParams.raiseText = doc.data().raise.text
+      this.scenarioParams.raiseOptions.numRaises = doc.data().raiseOptions.numRaises
+      this.scenarioParams.raiseOptions.raise1 = doc.data().raiseOptions.raise1
+      this.scenarioParams.raiseOptions.raise2 = doc.data().raiseOptions.raise2
+      this.scenarioParams.raiseOptions.raise3 = doc.data().raiseOptions.raise3
+      this.scenarioParams.raiseOptions.correctRaise = doc.data().raiseOptions.correctRaise
+
 
       this.scenarioParams.foldType = doc.data().fold.type
       this.scenarioParams.foldText = doc.data().fold.text

@@ -1,16 +1,16 @@
 <template>
   <div id="main-div">
     <h1>Upper Hand Leaderboard</h1>
-    <fakeLeaderboard />
+    <leaderboard />
   </div>
 </template>
 
 <script>
-import fakeLeaderboard from "./fakeLeaderboard";
+import leaderboard from "./leaderboard";
 export default {
-  name: "fakeLeaderboardPage",
+  name: "leaderboardPage",
   components: {
-    fakeLeaderboard,
+    leaderboard,
   },
 };
 </script>

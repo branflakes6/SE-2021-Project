@@ -21,6 +21,7 @@
       dark
       v-model="drawer"
       app
+      fixed
     >
       <v-list>
         <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
@@ -31,6 +32,17 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
+      <v-footer class="justify-center pl-0" inset app>
+        <v-col align="center" justify="center">
+          <v-row align="center" justify="center">
+          <h5>Created by TCD SWENG-7</h5>
+          </v-row>
+          <v-row align="center" justify="center">
+           <h6>2021</h6>
+          </v-row>
+        </v-col>
+      </v-footer>
     </v-navigation-drawer>
   </nav>
 </template>
@@ -56,7 +68,7 @@ export default {
       },
       {
         title: "Leaderboard",
-        to: "/fakeLeaderboard",
+        to: "/leaderboard",
       },
       
     ],

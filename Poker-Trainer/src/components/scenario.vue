@@ -279,11 +279,36 @@
     </v-dialog>
 
     <!-- raise dialogue -->
-    <v-dialog persistent dark v-model="raise" max-width="260">
-      <optionDialogue
-        :type="this.scenarioParams.raiseType"
-        :text="this.scenarioParams.raiseText"
-      />
+    <v-dialog dark v-model="raise" max-width="260">
+      <div align="center">
+        <v-div v-if="ans == false">
+          <h1 align="center">Raise Options</h1>
+          <v-btn @click="raisedClick(1)">
+            <h2>{{ this.scenarioParams.raiseOptions.raise1 }}</h2>
+          </v-btn>
+          <v-btn @click="raisedClick(2)">
+            <h2>{{ this.scenarioParams.raiseOptions.raise2 }}</h2>
+          </v-btn>
+          <v-btn @click="raisedClick(3)">
+            <h2>{{ this.scenarioParams.raiseOptions.raise3 }}</h2>
+          </v-btn>
+        </v-div>
+
+        <v-div v-if="ans == true">
+          <v-div v-if="correct == true">
+            <option-dialogue
+              type="Correct"
+              :text="this.scenarioParams.raiseText"
+            />
+          </v-div>
+          <v-div v-if="correct == false">
+            <option-dialogue
+              type="incorrect"
+              :text="this.scenarioParams.raiseText"
+            />
+          </v-div>
+        </v-div>
+      </div>
     </v-dialog>
     <!-- fold dialogue -->
     <v-dialog persistent dark v-model="fold" max-width="260">
@@ -298,14 +323,24 @@
 <script>
 import dealersCards from "./dealersCards";
 import optionDialogue from "./optionDialogue";
+import OptionDialogue from "./optionDialogue.vue";
 export default {
   name: "scenario",
   props: ["scenarioParams"],
   components: {
     dealersCards,
     optionDialogue,
+    OptionDialogue,
   },
   methods: {
+    raisedClick(index) {
+      if (this.scenarioParams.raiseOptions.correctRaise == index) {
+        this.correct = true;
+      } else {
+        this.correct = false;
+      }
+      this.ans = true;
+    },
     reveal() {
       if (this.scenarioParams.showCardsAfter) {
         // reveal opponent 1 cards
@@ -354,6 +389,8 @@ export default {
     window.removeEventListener("resize", this.handleResize);
   },
   data: () => ({
+    ans: false,
+    correct: false,
     call: false,
     raise: false,
     fold: false,

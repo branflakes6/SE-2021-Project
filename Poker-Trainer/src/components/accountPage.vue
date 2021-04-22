@@ -3,9 +3,7 @@
     <div id="askLogIn" v-if="!loggedIn">
       <h1>Welcome To The Account Page</h1>
       <h3>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum autem
-        ipsum earum tenetur maiores pariatur adipisci velit doloremque nesciunt
-        neque.
+        Create an account or Sign In if you already have one!
       </h3>
       <div id="btn-container">
         <v-btn
@@ -128,19 +126,15 @@
         </v-card>
       </v-dialog>
     </div>
-    <div v-else>
-      <profile-page />
-    </div>
   </div>
 </template>
 
 <script>
 import firebase from "../firebase";
-import profilePage from "./profilePage";
+const db = firebase.firestore();
 export default {
   name: "accountPage",
   components: {
-    profilePage,
   },
   props: ["visiting", "loggedIn", "profileDetails"],
   data: function() {
@@ -168,6 +162,13 @@ export default {
             alert("Account created for " + this.signUpEmail);
             this.$router.push("/");
             console.log(user);
+            db.collection("users").doc(this.signUpEmail).set({
+              bio: "",
+              contribs: 0,
+              scePlayed: 0,
+              score: 0,
+              userName: this.signUpUsername
+            })
           },
           (err) => {
             alert(err.message);
@@ -181,12 +182,11 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.signInEmail, this.signInPassword)
         .then(
-          (user) => {
+          () => {
             alert("You are logged in as " + this.signInEmail);
             this.showSignInForm = false;
-            this.$root.loggedIn = true;
-            this.$router.push("/");
-            console.log(user);
+            this.$root.loggedIn = true; 
+             this.$router.push(`profile/${this.signInEmail}`);
           },
           (err) => {
             alert(err.message);

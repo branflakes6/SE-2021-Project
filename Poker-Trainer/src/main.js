@@ -3,7 +3,10 @@ import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
 import router from "./routes/routes";
 import VuePlayingCard from "vue-playing-card";
+import VueLodash from 'vue-lodash'
+import lodash from 'lodash'
 
+Vue.use(VueLodash, {lodash: lodash })
 Vue.use(VuePlayingCard);
 Vue.config.productionTip = false;
 

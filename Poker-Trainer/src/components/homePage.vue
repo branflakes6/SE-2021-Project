@@ -2,7 +2,7 @@
   <div id="main-div">
     <div id="home-banner">
       <img id="home-banner-background" src="../assets/home-banner.png" alt="" />
-
+      
       <div id="home-banner-foreground">
         <h2>Want to be the best at the table?</h2>
         <v-btn
@@ -42,6 +42,7 @@
         description="A more in depth sample scenario designed to test your skills of the basics."
       />
       <scenarioThumbnail
+        scenarioID="qQ6pkBbkHyIDGuTC8jtN"
         title="good time to fold?"
         author="Upper Hand Poker"
         description="An advanced scenario designed to really test if you know your stuff or not.."
