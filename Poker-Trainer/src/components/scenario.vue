@@ -325,6 +325,7 @@
 import dealersCards from "./dealersCards";
 import optionDialogue from "./optionDialogue";
 import OptionDialogue from './optionDialogue.vue';
+import firebase from '../firebase';
 export default {
   name: "scenario",
   props: ["scenarioParams"],
@@ -383,6 +384,13 @@ export default {
       window.location.reload();
       window.scrollTo(0, 0);
     },
+    submit(choice) {
+      let submitFunction = firebase.functions().httpsCallable('submitResponse');
+      submitFunction({scenario: this.scenarioParams.id, choice: choice})
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   },
   created() {
     window.addEventListener("resize", this.handleResize);
