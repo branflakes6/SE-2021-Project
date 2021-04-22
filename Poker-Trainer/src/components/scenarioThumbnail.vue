@@ -1,5 +1,5 @@
 <template>
-  <v-card id="thumbnail" class="align-center" dark elevation="10">
+  <v-card class="align-center" id="thumbnail" dark width="400px">
     <h3 id="thbml-title" class="title">"{{ title }}"</h3>
     <h4 id="thbml-author">By {{ author }}</h4>
     <div id="spacer"></div>
@@ -18,10 +18,6 @@ export default {
 
 <style scoped>
 #thumbnail {
-  display: flex;
-  flex-direction: column;
-  width: 25%;
-  margin: 10px;
   padding: 10px;
   background-color: #3e3e3e;
   text-align: center;
@@ -49,7 +45,7 @@ export default {
 @media screen and (max-width: 1250px) {
   #thumbnail {
     min-width: 70%;
-    margin: 10px 0 10px 0;
+    flex-grow: 0;
   }
   #thbml-description {
     width: 90%;
