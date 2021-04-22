@@ -1,8 +1,6 @@
 <template>
   <div id="main-div">
     <div id="home-banner">
-      <img id="home-banner-background" src="../assets/home-banner.png" alt="" />
-      
       <div id="home-banner-foreground">
         <h2>Want to be the best at the table?</h2>
         <v-btn
@@ -24,6 +22,7 @@
           Practice
         </v-btn>
       </div>
+      <img id="home-banner-background" src="../assets/home-banner.png" alt="" />
     </div>
     <h1 class="tutorial-header">
       Browse scenarios to find a topic you want to improve on
