@@ -1,5 +1,5 @@
 <template>
-  <v-card class="align-center" id="thumbnail" dark width="400px">
+  <v-card class="align-center" id="thumbnail" dark width="400px" elevation="8">
     <h3 id="thbml-title" class="title">"{{ title }}"</h3>
     <h4 id="thbml-author">By {{ author }}</h4>
     <div id="spacer"></div>
