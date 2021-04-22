@@ -36,7 +36,10 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-btn class="player-details">
+              <v-btn
+                class="player-details"
+                v-on:click="showOpponent2Details = true"
+              >
                 {{ scenarioParams.opponentTwoParams.name }}
                 <v-icon dark>mdi-information-outline</v-icon>
               </v-btn>
@@ -71,7 +74,10 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-btn class="player-details">
+              <v-btn
+                class="player-details"
+                v-on:click="showOpponent4Details = true"
+              >
                 {{ scenarioParams.opponentFourParams.name }}
                 <v-icon dark>mdi-information-outline</v-icon>
               </v-btn>
@@ -122,7 +128,10 @@
                     :width="cardWidth"
                   ></vue-playing-card>
                 </div>
-                <v-btn class="player-details">
+                <v-btn
+                  class="player-details"
+                  v-on:click="showOpponent1Details = true"
+                >
                   {{ scenarioParams.opponentOneParams.name }}
                   <v-icon dark>mdi-information-outline</v-icon>
                 </v-btn>
@@ -193,7 +202,10 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-btn class="player-details">
+              <v-btn
+                class="player-details"
+                v-on:click="showOpponent3Details = true"
+              >
                 {{ scenarioParams.opponentThreeParams.name }}
                 <v-icon dark>mdi-information-outline</v-icon>
               </v-btn>
@@ -228,7 +240,10 @@
                   :width="cardWidth"
                 ></vue-playing-card>
               </div>
-              <v-btn class="player-details">
+              <v-btn
+                class="player-details"
+                v-on:click="showOpponent5Details = true"
+              >
                 {{ scenarioParams.opponentFiveParams.name }}
                 <v-icon dark>mdi-information-outline</v-icon>
               </v-btn>
@@ -326,6 +341,31 @@
         :text="this.scenarioParams.foldText"
       />
     </v-dialog>
+
+    <!-- player detail dialogues -->
+
+    <!-- opponet one details -->
+    <v-dialog dark v-model="showOpponent1Details" width="400">
+      <player-details :playerDetails="this.scenarioParams.opponentOneParams" />
+    </v-dialog>
+    <!-- opponet two details -->
+    <v-dialog dark v-model="showOpponent2Details" width="400">
+      <player-details :playerDetails="this.scenarioParams.opponentTwoParams" />
+    </v-dialog>
+    <!-- opponet three details -->
+    <v-dialog dark v-model="showOpponent3Details" width="400">
+      <player-details
+        :playerDetails="this.scenarioParams.opponentThreeParams"
+      />
+    </v-dialog>
+    <!-- opponet four details -->
+    <v-dialog dark v-model="showOpponent4Details" width="400">
+      <player-details :playerDetails="this.scenarioParams.opponentFourParams" />
+    </v-dialog>
+    <!-- opponet five details -->
+    <v-dialog dark v-model="showOpponent5Details" width="400">
+      <player-details :playerDetails="this.scenarioParams.opponentFiveParams" />
+    </v-dialog>
   </div>
 </template>
 
@@ -333,6 +373,7 @@
 import dealersCards from "./dealersCards";
 import optionDialogue from "./optionDialogue";
 import OptionDialogue from "./optionDialogue.vue";
+import PlayerDetails from "./playerDetails.vue";
 export default {
   name: "scenario",
   props: ["scenarioParams"],
@@ -340,6 +381,7 @@ export default {
     dealersCards,
     optionDialogue,
     OptionDialogue,
+    PlayerDetails,
   },
   methods: {
     raisedClick(index) {
@@ -400,6 +442,11 @@ export default {
   data: () => ({
     ans: false,
     correct: false,
+    showOpponent1Details: false,
+    showOpponent2Details: false,
+    showOpponent3Details: false,
+    showOpponent4Details: false,
+    showOpponent5Details: false,
     call: false,
     raise: false,
     fold: false,
