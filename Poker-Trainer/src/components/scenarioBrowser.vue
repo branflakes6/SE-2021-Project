@@ -1,7 +1,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <template>
   <div id="main-div">
-    <div>
+    <div v-if="loggedIn">
       <creationForm />
     </div>
 
@@ -87,6 +87,7 @@ export default {
   data() {
     return {
       masterList: [],
+      loggedIn: false,
       categories: ["All", "Open", "ISO", "3Bet", "4Bet", "5Bet"],
       selectedCat: "All",
       masterList_id: "",
@@ -100,6 +101,9 @@ export default {
   },
 
   created() {
+  if(firebase.auth().currentUser){
+      this.loggedIn = true
+    }
     db.collection("scenarios")
       .doc("masterList")
       .get()
