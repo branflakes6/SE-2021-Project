@@ -1,14 +1,14 @@
 <template>
-  <v-card class="align-center justify-center" id="thumbnail" dark elevation="8">
+  <v-card id="thumbnail" dark elevation="8">
     <div id="title-auth-container">
       <h3 id="thbml-title" class="title">"{{ title }}"</h3>
       <h4 id="thbml-author">By {{ author }}</h4>
     </div>
-    <h4 id="category">Open</h4>
-    <div id="spacer"></div>
     <p id="thbml-description">{{ description }}</p>
     <div id="spacer"></div>
-    <v-btn :to="`scenarioPage/${scenarioID}`" width="200">Play</v-btn>
+    <v-btn :to="`scenarioPage/${scenarioID}`" x-large dark class="custom-btn">
+      Play
+    </v-btn>
   </v-card>
 </template>
 
@@ -22,16 +22,17 @@ export default {
 <style scoped>
 #thumbnail {
   padding: 10px;
-  background-color: #3e3e3e;
-  height: 50vh;
+  background-color: #1e1e1e;
+  height: 45vh;
   min-height: 400px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   margin: 20px 0 20px 0;
-  width: 80%;
+  width: 70%;
 }
 #title-auth-container {
-  background: #2d2d2d;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -53,16 +54,21 @@ export default {
   border-radius: 15%;
   text-align: center;
 }
-#spacer {
-  height: 10%;
+#image {
+  height: 25%;
+  margin: 20px;
 }
 #thbml-description {
-  background-color: #2d2d2d;
+  background-color: #191919;
   text-align: center;
-  height: 150px;
+  height: 50%;
   width: 100%;
   overflow-y: auto;
   color: white;
+}
+.custom-btn {
+  background-color: rgb(99, 22, 22) !important;
+  border: solid white !important;
 }
 @media screen and (max-width: 1250px) {
   #thumbnail {
