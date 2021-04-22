@@ -591,6 +591,7 @@ export default {
   width: 6.5vw;
   height: 6.5vw;
   margin: 3% 0 0 0;
+  align-items: center;
 }
 #opponent-1 {
   /*border: solid white;*/
