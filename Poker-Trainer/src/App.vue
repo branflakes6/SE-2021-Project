@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <Navbar />
+    <Navbar :loggedIn="loggedIn" />
     <v-content>
       <PageLoader v-if="$root.loading" />
       <router-view
@@ -23,7 +23,21 @@ export default {
     Navbar,
     PageLoader,
   },
-  data: () => ({}),
+  watch: {
+        $route() {
+            if(firebase.auth().currentUser){
+                this.loggedIn = true
+                this.user = firebase.auth().currentUser.email
+            }
+            else{
+                this.loggedIn = false
+                this.user = ""
+            }
+        }
+    },
+  data: () => ({
+  loggedIn: false
+  }),
 };
 </script>
 
