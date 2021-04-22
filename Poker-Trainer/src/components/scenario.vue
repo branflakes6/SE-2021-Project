@@ -298,23 +298,31 @@
     </v-dialog>
 
     <!-- raise dialogue -->
-    <v-dialog dark v-model="raise" max-width="260">
+    <v-dialog dark v-model="raise" max-width="300" >
       <div align="center">
         <v-div v-if="ans == false">
-          <div id="raise-opt-container">
+          <div id="raise-opt-container" >
             <div id="raise-text">
               <h1>Raise Options</h1>
               <p>Choose the amount you would like to raise by</p>
             </div>
+            <v-row>
+              <v-col>
             <v-btn @click="raisedClick(1)" class="raise-option">
               <h2>{{ this.scenarioParams.raiseOptions.raise1 }}</h2>
             </v-btn>
+              </v-col>
+              <v-col>
             <v-btn @click="raisedClick(2)" class="raise-option">
               <h2>{{ this.scenarioParams.raiseOptions.raise2 }}</h2>
             </v-btn>
+              </v-col>
+              <v-col>
             <v-btn @click="raisedClick(3)" class="raise-option">
               <h2>{{ this.scenarioParams.raiseOptions.raise3 }}</h2>
             </v-btn>
+            </v-col>
+            </v-row>
           </div>
         </v-div>
 
@@ -333,13 +341,6 @@
           </v-div>
         </v-div>
       </div>
-    </v-dialog>
-    <!-- fold dialogue -->
-    <v-dialog persistent dark v-model="fold" max-width="260">
-      <optionDialogue
-        :type="this.scenarioParams.foldType"
-        :text="this.scenarioParams.foldText"
-      />
     </v-dialog>
 
     <!-- player detail dialogues -->
@@ -730,6 +731,7 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  overflow:hidden;
 }
 #raise-text {
   margin: 0 0 10px 0;
