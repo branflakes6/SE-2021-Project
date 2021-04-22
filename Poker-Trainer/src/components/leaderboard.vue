@@ -11,13 +11,13 @@
       <div class="stat ">Contributions</div>
     </v-card>
     <div v-for="(user, index) in even(users)" :key="user">
-      <a class="board-entry">
+      <router-link style="text-decoration: none" class="board-entry" :to="`profile/${user.email}`" >
         <div class="rank">#{{ index + 1 }}</div>
         <div class="name">{{ user.name }}</div>
         <div class="stat">{{ user.rating }}</div>
         <div class="stat">{{ user.scenariosPlayed }}</div>
         <div class="stat">{{ user.contributions }}</div>
-      </a>
+      </router-link>
     </div>
   </v-card>
 </template>
@@ -48,7 +48,8 @@ export default {
          name: doc.data().userName,
          rating: doc.data().score,
          scenariosPlayed: doc.data().scePlayed,
-         contributions: doc.data().contribs
+         contributions: doc.data().contribs,
+         email: doc.id
        })
      }
    })
