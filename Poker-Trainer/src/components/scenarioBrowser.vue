@@ -7,8 +7,8 @@
 
     <div>
       <v-container>
+        <v-row align="center" justify="center"> </v-row>
         <v-row align="center" justify="center">
-          <h1 align="center" justify="center">Choose a category</h1>
           <div>
             <v-select
               text-align="center"
@@ -20,7 +20,7 @@
             >
             </v-select>
           </div>
-          <v-btn v-on:click="updateCategory">Update</v-btn>
+          <v-btn id="update-btn" v-on:click="updateCategory" dark>Search</v-btn>
         </v-row>
       </v-container>
     </div>
@@ -117,6 +117,13 @@ export default {
   background-color: rgb(22, 22, 22);
   color: white;
   min-height: 100vh;
+}
+#page-header {
+  margin-right: 10px;
+}
+#update-btn {
+  background-color: rgb(148, 42, 42);
+  margin-left: 10px;
 }
 
 #scenarioThumbnail-container {
