@@ -7,7 +7,6 @@
 
     <div>
       <v-container>
-        <v-row align="center" justify="center"> </v-row>
         <v-row align="center" justify="center">
           <div>
             <v-select
@@ -25,7 +24,7 @@
       </v-container>
     </div>
 
-    <v-layout wrap justify-center>
+    <v-layout wrap>
       <div
         v-for="item in masterList"
         :key="item"
@@ -128,9 +127,10 @@ export default {
 
 #scenarioThumbnail-container {
   width: 480px;
+  display: flex;
   justify-content: center;
+  align-items: center;
   margin: 0 auto;
-  padding: 25px;
 }
 @media screen and (max-width: 1250px) {
   #scenarioThumbnail-container {
