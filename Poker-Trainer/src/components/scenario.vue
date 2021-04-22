@@ -283,13 +283,13 @@
       <div align="center">
         <v-div v-if="ans==false">
         <h1 align="center">Raise Options</h1>
-        <v-btn @click="raisedOne()">
+        <v-btn @click="raisedClick(0)">
           <h2>{{this.scenarioParams.raiseOptions.raise1}}</h2>
         </v-btn>
-        <v-btn @click="raisedTwo()">
+        <v-btn @click="raisedClick(2)">
           <h2>{{this.scenarioParams.raiseOptions.raise2}}</h2>
         </v-btn>
-        <v-btn @click="raisedThree()">
+        <v-btn @click="raisedClick(3)">
           <h2>{{this.scenarioParams.raiseOptions.raise3}}</h2>
         </v-btn>
       </v-div>
@@ -334,28 +334,8 @@ export default {
     OptionDialogue,
   },
   methods: {
-    raisedOne() {
-      if(this.scenarioParams.raiseOptions.correctRaise == 1)
-      {
-        this.correct = true
-      }
-      else{
-        this.correct = false
-      }
-      this.ans = true
-    },
-    raisedTwo() {
-      if(this.scenarioParams.raiseOptions.correctRaise == 2)
-      {
-        this.correct = true    
-      }
-      else{
-        this.correct = false
-      }
-      this.ans = true
-    },
-    raisedThree() {
-      if(this.scenarioParams.raiseOptions.correctRaise == 3)
+    raisedClick(index) {
+      if(this.scenarioParams.raiseOptions.correctRaise == index)
       {
         this.correct = true
       }
