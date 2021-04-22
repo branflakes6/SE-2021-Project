@@ -1,13 +1,13 @@
- <template>
- <div>
- <div id="title-btn-container">
+<template>
+  <div>
+    <div id="title-btn-container">
       <h1 id="page-title">Pick a scenario</h1>
       <v-btn id="create-btn" dark v-on:click.stop="showForm = !showForm">
         Create
       </v-btn>
     </div>
 
- <v-dialog dark v-model="showForm" max-width="600px">
+    <v-dialog dark v-model="showForm" max-width="600px">
       <v-card>
         <v-card-title>
           <span class="headline">Create A Scenario</span>
@@ -23,7 +23,7 @@
                   required
                 ></v-text-field>
               </v-col>
-              
+
               <v-col cols="12">
                 <v-text-field
                   v-model="scenarioParams.description"
@@ -52,8 +52,7 @@
                   required
                 ></v-select>
               </v-col>
-              
-              
+
               <!-- community cards -->
               <v-col v-if="turn >= 1" cols="12">
                 <h1 class="headline">Community Cards</h1>
@@ -170,6 +169,7 @@
                     required
                   ></v-select>
                   <v-text-field
+                    type="number"
                     v-model="scenarioParams.userParams.chipsAvailable"
                     label="Chips Available*"
                     required
@@ -232,6 +232,7 @@
                     required
                   ></v-select>
                   <v-text-field
+                    type="number"
                     v-model="scenarioParams.opponentOneParams.chipsAvailable"
                     label="Chips Available*"
                     required
@@ -275,6 +276,7 @@
                     required
                   ></v-select>
                   <v-text-field
+                    type="number"
                     v-model="scenarioParams.opponentTwoParams.chipsAvailable"
                     label="Chips Available*"
                     required
@@ -318,6 +320,7 @@
                     required
                   ></v-select>
                   <v-text-field
+                    type="number"
                     v-model="scenarioParams.opponentThreeParams.chipsAvailable"
                     label="Chips Available*"
                     required
@@ -361,6 +364,7 @@
                     required
                   ></v-select>
                   <v-text-field
+                    type="number"
                     v-model="scenarioParams.opponentFourParams.chipsAvailable"
                     label="Chips Available*"
                     required
@@ -404,6 +408,7 @@
                     required
                   ></v-select>
                   <v-text-field
+                    type="number"
                     v-model="scenarioParams.opponentFiveParams.chipsAvailable"
                     label="Chips Available*"
                     required
@@ -438,52 +443,55 @@
                 required
               ></v-text-field>
             </v-row>
-             <v-row cols="12">
-                <v-select
-                  v-model="raises"
-                  :items="[1, 2, 3]"
-                  label="Number of raise options"
-                  required
-                ></v-select>
-              </v-row>
-             
-              <v-row v-if="raises >= 1">
-                <v-text-field
+            <v-row cols="12">
+              <v-select
+                v-model="raises"
+                :items="[1, 2, 3]"
+                label="Number of raise options"
+                required
+              ></v-select>
+            </v-row>
+
+            <v-row v-if="raises >= 1">
+              <v-text-field
+                type="number"
                 v-model="raise1"
                 label="First raise amount"
                 required
-                >
-                </v-text-field>
-              </v-row> 
-              <v-row v-if="raises >= 2" >
-                <v-text-field
+              >
+              </v-text-field>
+            </v-row>
+            <v-row v-if="raises >= 2">
+              <v-text-field
+                type="number"
                 v-model="raise2"
                 label="Second raise amount"
                 required
-                >
-                </v-text-field>
-              </v-row> 
-              <v-row v-if="raises >= 3">
-                <v-text-field
+              >
+              </v-text-field>
+            </v-row>
+            <v-row v-if="raises >= 3">
+              <v-text-field
+                type="number"
                 v-model="raise3"
                 label="Third raise amount"
                 required
-                >
-                </v-text-field>
-              </v-row> 
-              <v-row>
-                <h3>
-                  Select the correct raise option
-                </h3>
-              </v-row>
-              <v-col cols="12" sm="6">
-                <v-radio-group v-model="correctRaise">
-                  <v-radio
+              >
+              </v-text-field>
+            </v-row>
+            <v-row>
+              <h3>
+                Select the correct raise option
+              </h3>
+            </v-row>
+            <v-col cols="12" sm="6">
+              <v-radio-group v-model="correctRaise">
+                <v-radio
                   value="0"
                   label="None"
                   color="red"
                   hide-details
-                ></v-radio> 
+                ></v-radio>
                 <v-radio
                   value="1"
                   label="First"
@@ -502,8 +510,8 @@
                   color="red"
                   hide-details
                 ></v-radio>
-                </v-radio-group>
-              </v-col>
+              </v-radio-group>
+            </v-col>
             <v-row>
               <v-text-field
                 v-model="scenarioParams.raiseText"
@@ -523,6 +531,7 @@
             <v-row>
               <v-col cols="12" sm="6">
                 <v-text-field
+                  type="number"
                   v-model="scenarioParams.currentBet"
                   label="Amount of Current Bet*"
                   required
@@ -530,6 +539,7 @@
               </v-col>
               <v-col cols="12" sm="6">
                 <v-text-field
+                  type="number"
                   v-model="scenarioParams.pot"
                   label="Pot Total*"
                   required
@@ -558,15 +568,15 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    </div>
+  </div>
 </template>
 
 <script>
-import firebase from 'firebase/app'
+import firebase from "firebase/app";
 const db = firebase.firestore();
-export default { 
-name: "creationForm",
-methods: {
+export default {
+  name: "creationForm",
+  methods: {
     sendScenario() {
       if (this.turn == 1) {
         this.scenarioParams.dCards = 3;
@@ -602,248 +612,279 @@ methods: {
         this.scenarioParams.dealer = 5;
       }
 
-      db.collection("scenarios").add({
-        raiseOptions: {
-          numRaises: this.raises,
-          raise1: this.raise1,
-          raise2: this.raise2,
-          raise3: this.raise3,
-          correctRaise: this.correctRaise,
-        },
-        call: {
-          text: this.scenarioParams.callText,
-          type: this.scenarioParams.callType,
-        },
-        dCards: this.scenarioParams.dCards,
-        dealer: this.scenarioParams.dealer,
-        fold: {
-          text: this.scenarioParams.foldText,
-          type: this.scenarioParams.foldType,
-        },
-        numPlayers: this.scenarioParams.numOfOpponents,
-        player: {
-          hand: [this.uc1v.concat(this.uc1s), this.uc2v.concat(this.uc2s)],
-          money: {
-            available: this.scenarioParams.userParams.chipsAvailable,
-            bet: this.scenarioParams.currentBet,
+      db.collection("scenarios")
+        .add({
+          raiseOptions: {
+            numRaises: this.raises,
+            raise1: this.raise1,
+            raise2: this.raise2,
+            raise3: this.raise3,
+            correctRaise: this.correctRaise,
           },
-        },
-        players: {
-          player2: {
-            attributes: "",
-            hand: [
-              this.o1c1v.concat(this.o1c1s),
-              this.o1c2v.concat(this.o1c2s),
-            ],
+          call: {
+            text: this.scenarioParams.callText,
+            type: this.scenarioParams.callType,
+          },
+          dCards: this.scenarioParams.dCards,
+          dealer: this.scenarioParams.dealer,
+          fold: {
+            text: this.scenarioParams.foldText,
+            type: this.scenarioParams.foldType,
+          },
+          numPlayers: this.scenarioParams.numOfOpponents,
+          player: {
+            hand: [this.uc1v.concat(this.uc1s), this.uc2v.concat(this.uc2s)],
             money: {
-              available: this.scenarioParams.opponentOneParams.chipsAvailable,
-              bet: "",
+              available: this.scenarioParams.userParams.chipsAvailable,
+              bet: this.scenarioParams.currentBet,
             },
-            name: this.scenarioParams.opponentOneParams.name,
           },
-          player3: {
-            attributes: "",
-            hand: [
-              this.o2c1v.concat(this.o2c1s),
-              this.o1c2v.concat(this.o2c2s),
-            ],
-            money: {
-              available: this.scenarioParams.opponentTwoParams.chipsAvailable,
-              bet: "",
+          players: {
+            player2: {
+              attributes: "",
+              hand: [
+                this.o1c1v.concat(this.o1c1s),
+                this.o1c2v.concat(this.o1c2s),
+              ],
+              money: {
+                available: this.scenarioParams.opponentOneParams.chipsAvailable,
+                bet: "",
+              },
+              name: this.scenarioParams.opponentOneParams.name,
             },
-            name: this.scenarioParams.opponentTwoParams.name,
-          },
-          player4: {
-            attributes: "",
-            hand: [
-              this.o3c1v.concat(this.o3c1s),
-              this.o3c2v.concat(this.o3c2s),
-            ],
-            money: {
-              available: this.scenarioParams.opponentThreeParams.chipsAvailable,
-              bet: "",
+            player3: {
+              attributes: "",
+              hand: [
+                this.o2c1v.concat(this.o2c1s),
+                this.o1c2v.concat(this.o2c2s),
+              ],
+              money: {
+                available: this.scenarioParams.opponentTwoParams.chipsAvailable,
+                bet: "",
+              },
+              name: this.scenarioParams.opponentTwoParams.name,
             },
-            name: this.scenarioParams.opponentThreeParams.name,
-          },
-          player5: {
-            attributes: "",
-            hand: [
-              this.o4c1v.concat(this.o4c1s),
-              this.o4c2v.concat(this.o4c2s),
-            ],
-            money: {
-              available: this.scenarioParams.opponentFourParams.chipsAvailable,
-              bet: "",
+            player4: {
+              attributes: "",
+              hand: [
+                this.o3c1v.concat(this.o3c1s),
+                this.o3c2v.concat(this.o3c2s),
+              ],
+              money: {
+                available: this.scenarioParams.opponentThreeParams
+                  .chipsAvailable,
+                bet: "",
+              },
+              name: this.scenarioParams.opponentThreeParams.name,
             },
-            name: this.scenarioParams.opponentFourParams.name,
-          },
-          player6: {
-            attributes: "",
-            hand: [
-              this.o5c1v.concat(this.o5c1s),
-              this.o5c2v.concat(this.o5c2s),
-            ],
-            money: {
-              available: this.scenarioParams.opponentFiveParams.chipsAvailable,
-              bet: "",
+            player5: {
+              attributes: "",
+              hand: [
+                this.o4c1v.concat(this.o4c1s),
+                this.o4c2v.concat(this.o4c2s),
+              ],
+              money: {
+                available: this.scenarioParams.opponentFourParams
+                  .chipsAvailable,
+                bet: "",
+              },
+              name: this.scenarioParams.opponentFourParams.name,
             },
-            name: this.scenarioParams.opponentFiveParams.name,
+            player6: {
+              attributes: "",
+              hand: [
+                this.o5c1v.concat(this.o5c1s),
+                this.o5c2v.concat(this.o5c2s),
+              ],
+              money: {
+                available: this.scenarioParams.opponentFiveParams
+                  .chipsAvailable,
+                bet: "",
+              },
+              name: this.scenarioParams.opponentFiveParams.name,
+            },
           },
-        },
-        raise: {
-          text: this.scenarioParams.raiseText,
-          type: this.scenarioParams.raiseType,
-        },
-        showCards: this.scenarioParams.reveal,
-        stateOfPlay: this.scenarioParams.context,
-        tableCards: [
-          this.cc1v.concat(this.cc1s),
-          this.cc2v.concat(this.cc2s),
-          this.cc3v.concat(this.cc3s),
-          this.cc4v.concat(this.cc4s),
-          this.cc5v.concat(this.cc5s),
-        ],
-        title: this.scenarioParams.title,  
-      }).then(function(docRef) {
-        db.collection("scenarios").doc("masterList").update({
-        Scenarios: firebase.firestore.FieldValue.arrayUnion({id: docRef.id, 
-        name:this.scenarioParams.title, 
-        category:this.sCat,
-        description: this.scenarioParams.description})
-      })
-      }.bind(this));  
-     window.location.reload();
+          raise: {
+            text: this.scenarioParams.raiseText,
+            type: this.scenarioParams.raiseType,
+          },
+          showCards: this.scenarioParams.reveal,
+          stateOfPlay: this.scenarioParams.context,
+          tableCards: [
+            this.cc1v.concat(this.cc1s),
+            this.cc2v.concat(this.cc2s),
+            this.cc3v.concat(this.cc3s),
+            this.cc4v.concat(this.cc4s),
+            this.cc5v.concat(this.cc5s),
+          ],
+          title: this.scenarioParams.title,
+        })
+        .then(
+          function(docRef) {
+            db.collection("scenarios")
+              .doc("masterList")
+              .update({
+                Scenarios: firebase.firestore.FieldValue.arrayUnion({
+                  id: docRef.id,
+                  name: this.scenarioParams.title,
+                  category: this.sCat,
+                  description: this.scenarioParams.description,
+                }),
+              });
+          }.bind(this)
+        );
+      window.location.reload();
       window.scrollTo(0, 0);
-   },
-    
-  },
- data () {
-return {
-masterList: [],
-    raise1: 0,
-    raise2: 0,
-    raise3: 0,
-    correctRaise: 0,
-    categories: ["All","Open","ISO","3Bet","4Bet","5Bet"],
-    selectedCat:"All",
-    rasieAmounts: [0,0,0],
-    raises: 0,
-    numCols: 3,
-    masterList_id: "",
-    newID: "",
-    searchTerm: "",
-    loaded: false,
-    select: "",
-    showForm: false,
-    // card values
-    values: ["2","3","4","5","6","7", "8","9","10","Jack","Queen","King","Ace"],
-    // card suits
-    suits: ["Hearts", "Spades", "Diamonds", "Clubs"],
-    // dealer chip array
-    dealerOptions: ["User","Opponent 1","Opponent 2","Opponent 3","Opponent 4","Opponent 5"],
-    options: ["Call", "Raise", "Fold"],
-    correctAnswer: "",
-    turn: 0,
-    // community card values
-    cc1v: "",
-    cc2v: "",
-    cc3v: "",
-    cc4v: "",
-    cc5v: "",
-    cc6v: "",
-    cc1s: "",
-    cc2s: "",
-    cc3s: "",
-    cc4s: "",
-    cc5s: "",
-    cc6s: "",
-    // for values for user
-    uc1v: "",
-    uc2v: "",
-    uc1s: "",
-    uc2s: "",
-    // form values for opponent 1
-    o1c1v: "",
-    o1c2v: "",
-    o1c1s: "",
-    o1c2s: "",
-    // form values for opponent 2
-    o2c1v: "",
-    o2c2v: "",
-    o2c1s: "",
-    o2c2s: "",
-    // form values for opponent 3
-    o3c1v: "",
-    o3c2v: "",
-    o3c1s: "",
-    o3c2s: "",
-    // form values for opponent 4
-    o4c1v: "",
-    o4c2v: "",
-    o4c1s: "",
-    o4c2s: "",
-    // form values for opponent 5
-    o5c1v: "",
-    o5c2v: "",
-    o5c1s: "",
-    o5c2s: "",
-    // default params
-    scenarioParams: {
-      dCards: " ",
-      title: " ",
-      description: " ",
-      context: " ",
-      reveal: false,
-      pot: 0,
-      currentBet: 0,
-      dealer: 0,
-      callType: "",
-      foldType: "",
-      raiseType: "",
-      callText: "",
-      raiseText: "",
-      foldText: "",
-      numOfOpponents: 0,
-      cardsOnTable: [],
-      userParams: {
-        cardOne: "",
-        cardTwo: "",
-        chipsAvailable: 0,
-      },
-      opponentOneParams: {
-        name: "",
-        cardOne: "",
-        cardTwo: "",
-        chipsAvailable: 0,
-      },
-      opponentTwoParams: {
-        name: "",
-        cardOne: "",
-        cardTwo: "",
-        chipsAvailable: 0,
-      },
-      opponentThreeParams: {
-        name: "",
-        cardOne: "",
-        cardTwo: "",
-        chipsAvailable: 0,
-      },
-      opponentFourParams: {
-        name: "",
-        cardOne: "",
-        cardTwo: "",
-        chipsAvailable: 0,
-      },
-      opponentFiveParams: {
-        name: "",
-        cardOne: "",
-        cardTwo: "",
-        chipsAvailable: 0,
-      },
     },
-   }
- },
-}
+  },
+  data() {
+    return {
+      masterList: [],
+      raise1: 0,
+      raise2: 0,
+      raise3: 0,
+      correctRaise: 0,
+      categories: ["All", "Open", "ISO", "3Bet", "4Bet", "5Bet"],
+      selectedCat: "All",
+      rasieAmounts: [0, 0, 0],
+      raises: 0,
+      numCols: 3,
+      masterList_id: "",
+      newID: "",
+      searchTerm: "",
+      loaded: false,
+      select: "",
+      showForm: false,
+      // card values
+      values: [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "Jack",
+        "Queen",
+        "King",
+        "Ace",
+      ],
+      // card suits
+      suits: ["Hearts", "Spades", "Diamonds", "Clubs"],
+      // dealer chip array
+      dealerOptions: [
+        "User",
+        "Opponent 1",
+        "Opponent 2",
+        "Opponent 3",
+        "Opponent 4",
+        "Opponent 5",
+      ],
+      options: ["Call", "Raise", "Fold"],
+      correctAnswer: "",
+      turn: 0,
+      // community card values
+      cc1v: "",
+      cc2v: "",
+      cc3v: "",
+      cc4v: "",
+      cc5v: "",
+      cc6v: "",
+      cc1s: "",
+      cc2s: "",
+      cc3s: "",
+      cc4s: "",
+      cc5s: "",
+      cc6s: "",
+      // for values for user
+      uc1v: "",
+      uc2v: "",
+      uc1s: "",
+      uc2s: "",
+      // form values for opponent 1
+      o1c1v: "",
+      o1c2v: "",
+      o1c1s: "",
+      o1c2s: "",
+      // form values for opponent 2
+      o2c1v: "",
+      o2c2v: "",
+      o2c1s: "",
+      o2c2s: "",
+      // form values for opponent 3
+      o3c1v: "",
+      o3c2v: "",
+      o3c1s: "",
+      o3c2s: "",
+      // form values for opponent 4
+      o4c1v: "",
+      o4c2v: "",
+      o4c1s: "",
+      o4c2s: "",
+      // form values for opponent 5
+      o5c1v: "",
+      o5c2v: "",
+      o5c1s: "",
+      o5c2s: "",
+      // default params
+      scenarioParams: {
+        dCards: " ",
+        title: " ",
+        description: " ",
+        context: " ",
+        reveal: false,
+        pot: 0,
+        currentBet: 0,
+        dealer: 0,
+        callType: "",
+        foldType: "",
+        raiseType: "",
+        callText: "",
+        raiseText: "",
+        foldText: "",
+        numOfOpponents: 0,
+        cardsOnTable: [],
+        userParams: {
+          cardOne: "",
+          cardTwo: "",
+          chipsAvailable: 0,
+        },
+        opponentOneParams: {
+          name: "",
+          cardOne: "",
+          cardTwo: "",
+          chipsAvailable: 0,
+        },
+        opponentTwoParams: {
+          name: "",
+          cardOne: "",
+          cardTwo: "",
+          chipsAvailable: 0,
+        },
+        opponentThreeParams: {
+          name: "",
+          cardOne: "",
+          cardTwo: "",
+          chipsAvailable: 0,
+        },
+        opponentFourParams: {
+          name: "",
+          cardOne: "",
+          cardTwo: "",
+          chipsAvailable: 0,
+        },
+        opponentFiveParams: {
+          name: "",
+          cardOne: "",
+          cardTwo: "",
+          chipsAvailable: 0,
+        },
+      },
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -912,7 +953,7 @@ masterList: [],
 }
 
 body {
-  background: #20262E;
+  background: #20262e;
   padding: 20px;
   font-family: Helvetica;
 }
@@ -924,4 +965,3 @@ ul {
   grid-template-columns: 6ch auto;
 }
 </style>
-
