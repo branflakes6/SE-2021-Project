@@ -1,7 +1,6 @@
 <template>
   <div>
     <div id="title-btn-container">
-      <h1 id="page-title">Pick a scenario</h1>
       <v-btn id="create-btn" dark v-on:click.stop="showForm = !showForm">
         Create
       </v-btn>

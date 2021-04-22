@@ -16,6 +16,7 @@
               item-value="ID"
               v-model="selectedCat"
               :items="categories"
+              dark
             >
             </v-select>
           </div>
@@ -123,7 +124,6 @@ export default {
   justify-content: center;
   margin: 0 auto;
   padding: 25px;
-  background-color: #2e2e2e;
 }
 @media screen and (max-width: 1250px) {
   #scenarioThumbnail-container {
