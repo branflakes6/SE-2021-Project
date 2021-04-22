@@ -16,7 +16,7 @@
 <script>
 import Navbar from "./components/Navbar";
 import PageLoader from "./components/PageLoader";
-import firebase from "../firebase";
+import firebase from "firebase";
 export default {
   name: "App",
   components: {

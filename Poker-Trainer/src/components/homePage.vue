@@ -94,8 +94,9 @@
         <v-card
           class="mb-12"
           color="grey lighten-1"
-          height="600px"
+          
         >
+        <v-img id="scenario-screenshot" src="../assets/playerInfo.png" max-width="1600" class="mx-auto"></v-img>
         </v-card>
         <v-btn
           color="primary"

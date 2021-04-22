@@ -130,7 +130,7 @@
 </template>
 
 <script>
-import firebase from "../firebase";
+import firebase from "firebase";
 const db = firebase.firestore();
 export default {
   name: "accountPage",
@@ -178,7 +178,7 @@ export default {
     },
     login: function(e) {
       console.log(this.signInEmail);
-      firebase.auht().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
       firebase
         .auth()
         .signInWithEmailAndPassword(this.signInEmail, this.signInPassword)
