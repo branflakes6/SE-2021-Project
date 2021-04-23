@@ -49,6 +49,8 @@ If the user goes to raise they will be presented with several options as raising
 
 At the end of the Scenario the user is told if the decision they made was right or wrong and is provided with some justification for this. This informatio should be used to improve their future decisions.
 
+![moving](README-Images/Sce.gif)
+
 ## User Accounts
 ![account](README-Images/account.png)
 
@@ -81,3 +83,23 @@ If a user is Logged In and of high enough privilege they are presented with the 
 ![creation](README-Images/lb.png)
 
 The final page of the project is the Leaderboard, here users can see a list of the Top Users of the Website. Users are ordered by their total Rating as determined by the decisions they make during the Scenarios. Each user can be clicked on to go to their Profile Page.
+
+
+## Implementation
+
+The project is implemented entirely using Vuejs and Firebase.
+
+# Vue
+Vuejs is a front-end JavaScript framework for building user interfaces and single-page applications.
+
+# Firebase
+Firebase is a Google platform that we used to implement our database and user authentication.
+
+![dbs](README-Images/dbs.png)
+Scenarios are stored in the database as a collection of documents, each scenario is its own unique document with an ID. Each Scenario has fields corresponding to the information neccessary to render it correctly. 
+
+User account data is stored in the "users" collection, when a user registers a new account a document is created using their email that ties their details to the account.
+
+![cret](README-Images/cret.png)
+When a user creates a Scenario using the website the data is formated and sent to the database as a new Scenario.
+
