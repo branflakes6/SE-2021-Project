@@ -373,9 +373,14 @@
 <script>
 import dealersCards from "./dealersCards";
 import optionDialogue from "./optionDialogue";
+<<<<<<< HEAD
 import OptionDialogue from "./optionDialogue.vue";
 import PlayerDetails from "./playerDetails.vue";
 import firebase from "../firebase";
+=======
+import OptionDialogue from './optionDialogue.vue';
+import firebase from '../firebase';
+>>>>>>> 4c7444d071c8ffcdb80177b1ca720469da38e0eb
 export default {
   name: "scenario",
   props: ["scenarioParams"],
