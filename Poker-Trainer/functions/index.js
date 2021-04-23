@@ -1,9 +1,9 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+admin.initializeApp();
 const scenarios = admin.firestore().collection("responses");
 const users = admin.firestore().collection("users");
 const ranks = ["novice", "expert"];
-admin.initializeApp();
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
