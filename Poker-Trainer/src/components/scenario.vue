@@ -308,17 +308,17 @@
             </div>
             <v-row>
               <v-col>
-            <v-btn @click="raisedClick(1), submit('raise'+this.scenarioParams.raiseOptions.raise1)" class="raise-option">
+            <v-btn @click="raisedClick(1), submit(`raise1`)" class="raise-option">
               <h2>{{ this.scenarioParams.raiseOptions.raise1 }}</h2>
             </v-btn>
               </v-col>
               <v-col>
-            <v-btn @click="raisedClick(2), submit('raise'+this.scenarioParams.raiseOptions.raise2)" class="raise-option">
+            <v-btn @click="raisedClick(2), submit(`raise2`)" class="raise-option">
               <h2>{{ this.scenarioParams.raiseOptions.raise2 }}</h2>
             </v-btn>
               </v-col>
               <v-col>
-            <v-btn @click="raisedClick(3), submit('raise'+this.scenarioParams.raiseOptions.raise3)" class="raise-option">
+            <v-btn @click="raisedClick(3), submit(`raise3`)" class="raise-option">
               <h2>{{ this.scenarioParams.raiseOptions.raise3 }}</h2>
             </v-btn>
             </v-col>

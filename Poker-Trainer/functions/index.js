@@ -1,7 +1,8 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 admin.initializeApp();
-const scenarios = admin.firestore().collection("responses");
+const scenarios = admin.firestore().collection("scenarios");
+const scenarioResponses = admin.firestore().collection("responses");
 const users = admin.firestore().collection("users");
 const ranks = ["novice", "expert"];
 
@@ -24,7 +25,7 @@ exports.submitResponse = functions.https.onCall(async (data, context) => {
     throw new functions.https.HttpsError('invalid-argument', '');
   }
 
-  let answers = await scenarios.doc(data.scenario).get();
+  let answers = await scenarioResponses.doc(data.scenario).get();
   answers = answers.data();
 
   if(!answers[data.choice]){
@@ -56,7 +57,7 @@ exports.submitResponse = functions.https.onCall(async (data, context) => {
       score: admin.firestore.FieldValue.increment(rankChange)
   });
 
-  scenarios.doc(data.scenario).update({
+  scenarioResponses.doc(data.scenario).update({
     [`${data.choice}.${rankName}`]: admin.firestore.FieldValue.increment(1),
     [`total.${rankName}`]: admin.firestore.FieldValue.increment(1)
   });
@@ -77,4 +78,51 @@ exports.createUserData = functions.auth.user().onCreate((user) => {
 
 exports.deleteUserData = functions.auth.user().onDelete((user) => {
   return users.doc(user.uid).delete();
+});
+
+exports.createScenarioResponses = functions.https.onCall(async (data, context) =>{
+
+  let masterlist = await scenarios.doc("masterList").get();
+  let scenarioList = masterlist.data().Scenarios;
+
+  let scenarioResponseCol = admin.firestore().collection("responses");
+
+  for(sce in scenarioList){
+    let scenarioData = await scenarios.doc(scenarioList[sce].id).get();
+    if(scenarioData.exists){
+      let scenarioDoc = scenarioResponseCol.doc(scenarioList[sce].id).get();
+      if(!scenarioDoc.exists){
+        let scenarioResponseData = {
+          call:{
+            expert:0,
+            novice:0
+          },
+          fold:{
+            expert:0,
+            novice:0
+          },
+          total:{
+            expert:0,
+            novice:0
+          }
+        }
+        if(scenarioData.data().raiseOptions){
+          for(let i =0; i < scenarioData.data().raiseOptions.numRaises; i++){
+            scenarioResponseData[`raise${i}`] = {
+              expert:0,
+              novice:0
+            };
+          }
+        }
+        else{
+          scenarioResponseData.raise = {
+            expert:0,
+            novice:0
+          };
+        }
+        scenarioResponseCol.doc(scenarioList[sce].id).set(scenarioResponseData);
+      }
+    }
+  }
+
 });
