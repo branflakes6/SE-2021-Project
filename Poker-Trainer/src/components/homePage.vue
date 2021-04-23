@@ -6,7 +6,6 @@
       <div id="home-banner-foreground">
         <h2>Want to be the best at the table?</h2>
         <v-btn
-          width="200"
           outlined
           v-if="!signedIn"
           class="signup"
@@ -14,13 +13,7 @@
         >
           Sign Up
         </v-btn>
-        <v-btn
-          width="200"
-          outlined
-          v-if="signedIn"
-          class="signup"
-          to="/scenarioBrowser"
-        >
+        <v-btn outlined v-if="signedIn" class="signup" to="/scenarioBrowser">
           Practice
         </v-btn>
       </div>
@@ -54,74 +47,61 @@
         />
       </div>
     </div>
-    <v-stepper v-model="e1" :dark="true" non-linear>
-    <v-stepper-header>
-      <v-stepper-step
-        editable
-        step="1"
-      >
-        The Board
-      </v-stepper-step>
-      <v-divider></v-divider>
-      <v-stepper-step
-        editable
-        step="2"
-      >
-        Analyse your opponents
-      </v-stepper-step>
 
-      <v-divider></v-divider>
+    <v-stepper v-model="e1" dark non-linear>
+      <v-stepper-header>
+        <v-stepper-step color="red" editable step="1">
+          The Board
+        </v-stepper-step>
+        <v-divider></v-divider>
+        <v-stepper-step color="red" editable step="2">
+          Analyse your opponents
+        </v-stepper-step>
 
-      <v-stepper-step editable step="3">
-        Create your own Scenarios
-      </v-stepper-step>
-    </v-stepper-header>
+        <v-divider></v-divider>
 
-    <v-stepper-items >
-      <v-stepper-content step="1">
-        <v-card class="mb-12" color="grey lighten-1">
-        <v-img id="scenario-screenshot" src="../assets/scenario-screenshot.png" max-width="1600" class="mx-auto"></v-img>
-        </v-card>
-        <v-btn
-          color="primary"
-          @click="e1 = 2"
-        >
-          Continue
-        </v-btn>
-      </v-stepper-content>
+        <v-stepper-step color="red" editable step="3">
+          Create your own Scenarios
+        </v-stepper-step>
+      </v-stepper-header>
 
-      <v-stepper-content step="2">
-        <v-card
-          class="mb-12"
-          color="grey lighten-1"
-          
-        >
-        <v-img id="scenario-screenshot" src="../assets/playerInfo.png" max-width="1600" class="mx-auto"></v-img>
-        </v-card>
-        <v-btn
-          color="primary"
-          @click="e1 = 3"
-        >
-          Continue
-        </v-btn>
-      </v-stepper-content>
-      <v-stepper-content step="3">
-        <v-card
-          class="mb-12"
-          color="grey lighten-1"
-          height="700px"
-        >
-        <v-img id="scenario-screenshot" src="../assets/form-screenshot.png" max-height="1200" class="mx-auto"></v-img>
-        </v-card>
-        <v-btn
-          color="primary"
-          @click="e1 = 1"
-        >
-          Continue
-        </v-btn>
-      </v-stepper-content>
-    </v-stepper-items>
-  </v-stepper>
+      <v-stepper-items>
+        <v-stepper-content step="1">
+          <v-card class="mb-12">
+            <div class="v-c-container">
+              <img
+                id="scenario-screenshot"
+                src="../assets/scenario-screenshot.png"
+              />
+            </div>
+          </v-card>
+          <v-btn class="continue-btn" @click="e1 = 2">
+            Continue
+          </v-btn>
+        </v-stepper-content>
+
+        <v-stepper-content step="2">
+          <v-card class="mb-12">
+            <div class="v-c-container">
+              <img id="dialogue-screenshot" src="../assets/playerInfo.png" />
+            </div>
+          </v-card>
+          <v-btn class="continue-btn" @click="e1 = 3">
+            Continue
+          </v-btn>
+        </v-stepper-content>
+        <v-stepper-content step="3">
+          <v-card class="mb-12">
+            <div class="v-c-container">
+              <img id="form-screenshot" src="../assets/form-screenshot.png" />
+            </div>
+          </v-card>
+          <v-btn class="continue-btn" @click="e1 = 1">
+            Continue
+          </v-btn>
+        </v-stepper-content>
+      </v-stepper-items>
+    </v-stepper>
   </div>
 </template>
 
@@ -136,7 +116,7 @@ export default {
     signedIn: true,
     drawer: false,
     showSignUpForm: false,
-    e1:1,
+    e1: 1,
   }),
 };
 </script>
@@ -168,6 +148,8 @@ export default {
   opacity: 45%;
   position: static;
   width: 100%;
+  min-height: 200px;
+  width: 98vw;
 }
 
 #home-banner-foreground {
@@ -192,6 +174,16 @@ export default {
 }
 #bigger-container-lol {
   display: flex;
+  margin: 30px;
+}
+.v-c-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+}
+.continue-btn {
+  background-color: rgb(148, 42, 42) !important;
 }
 #scenarioThumbnail-container {
   width: 480px;
@@ -201,12 +193,17 @@ export default {
   margin: 0 auto;
 }
 #scenario-screenshot {
-  width: 75%;
+  width: 90%;
+}
+#dialogue-screenshot {
+  width: 40%;
+  min-width: 300px;
 }
 #form-screenshot {
-  width: 30%;
-  margin: 10px 0 40px 0;
+  width: 40%;
+  min-width: 300px;
 }
+
 @media screen and (max-width: 1250px) {
   #bigger-container-lol {
     flex-direction: column;
