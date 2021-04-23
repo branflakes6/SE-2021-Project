@@ -7,8 +7,8 @@
 
     <!-- scenario options after user answered, wont display on invalid decision -->
     <template v-if="type != 'Invalid'">
-      <v-btn to="/" dark class="post-option" v-model="answered">
-        <h1>Next</h1>
+      <v-btn to="/scenarioBrowser" dark class="post-option" v-model="answered">
+        <h1>Browse</h1>
       </v-btn>
       <v-btn
         active-class="no-active"
