@@ -29,6 +29,7 @@
 <script>
 import firebase from "../firebase";
 const db = firebase.firestore();
+const auth = firebase.auth();
 export default {
   name: "profilePage",
   data () {
@@ -43,7 +44,7 @@ export default {
     }
   },
   created() {
-    this.userName = this.$route.params.userName 
+    this.userName = auth.currentUser.uid//this.$route.params.userName 
      db.collection("users").doc(this.userName).get().then(doc =>{
                 this.details.bio = doc.data().bio
                 this.details.contribs = doc.data().contribs

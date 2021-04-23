@@ -162,7 +162,7 @@ export default {
             alert("Account created for " + this.signUpEmail);
             this.$router.push("/");
             console.log(user);
-            db.collection("users").doc(this.signUpEmail).set({
+            db.collection("users").doc(user.user.uid).set({
               bio: "",
               contribs: 0,
               scePlayed: 0,

@@ -260,7 +260,7 @@
           x-large
           dark
           class="option"
-          v-on:click="reveal(), (call = true), (answered = true)"
+          v-on:click="reveal(), (call = true), (answered = true), submit('call')"
           >Call</v-btn
         >
       </div>
@@ -278,7 +278,7 @@
           x-large
           dark
           class="option"
-          @click="reveal(), (fold = true), (answered = true)"
+          @click="reveal(), (fold = true), (answered = true), submit('fold')"
           >Fold</v-btn
         >
       </div>
@@ -308,17 +308,17 @@
             </div>
             <v-row>
               <v-col>
-            <v-btn @click="raisedClick(1)" class="raise-option">
+            <v-btn @click="raisedClick(1), submit(`raise1`)" class="raise-option">
               <h2>{{ this.scenarioParams.raiseOptions.raise1 }}</h2>
             </v-btn>
               </v-col>
               <v-col>
-            <v-btn @click="raisedClick(2)" class="raise-option">
+            <v-btn @click="raisedClick(2), submit(`raise2`)" class="raise-option">
               <h2>{{ this.scenarioParams.raiseOptions.raise2 }}</h2>
             </v-btn>
               </v-col>
               <v-col>
-            <v-btn @click="raisedClick(3)" class="raise-option">
+            <v-btn @click="raisedClick(3), submit(`raise3`)" class="raise-option">
               <h2>{{ this.scenarioParams.raiseOptions.raise3 }}</h2>
             </v-btn>
             </v-col>
@@ -375,6 +375,7 @@ import dealersCards from "./dealersCards";
 import optionDialogue from "./optionDialogue";
 import OptionDialogue from "./optionDialogue.vue";
 import PlayerDetails from "./playerDetails.vue";
+import firebase from "../firebase";
 export default {
   name: "scenario",
   props: ["scenarioParams"],
@@ -432,6 +433,13 @@ export default {
       window.location.reload();
       window.scrollTo(0, 0);
     },
+    submit(choice) {
+      let submitFunction = firebase.functions().httpsCallable('submitResponse');
+      submitFunction({scenario: this.scenarioParams.id, choice: choice})
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   },
   created() {
     window.addEventListener("resize", this.handleResize);

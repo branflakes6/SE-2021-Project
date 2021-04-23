@@ -24,6 +24,7 @@ export default {
     dCards: "",
     
       scenarioParams: {
+      id: "",
       title: "Sample Scenario",
       context: "",
       dealer: 1,
@@ -94,6 +95,8 @@ export default {
   created() {
     this.sID = this.$route.params.scenarioID  
     db.collection('scenarios').doc(this.sID).get().then(doc => {
+
+      this.scenarioParams.id=this.sID
 
       this.scenarioParams.numOfOpponents = doc.data().numPlayers
       this.scenarioParams.showCardsAfter = doc.data().showCards
