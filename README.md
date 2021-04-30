@@ -86,7 +86,6 @@ The final page of the project is the Leaderboard, here users can see a list of t
 
 
 ## Implementation
-
 The project is implemented entirely using Vuejs and Firebase.
 
 # Vue
